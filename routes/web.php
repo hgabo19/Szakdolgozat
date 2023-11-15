@@ -33,9 +33,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/exercises', [ExerciseController::class, 'showAllExercises'])->name('exercises.index');
 
-
-    
-    Route::get('/plans', [WorkoutPlanController::class, 'showAllWorkoutPlans'])->name('workout_plans.index');
+    // workout plans
+    Route::get('/workout-plans', [WorkoutPlanController::class, 'index'])->name('workout-plans.index');
+    Route::get('/workout-plans/{workoutPlan}', [WorkoutPlanController::class, 'show'])->name('workout-plans.show');
+        
 });
 
 require __DIR__.'/auth.php';
