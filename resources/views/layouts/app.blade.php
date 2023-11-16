@@ -42,7 +42,7 @@
                     <x-side-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         Dashboard
                     </x-side-nav-link>
-                    <x-side-nav-link href="{{ route('workout-plans.index') }}" :active="request()->routeIs('workout_plans.index')">
+                    <x-side-nav-link href="{{ route('workout-plans.index') }}" :active="request()->routeIs('workout-plans.index')">
                         Workout plans
                     </x-side-nav-link>
                     <x-side-nav-link href="{{ route('exercises.index') }}" :active="request()->routeIs('exercises.index')">
