@@ -14,4 +14,8 @@ class WorkoutPlanController extends Controller
     public function show(WorkoutPlan $workoutPlan) {
         return view('workout-plans.show', compact('workoutPlan'));
     }
+
+    public function saveToUser() {
+        
+    }
 }

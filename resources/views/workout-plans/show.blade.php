@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="font-semibold text-3xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Workout plan name') }}   
+            {{ __( $workoutPlan->title ) }}   
         </h1>
     </x-slot>
     
@@ -9,15 +9,24 @@
         <div class="max-w-3xl mx-auto mt-8">
         <h1 class="text-2xl font-bold mb-4">{{ $workoutPlan->title }}</h1>
         
-        <div class="mb-8">
+        <div class="mb-8 flex gap-6">
             <img src="{{ asset($workoutPlan->image_path) }}" alt="{{ $workoutPlan->title }}" class="mb-4 h-48 rounded-lg">
-            <h2 class="text-xl font-semibold">Leiras</h2>
-            <p class="text-gray-600 my-4">{{ $workoutPlan->description }}</p>
+            @auth
+                <form action="{{ route('save-workout-plan', ['id' => $workoutPlan->id]) }}" method="POST">
+                    @csrf
+                    <button type="submit">Save Workout Plan</button>
+                </form>
+            @endauth
         </div>
 
-        <h2 class="text-xl font-semibold mb-4">Exercises</h2>
+        <div>
+            <h2 class="text-xl my-4 font-semibold text-center">Description</h2>
+            <p class="text-gray-600 mt-4 mb-8">{{ $workoutPlan->description }}</p>
+        </div>
+
+        <h2 class="text-xl font-semibold mb-4 text-center">Exercises</h2>
     
-        <div class="">
+        <div>
             @foreach ($workoutPlan->exercises as $exercise)
                 <li class="mb-2">
                     <strong>{{ $exercise->name }}</strong>

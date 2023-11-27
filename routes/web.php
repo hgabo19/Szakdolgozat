@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/dashboard', function () {
@@ -25,19 +25,20 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
+// Route::get('/exercises', [ExerciseController::class, 'index'])->name('exercises.index');
+Route::resource('exercises', ExerciseController::class);
+
+// workout plans
+Route::get('/workout-plans', [WorkoutPlanController::class, 'index'])->name('workout-plans.index');
+Route::get('/workout-plans/{workoutPlan}', [WorkoutPlanController::class, 'show'])->name('workout-plans.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Route::get('/exercises', [ExerciseController::class, 'index'])->name('exercises.index');
-    Route::resource('exercises', ExerciseController::class);
-
-    // workout plans
-    Route::get('/workout-plans', [WorkoutPlanController::class, 'index'])->name('workout-plans.index');
-    Route::get('/workout-plans/{workoutPlan}', [WorkoutPlanController::class, 'show'])->name('workout-plans.show');
-        
+    Route::post('/workout-plans/save/{id}', WorkoutPlanController::class, 'saveToUser')->name('save-workout-plan');
+    //Route::post('/save-workout-plan/{}', [WorkoutPlanController::class, 'saveToUser'])
 });
 
 require __DIR__.'/auth.php';
