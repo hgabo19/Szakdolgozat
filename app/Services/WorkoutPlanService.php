@@ -2,12 +2,26 @@
 
 namespace App\Services;
 
-use App\Interfaces\Services\WorkoutPlanInterface;
+use App\Models\User;
+use App\Models\WorkoutPlan;
+use Illuminate\Support\Facades\Auth;
 
-class WorkoutPlanService implements WorkoutPlanInterface
+class WorkoutPlanService
 {
-    public function saveToUser()
-    {
+    public function saveToUser($userId, $workoutPlanId)
+    {  
+        if(!Auth::check()) {
+            return false;
+        }
+
+        $user = User::find($userId);
+        $workoutPlan = WorkoutPlan::find($workoutPlanId);
         
+        if($user && $workoutPlan) {
+            $user->workoutPlan()->associate($workoutPlan);
+            $user->save();
+            return true;
+        }
+        return false;
     }
 }

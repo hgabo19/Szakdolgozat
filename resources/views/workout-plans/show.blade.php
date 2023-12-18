@@ -11,11 +11,14 @@
         
         <div class="mb-8 flex gap-6">
             <img src="{{ asset($workoutPlan->image_path) }}" alt="{{ $workoutPlan->title }}" class="mb-4 h-48 rounded-lg">
+
             @auth
-                <form action="{{ route('save-workout-plan', ['id' => $workoutPlan->id]) }}" method="POST">
-                    @csrf
-                    <button type="submit">Save Workout Plan</button>
-                </form>
+                <div>
+                    <form action="{{ route('save.workout.plan', ['userId' => Auth::id(),'workoutPlanId' => $workoutPlan->id]) }}" method="POST">
+                        @csrf
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700" type="submit">Save Workout Plan</button>
+                    </form>
+                </div>
             @endauth
         </div>
 
