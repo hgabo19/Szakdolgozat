@@ -7,6 +7,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -28,6 +29,12 @@ class User extends Authenticatable
         'calorie_goal',
         'workout_plan_id',
     ];
+
+    public function userChallenges(): HasOne
+    {
+        return $this->hasOne(UserChallenge::class);
+
+    }
 
     /**
      * Defining the relationship between WorkoutPLans and Users 
