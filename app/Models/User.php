@@ -24,10 +24,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'age',
-        'weight',
-        'calorie_goal',
         'workout_plan_id',
+        'gender',
+        'age',
+        'current_weight',
+        'starting_weight',
+        'height',
+        'activity_level',
+        'calorie_goal',
+        'weight_goal',
     ];
 
     public function userChallenges(): HasOne

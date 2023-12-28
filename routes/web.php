@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ExerciseController;
+use App\Http\Controllers\HealthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WorkoutPlanController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,8 @@ Route::middleware('auth')->group(function () {
     // save workout plan to user
     Route::post('/save-workout-plan/{userId}/{workoutPlanId}', [WorkoutPlanController::class, 'saveWorkoutPlanToUser'])->name('save.workout.plan');
 
+    // Health page
+    Route::get('/health', [HealthController::class, 'index'])->name('health.index');
 });
 
 require __DIR__.'/auth.php';

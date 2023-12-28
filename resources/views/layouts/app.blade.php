@@ -48,6 +48,9 @@
                     <x-side-nav-link href="{{ route('exercises.index') }}" :active="request()->routeIs('exercises.index')">
                         Exercises
                     </x-side-nav-link>
+                    <x-side-nav-link href="{{ route('health.index') }}" :active="request()->routeIs('health.index')">
+                        Health
+                    </x-side-nav-link>
                 </nav>
             </aside>
 

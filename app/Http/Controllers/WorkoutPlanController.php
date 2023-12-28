@@ -9,23 +9,24 @@ use Illuminate\Http\Request;
 
 class WorkoutPlanController extends Controller
 {
-    private $workoutPlanService;
+    // private $workoutPlanService;
 
-    public function __construct(WorkoutPlanService $workoutPlanService) {
-        $this->workoutPlanService = $workoutPlanService;
-    }
+    // public function __construct(WorkoutPlanService $workoutPlanService) {
+    //     $this->workoutPlanService = $workoutPlanService;
+    // }
 
     public function index() {
         $workoutPlans = WorkoutPlan::all();
         return view('workout-plans.index', compact('workoutPlans'));
     }
+    
     public function show(WorkoutPlan $workoutPlan) {
         return view('workout-plans.show', compact('workoutPlan'));
     }
 
-    public function saveWorkoutPlanToUser($userId, $workoutPlanId) {
+    public function saveWorkoutPlanToUser($userId, $workoutPlanId, WorkoutPlanService $workoutPlanService) {
         
-        $isSuccessful = $this->workoutPlanService->saveToUser($userId, $workoutPlanId);
+        $isSuccessful = $workoutPlanService->saveToUser($userId, $workoutPlanId);
 
         if($isSuccessful) {
             return redirect()->route('dashboard')->with('success', 'Workout Plan saved :)');
