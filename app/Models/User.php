@@ -27,7 +27,7 @@ class User extends Authenticatable
         'workout_plan_id',
         'gender',
         'age',
-        'current_weight',
+        'weight',
         'starting_weight',
         'height',
         'activity_level',
