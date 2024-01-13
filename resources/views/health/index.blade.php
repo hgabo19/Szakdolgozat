@@ -4,6 +4,18 @@
             {{ __('Health') }}
         </h1>
     </x-slot>
+
+    <nav class="flex justify-center items-center flex-row gap-32">
+        <x-nav-link wire:navigate href="{{ route('health.index') }}" :active="request()->routeIs('health.index')">
+            Health data
+        </x-nav-link>
+        <x-nav-link wire:navigate href="{{ route('health.calories') }}" :active="request()->routeIs('health.calories')">
+            Calories
+        </x-nav-link>
+        <x-nav-link wire:navigate href="{{ route('health.challenges') }}" :active="request()->routeIs('health.challenges')">
+            Challenges            
+        </x-nav-link>
+    </nav>
     
     <div class="pt-20 flex flex-row">
         <x-calorie-modal>

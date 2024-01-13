@@ -43,6 +43,8 @@ Route::middleware('auth')->group(function () {
 
     // Health page
     Route::get('/health', [HealthController::class, 'index'])->name('health.index');
+    Route::get('health/calories', [HealthController::class, 'calories'])->name('health.calories');
+    Route::get('health/challenges', [HealthController::class, 'challenges'])->name('health.challenges');
 });
 
 require __DIR__.'/auth.php';

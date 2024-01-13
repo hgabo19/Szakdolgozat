@@ -48,14 +48,14 @@
                     <x-side-nav-link href="{{ route('exercises.index') }}" :active="request()->routeIs('exercises.index')">
                         Exercises
                     </x-side-nav-link>
-                    <x-side-nav-link href="{{ route('health.index') }}" :active="request()->routeIs('health.index')">
+                    <x-side-nav-link href="{{ route('health.index') }}" :active="request()->routeIs('health.*')">
                         Health
                     </x-side-nav-link>
                 </nav>
             </aside>
 
             <!-- Main content -->
-            <main class="flex-1 bg-gray-100 h-screen overflow-auto">
+            <main class="flex-1 bg-gray-200 h-screen overflow-auto">
                 <nav class="bg-blue-950 shadow-lg">
                     <div class="mx-auto px-2 sm:px-6 lg:px-8">
                         <div class="relative flex items-center justify-between md:justify-end h-16">
