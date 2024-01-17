@@ -17,8 +17,8 @@
         </x-nav-link>
     </nav>
     
-    <div class="pt-20 flex flex-row">
-        <p>halii</p>
+    <div class="my-10">
+        @livewire('meal-tracker')
         
     </div>
 </x-app-layout>
