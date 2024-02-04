@@ -12,5 +12,8 @@ class Meal extends Model
     protected $fillable = [
         'name',
         'calories',
+        'protein',
+        'fats',
+        'carbonhydrates',
     ];
 }
