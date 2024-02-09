@@ -17,7 +17,7 @@
     <body class="font-sans antialiased">
         <div class="relative min-h-screen md:flex" x-data="{ open: true }">
             <!-- Sidebar -->
-            <aside :class="{ '-translate-x-full': !open }" class="z-10 bg-gray-800 text-blue-100 w-64 px-2 py-4 absolute inset-y-0 left-0 md:relative transform -translate-x-full 
+            <aside :class="{ '-translate-x-full': !open }" class="z-10 bg-secondary-color text-blue-100 w-64 px-2 py-4 absolute inset-y-0 left-0 md:relative transform -translate-x-full 
             md:translate-x-0 overflow-y-auto transition ease-in-out duration-200 shadow-lg">
                 <!-- Logo -->
                 <div class="flex items-center justify-between px-2">
@@ -55,8 +55,8 @@
             </aside>
 
             <!-- Main content -->
-            <main class="flex-1 bg-gray-200 h-screen overflow-auto">
-                <nav class="bg-blue-950 shadow-lg">
+            <main class="flex-1 bg-gradient-to-t from-darker-gray to-dark-charcoal h-screen overflow-auto">
+                <nav>
                     <div class="mx-auto px-2 sm:px-6 lg:px-8">
                         <div class="relative flex items-center justify-between md:justify-end h-16">
                             <div class="absolute inset-y-0 left-0 flex items-center md:hidden">
@@ -70,6 +70,7 @@
                                     </svg>
                                 </button>
                             </div>
+                            {{-- APPLICATION LOGO HERE --}}
                             <div class="flex flex-1 items-center justify-center md:hidden">
                                 <div class="flex flex-shrink-0">
                                     <a href="{{ route('dashboard') }}">
@@ -83,8 +84,8 @@
                                 <div class="absolute inset-y-0 right-0 flex items-center">
                                     <x-dropdown align="right" width="48">
                                         <x-slot name="trigger">
-                                            <button class="inline-flex items-center px-3 py-2 text-sm leading-4 font-medium rounded-lg border border-solid border-sky-50 
-                                            text-gray-500 dark:text-gray-300 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-200">
+                                            <button class="inline-flex items-center px-4 py-3 text-base leading-4 font-medium rounded-lg border border-solid border-gray-700 
+                                            text-gray-500 dark:text-gray-300 bg-white dark:bg-dark-gray dark:hover:bg-blue-900 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-200">
                                                 <div>{{ Auth::user()->username }}</div>
 
                                                 <div class="ml-1">
@@ -120,7 +121,7 @@
                 
                 <!-- Page Heading -->
                 @if (isset($header))
-                    <header class="bg-white dark:bg-gray-500 shadow">
+                    <header class="">
                         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                             {{ $header }}
                         </div>

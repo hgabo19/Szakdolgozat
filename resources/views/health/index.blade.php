@@ -25,10 +25,10 @@
         </x-custom-modal>
         
         <div class="w-fit p-20 flex justify-center">
-            <div class="bg-gray-800 shadow-md p-10 rounded-md relative h-fit w-fit">
-                <p class="text-lg text-gray-100 font-bold mb-4">Here you can calculate your needed calorie intake</p>
+            <div class="bg-secondary-color shadow-md p-10 rounded-md relative h-fit w-fit">
+                <p class="text-lg text-white font-bold mb-4">Here you can calculate your needed calorie intake</p>
                 <div class="flex">
-                    <button x-data x-on:click="$dispatch('open-modal')" class="bg-blue-700  text-gray-100 my-5 py-3 px-6 rounded-md hover:bg-blue-600 top-16 mx-auto">
+                    <button x-data x-on:click="$dispatch('open-modal')" class="bg-cyan  text-white my-5 py-3 px-6 rounded-md hover:bg-hover-color top-16 mx-auto">
                         Calculate
                     </button>
                 </div>

@@ -17,6 +17,7 @@
         </x-nav-link>
     </nav>
     
+
     <div class="my-10 grid grid-cols-2 gap-y-10 gap-x-5 ml-10">
         <x-custom-modal>
             <x-slot:body>

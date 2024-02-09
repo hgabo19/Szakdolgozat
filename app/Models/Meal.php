@@ -16,4 +16,8 @@ class Meal extends Model
         'fats',
         'carbonhydrates',
     ];
+
+    public function scopeSearch($query, $value){
+        $query->where('name', 'like', "%{$value}%");
+    }
 }

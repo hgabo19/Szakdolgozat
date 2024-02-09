@@ -10,9 +10,11 @@ class FoodList extends Component
 {
     use WithPagination;
 
+    public $search = '';
+
     public function render()
     {
-        $foods = Meal::paginate(3);
+        $foods = Meal::search($this->search)->paginate(3);
         return view('livewire.food-list', [
             'foods' => $foods
         ]);
