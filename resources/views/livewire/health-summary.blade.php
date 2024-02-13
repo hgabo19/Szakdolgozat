@@ -1,4 +1,9 @@
 <div wire:poll.visible.2s>
+    <div class="absolute end-0 top-6 right-8">
+        <button x-data x-on:click="$dispatch('open-modal')">
+            @include('components.plus-button')
+        </button>
+    </div>
     <h3 class="text-lg text-gray-100 font-bold mb-4">Your health data</h3>
     <div>
         <h1 class="text-2xl text-gray-100 font-bold mx-3">Calorie goal: {{ $calorie_goal }}</h1>

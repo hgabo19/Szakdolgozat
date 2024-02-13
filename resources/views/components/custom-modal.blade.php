@@ -10,7 +10,7 @@
     <div x-on:click="show = false" class="fixed inset-0 backdrop-blur-sm"></div>
 
     {{-- Body --}}
-    <div class="bg-gray-800 rounded-xl mx-auto my-9 fixed inset-0 max-w-fit shadow-xl max-h-fit overflow-y-auto">
+    <div class="bg-gray-950 rounded-xl mx-auto my-9 fixed inset-0 max-w-fit shadow-xl max-h-fit overflow-y-auto">
         <div>
             {{ $body }}
         </div>

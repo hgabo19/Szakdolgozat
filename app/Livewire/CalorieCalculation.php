@@ -37,8 +37,8 @@ class CalorieCalculation extends Component
         $weightParsed = (int)$this->weight;
         $heightParsed = (int)$this->height;
 
-        $calories = $healthService->calculateCalories($this->gender, $ageParsed, $weightParsed, $heightParsed, $this->activity_level, $this->weight_goal);
         if(Auth::check()){
+            $calories = $healthService->calculateCalories($this->gender, $ageParsed, $weightParsed, $heightParsed, $this->activity_level, $this->weight_goal);
             try{
                 $user = User::findOrFail(Auth::id());
                 $user->gender = $this->gender;

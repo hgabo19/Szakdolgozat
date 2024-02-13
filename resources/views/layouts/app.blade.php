@@ -17,15 +17,14 @@
     <body class="font-sans antialiased">
         <div class="relative min-h-screen md:flex" x-data="{ open: true }">
             <!-- Sidebar -->
-            <aside :class="{ '-translate-x-full': !open }" class="z-10 bg-secondary-color text-blue-100 w-64 px-2 py-4 absolute inset-y-0 left-0 md:relative transform -translate-x-full 
+            <aside :class="{ '-translate-x-full': !open }" class="z-10 bg-secondary-color text-white lg:w-64 w-56 px-2 py-4 absolute inset-y-0 left-0 md:relative transform -translate-x-full 
             md:translate-x-0 overflow-y-auto transition ease-in-out duration-200 shadow-lg">
                 <!-- Logo -->
                 <div class="flex items-center justify-between px-2">
                     <div class="flex items-center space-x-4">
                         <a href="{{ route('dashboard') }}">
-                            <x-application-logo class="block h-10 w-auto fill-current text-gray-400" />
+                            <img class="h-auto w-full mt-10" src="{{ asset('images/logo/logo.png') }}" alt="logo">
                         </a>
-                        <span class="text-xl font-extrabold">Lift It UP</span>
                     </div>
 
                     <!-- Button -->
@@ -39,7 +38,7 @@
 
                 <!-- Nav links -->
                 <nav class="flex justify-center items-center flex-col">
-                    <x-side-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    <x-side-nav-link class="mt-20" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         Dashboard
                     </x-side-nav-link>
                     <x-side-nav-link href="{{ route('workout-plans.index') }}" :active="request()->routeIs('workout-plans.index')">
@@ -55,7 +54,7 @@
             </aside>
 
             <!-- Main content -->
-            <main class="flex-1 bg-gradient-to-t from-darker-gray to-dark-charcoal h-screen overflow-auto">
+            <main class="flex-1 bg-gradient-to-t from-darker-gray to-dark-charcoal h-screen w-full overflow-auto">
                 <nav>
                     <div class="mx-auto px-2 sm:px-6 lg:px-8">
                         <div class="relative flex items-center justify-between md:justify-end h-16">
@@ -74,18 +73,18 @@
                             <div class="flex flex-1 items-center justify-center md:hidden">
                                 <div class="flex flex-shrink-0">
                                     <a href="{{ route('dashboard') }}">
-                                        <x-application-logo class="block h-10 w-auto fill-current text-gray-400" />
+                                        <img class="block h-auto w-full" src="{{ asset('images/logo/logo.png') }}" alt="logo">
                                     </a>
                                 </div>
                             </div>
 
                             <!-- Profile button -->
                             @auth    
-                                <div class="absolute inset-y-0 right-0 flex items-center">
+                                <div class="absolute inset-y-0 right-0 flex items-center mt-20 mr-10">
                                     <x-dropdown align="right" width="48">
                                         <x-slot name="trigger">
-                                            <button class="inline-flex items-center px-4 py-3 text-base leading-4 font-medium rounded-lg border border-solid border-gray-700 
-                                            text-gray-500 dark:text-gray-300 bg-white dark:bg-dark-gray dark:hover:bg-blue-900 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-200">
+                                            <button class="inline-flex items-center px-4 py-4 text-xl leading-4 font-medium rounded-lg
+                                            text-gray-500 dark:text-white bg-white dark:bg-action-color dark:hover:bg-action-hover hover:text-gray-100 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-200">
                                                 <div>{{ Auth::user()->username }}</div>
 
                                                 <div class="ml-1">
@@ -119,16 +118,7 @@
                     </div>
                 </nav>
                 
-                <!-- Page Heading -->
-                @if (isset($header))
-                    <header class="">
-                        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                            {{ $header }}
-                        </div>
-                    </header>
-                @endif
-
-                <div>
+                <div class="mt-28">
                     {{ $slot }}    
                 </div>
             </main>
