@@ -20,4 +20,9 @@ class Meal extends Model
     public function scopeSearch($query, $value){
         $query->where('name', 'like', "%{$value}%");
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_meals');
+    }
 }

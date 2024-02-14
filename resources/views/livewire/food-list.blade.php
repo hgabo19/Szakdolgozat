@@ -17,6 +17,11 @@
     </form>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg m-4 max-w-fit">
+        @if ($neededCaloriesLogged)
+            <div>
+                <h1 class="text-green-500 text-2xl">You've earned the daily calorie goal C:</h1>
+            </div>
+        @endif
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-md">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
