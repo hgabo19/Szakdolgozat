@@ -23,7 +23,7 @@
                 <div class="flex items-center justify-between px-2">
                     <div class="flex items-center space-x-4">
                         <a href="{{ route('dashboard') }}">
-                            <img class="h-auto w-full mt-10" src="{{ asset('images/logo/logo.png') }}" alt="logo">
+                            <x-application-logo />
                         </a>
                     </div>
 
@@ -73,14 +73,14 @@
                             <div class="flex flex-1 items-center justify-center md:hidden">
                                 <div class="flex flex-shrink-0">
                                     <a href="{{ route('dashboard') }}">
-                                        <img class="block h-auto w-full" src="{{ asset('images/logo/logo.png') }}" alt="logo">
+                                        <x-application-logo />
                                     </a>
                                 </div>
                             </div>
 
                             <!-- Profile button -->
                             @auth    
-                                <div class="absolute inset-y-0 right-0 flex items-center mt-20 mr-10">
+                                <div class="absolute inset-y-0 right-0 flex items-center mt-24 mr-10">
                                     <x-dropdown align="right" width="48">
                                         <x-slot name="trigger">
                                             <button class="inline-flex items-center px-4 py-4 text-xl leading-4 font-medium rounded-lg

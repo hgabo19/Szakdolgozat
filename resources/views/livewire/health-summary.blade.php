@@ -1,6 +1,6 @@
 <div wire:poll.visible.2s>
     <div class="absolute end-0 top-6 right-8">
-        <button x-data x-on:click="$dispatch('open-modal')">
+        <button x-data x-on:click="$dispatch('open-modal', { name : 'calorie-calculation'})">
             @include('components.plus-button')
         </button>
     </div>

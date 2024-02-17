@@ -1,16 +1,23 @@
 <x-app-layout>
-    @include('components.health-tabs')
-    
-    <div class="pt-20 flex flex-row">
-        <x-custom-modal>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-1 ">
+        <x-custom-modal name="calorie-calculation">
             <x-slot:body>
                 <livewire:calorie-calculation >
             </x-slot:body>
         </x-custom-modal>
         
-        <div class="w-fit p-16 m-5">
+        <div class="w-fit mx-auto my-6">
             <div class="bg-secondary-color shadow-lg p-6 rounded-md flex justify-center relative w-fit h-fit">
                 <livewire:health-summary>
+            </div>
+        </div>
+
+        @include('health.calories')
+
+        {{-- graph --}}
+        <div class="bg-secondary-color border-none container content w-2/3 my-6 overflow-auto mx-auto border rounded-lg shadow-lg hover:shadow-xl">
+            <div class="flex">
+                <h1 class="font-semibold text-2xl text-white my-5 mx-auto">Graph on the daily calorie count</h1>
             </div>
         </div>
     </div>

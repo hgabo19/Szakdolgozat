@@ -13,33 +13,36 @@ class FoodList extends Component
     use WithPagination;
 
     public $search = '';
-    public $neededCaloriesLogged = false;
+    public $message = '';
+    public $foodItems = [];
 
-    public function saveFoodToUser($foodId) 
+    public function addFoodItem($foodId) 
     {
         if(Auth::check()) 
         {
             $food = Meal::findOrFail($foodId);
-            $user = User::findOrFail(Auth::id());
-            $user->meals()->attach($food, ['consumed_at' => now()->timezone('Europe/Budapest')]);
-            
-            $today = now()->timezone('Europe/Budapest')->startOfDay();
-            
-            // Eager load meals with calories USE INSIDE THE LOGGING TABLE
-            // $loggedMealsToday = $user->meals()
-            //     ->wherePivot('consumed_at', '>=', $today)
-            //     ->with('meal') // Eager load associated meal model
-            //     ->get();
+            $this->foodItems[] = $food;
+            $this->message = "Item added!";
+            // $this->emit('itemAdded');
+        }
+    }
 
-            $totalCalories = $user->meals()
-            ->wherePivot('consumed_at', '>=', $today)
-            ->with('meal')
-            ->sum('calories');
-            
-            if($totalCalories >= $user->calorie_goal)
-            {
-                $neededCaloriesLogged = true;
+    public function saveFoodToUser() 
+    {
+        if(Auth::check()) 
+        {
+            $user = User::findOrFail(Auth::id());
+            foreach($this->foodItems as $food) {
+                $user->meals()->attach($food, ['consumed_at' => now()->timezone('Europe/Budapest')]);
             }
+            $this->dispatch('food-added', foodItems: $this->foodItems);
+            // $today = now()->timezone('Europe/Budapest')->startOfDay();
+            
+            // $totalCalories = $user->meals()
+            // ->wherePivot('consumed_at', '>=', $today)
+            // ->with('meal')
+            // ->sum('calories');
+            
 
         }
 

@@ -1,9 +1,11 @@
+@props(['name'])
 <div 
-    x-data = "{ show: false }"
+    x-data = "{ show: false , name : '{{ $name }}' }"
     x-show = "show"
-    x-on:open-modal.window = "show = true"
+    x-on:open-modal.window = "show = ($event.detail.name === name)"
     x-on:close-modal.window = "show = false"
     x-transition.duration
+    style="display: none;"
     class="fixed z-50 inset-0 transition-all overflow-y-auto">
     
     {{-- Gray bg --}}
