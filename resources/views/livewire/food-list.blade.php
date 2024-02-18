@@ -68,12 +68,6 @@
         </table>
         {{ $foods->links() }}
     </div>
-    
-    {{-- @if (session('status'))
-        <div class="alert text-white alert-success">
-            {{ session('status') }}
-        </div>
-    @endif --}}
 
     <div>
         <button x-data x-on:click="$dispatch('close-modal')" wire:click="saveFoodToUser" class="flex justify-center mx-auto mt-10 w-24 px-4 py-2 bg-action-color text-gray-200 font-semibold rounded hover:bg-action-hover hover:text-white">

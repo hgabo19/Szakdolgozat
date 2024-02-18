@@ -8,7 +8,7 @@
         
         <div class="w-fit mx-auto my-6">
             <div class="bg-secondary-color shadow-lg p-6 rounded-md flex justify-center relative w-fit h-fit">
-                <livewire:health-summary>
+                <livewire:health-summary >
             </div>
         </div>
 
@@ -16,8 +16,9 @@
 
         {{-- graph --}}
         <div class="bg-secondary-color border-none container content w-2/3 my-6 overflow-auto mx-auto border rounded-lg shadow-lg hover:shadow-xl">
-            <div class="flex">
+            <div class="flex items-center flex-col py-6">
                 <h1 class="font-semibold text-2xl text-white my-5 mx-auto">Graph on the daily calorie count</h1>
+                <livewire:calorie-graph >
             </div>
         </div>
     </div>

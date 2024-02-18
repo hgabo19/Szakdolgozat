@@ -32,18 +32,13 @@ class FoodList extends Component
         if(Auth::check()) 
         {
             $user = User::findOrFail(Auth::id());
+
             foreach($this->foodItems as $food) {
                 $user->meals()->attach($food, ['consumed_at' => now()->timezone('Europe/Budapest')]);
             }
-            $this->dispatch('food-added', foodItems: $this->foodItems);
-            // $today = now()->timezone('Europe/Budapest')->startOfDay();
             
-            // $totalCalories = $user->meals()
-            // ->wherePivot('consumed_at', '>=', $today)
-            // ->with('meal')
-            // ->sum('calories');
-            
-
+            $this->dispatch('food-added');
+            $this->foodItems = [];
         }
 
     }
