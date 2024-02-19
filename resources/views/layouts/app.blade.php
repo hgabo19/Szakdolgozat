@@ -17,7 +17,7 @@
         <script src="{{ asset('vendor/bladewind/js/helpers.js') }}"></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="relative min-h-screen md:flex" x-data="{ open: true }">
+        <div class="relative min-h-screen md:flex" x-data="{ open: false }">
             <!-- Sidebar -->
             <aside :class="{ '-translate-x-full': !open }" class="z-10 bg-secondary-color text-white lg:w-64 w-56 px-2 py-4 absolute inset-y-0 left-0 md:relative transform -translate-x-full 
             md:translate-x-0 overflow-y-auto transition ease-in-out duration-200 shadow-lg">
@@ -65,21 +65,12 @@
                                 <!-- Mobile button -->
                                 <button type="button" @click="open = !open" @click.away="open = false" 
                                 class="inline-flex items-center justify-center p-2 rounded-md 
-                                text-blue-100 hover:bg-blue-500 focus:outline-none ">
+                                text-blue-100 hover:bg-blue-500 focus:outline-none sticky">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                                     </svg>
                                 </button>
                             </div>
-                            {{-- APPLICATION LOGO HERE --}}
-                            <div class="flex flex-1 items-center justify-center md:hidden">
-                                <div class="flex flex-shrink-0">
-                                    <a href="{{ route('dashboard') }}">
-                                        <x-application-logo />
-                                    </a>
-                                </div>
-                            </div>
-
                             <!-- Profile button -->
                             @auth    
                                 <div class="absolute inset-y-0 right-0 flex items-center mt-24 mr-10">

@@ -9,12 +9,6 @@ use Illuminate\Http\Request;
 
 class WorkoutPlanController extends Controller
 {
-    // private $workoutPlanService;
-
-    // public function __construct(WorkoutPlanService $workoutPlanService) {
-    //     $this->workoutPlanService = $workoutPlanService;
-    // }
-
     public function index() {
         $workoutPlans = WorkoutPlan::all();
         return view('workout-plans.index', compact('workoutPlans'));

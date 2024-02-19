@@ -15,8 +15,8 @@
         @include('health.calories')
 
         {{-- graph --}}
-        <div class="bg-secondary-color border-none container content w-2/3 my-6 overflow-auto mx-auto border rounded-lg shadow-lg hover:shadow-xl">
-            <div class="flex items-center flex-col py-6">
+        <div class="bg-secondary-color border-none container content px-6 max-w-3/2 w-fit my-4 overflow-auto mx-auto border rounded-lg shadow-lg hover:shadow-xl">
+            <div class="flex items-center flex-col ">
                 <h1 class="font-semibold text-2xl text-white my-5 mx-auto">Graph on the daily calorie count</h1>
                 <livewire:calorie-graph >
             </div>

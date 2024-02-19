@@ -1,5 +1,6 @@
 <div class="flex flex-col gap-4">
     <form class="flex items-center">   
+        @csrf
         <label for="simple-search" class="sr-only">Search</label>
         <div class="relative w-1/2 ml-4">
             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">

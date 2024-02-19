@@ -1,4 +1,4 @@
-<div class="flex justify-between">
+<div class="flex justify-between gap-4">
     <x-bladewind.progress-circle 
               percentage="{{ $percent }}"
               size="300"
@@ -9,7 +9,7 @@
               valign="0"
               show_label="true"
               show_percent="true"/>
-    <div class="w-fit">
+    <div class="w-fit mt-5">
         <table>
             <tbody>
                 <tr>
