@@ -8,6 +8,11 @@ use Livewire\Component;
 
 class HealthSummary extends Component
 {
+    public $weight_goals = array(
+                            'weight_loss' => "Lose weight",
+                            'weight_gain'=> "Gain weight",
+                            'maintenance'=> "Maintenance");
+                            
     public function render()
     {   
         $user = Auth::user();

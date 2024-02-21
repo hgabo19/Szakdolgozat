@@ -91,6 +91,16 @@ class LoggedFoodList extends Component
                         ->get();
                 $this->setTotalValues();
                 $this->calculateCaloriePercentage($user);
+                $this->dispatch(
+                    'toast',
+                    type: 'error',
+                    title: "Food deleted!",
+                    position: 'bottom-end',
+                    timer: 3000,
+                    background: '#DC143C',
+                    color: '#fff',
+                    iconColor: '#fff'
+                );
             }
         }
     }

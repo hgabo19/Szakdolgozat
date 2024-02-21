@@ -13,34 +13,37 @@ class FoodList extends Component
     use WithPagination;
 
     public $search = '';
-    public $message = '';
     public $foodItems = [];
 
-    public function addFoodItem($foodId) 
+
+    public function addFoodItem($foodId)
     {
-        if(Auth::check()) 
-        {
+        if (Auth::check()) {
             $food = Meal::findOrFail($foodId);
             $this->foodItems[] = $food;
-            $this->message = "Item added!";
-            // $this->emit('itemAdded');
+            $foodName = ucfirst($food->name);
+            $this->dispatch(
+                'alert',
+                type: 'success',
+                title: "$foodName added",
+                position: 'center',
+                timer: 1500,
+            );
         }
     }
 
-    public function saveFoodToUser() 
+    public function saveFoodToUser()
     {
-        if(Auth::check()) 
-        {
+        if (Auth::check()) {
             $user = User::findOrFail(Auth::id());
 
-            foreach($this->foodItems as $food) {
+            foreach ($this->foodItems as $food) {
                 $user->meals()->attach($food, ['consumed_at' => now()->timezone('Europe/Budapest')]);
             }
-            
+
             $this->dispatch('food-added');
             $this->foodItems = [];
         }
-
     }
 
     public function render()
