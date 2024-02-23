@@ -49,17 +49,17 @@
             <table class="text-sm text-gray-500 w-fit rtl:text-right dark:text-gray-400">
                 <thead class="text-xs text-gray-600 uppercase bg-gray-50 dark:bg-action-color dark:text-white">
                     <tr>
-                        <th scope="col" class="px-6 py-3 text-xs md:text-base">
-                            Calories
+                        <th scope="col" class="px-4 py-3 text-xs md:text-base">
+                            Calories (kcal)
                         </th>
-                        <th scope="col" class="px-6 py-3 text-xs md:text-base">
-                            Carbonhydrates
+                        <th scope="col" class="px-4 py-3 text-xs md:text-base">
+                            Carbonhydrates (g)
                         </th>
-                        <th scope="col" class="px-6 py-3 text-xs md:text-base">
-                            Fat
+                        <th scope="col" class="px-4 py-3 text-xs md:text-base">
+                            Fat (g)
                         </th>
-                        <th scope="col" class="px-6 py-3 text-xs md:text-base">
-                            Protein
+                        <th scope="col" class="px-4 py-3 text-xs md:text-base">
+                            Protein (g)
                         </th>
                     </tr>
                 </thead>

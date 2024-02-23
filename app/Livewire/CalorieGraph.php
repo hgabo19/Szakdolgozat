@@ -14,18 +14,20 @@ class CalorieGraph extends Component
     public $totalCarbonhydrates = 0;
     public $totalFat = 0;
     public $totalProtein = 0;
+    public $calorieGoal = 0;
+    public $loggedSum = 0;
 
     public function mount()
     {
         $user = User::findOrFail(Auth::id());
         $today = now()->timezone('Europe/Budapest')->startOfDay();
         $loggedMeals = $user->meals()
-                ->with('users')
-                ->wherePivot('consumed_at', '>=', $today)
-                ->get();
-        $loggedSum = $loggedMeals->sum('calories');
-        $calorieGoal = $user->calorie_goal;
-        $tempPercent = round(($loggedSum / $calorieGoal) * 100);
+            ->with('users')
+            ->wherePivot('consumed_at', '>=', $today)
+            ->get();
+        $this->loggedSum = $loggedMeals->sum('calories');
+        $this->calorieGoal = $user->calorie_goal;
+        $tempPercent = round(($this->loggedSum / $this->calorieGoal) * 100);
         if ($tempPercent > 100) {
             $this->percent = 100;
         } else {
@@ -43,13 +45,14 @@ class CalorieGraph extends Component
         $today = now()->timezone('Europe/Budapest')->startOfDay();
 
         $loggedMeals = $user->meals()
-                ->with('users')
-                ->wherePivot('consumed_at', '>=', $today)
-                ->get();
+            ->with('users')
+            ->wherePivot('consumed_at', '>=', $today)
+            ->get();
         $this->setTotalValues($loggedMeals);
     }
 
-    public function setTotalValues($loggedMeals){
+    public function setTotalValues($loggedMeals)
+    {
         $this->totalCalories = $loggedMeals->sum('calories');
         $this->totalCarbonhydrates = $loggedMeals->sum('carbonhydrates');
         $this->totalFat = $loggedMeals->sum('fats');
