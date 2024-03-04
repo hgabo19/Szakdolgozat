@@ -8,7 +8,7 @@
         </div>
     </div>
     <hr class="w-full h-1 mt-4 mb-8 border-0 bg-purple">
-    <div class="overflow-y-auto max-h-60 min-h-fit">
+    <div class="overflow-y-auto lg:max-h-80 max-h-40 min-h-fit">
         @if (count($loggedMealsToday) == 0)
             <div class="px-5 my-3 ml-5 text-2xl font-bold text-white">
                 Come on, add some food!
@@ -38,7 +38,7 @@
             @endforeach
         @endif
     </div>
-    <hr class="w-full h-0.5 mt-6 bg-purple border-0 ">
+    <hr class="w-full h-0.5 mt-14 bg-purple border-0 ">
     <div class="flex justify-center">
         <h2 class="py-4 mx-6 mt-8 text-2xl font-extrabold text-white">Summary</h2>
     </div>
@@ -53,7 +53,7 @@
                             Calories (kcal)
                         </th>
                         <th scope="col" class="px-4 py-3 text-xs md:text-base">
-                            Carbonhydrates (g)
+                            Carbs (g)
                         </th>
                         <th scope="col" class="px-4 py-3 text-xs md:text-base">
                             Fat (g)
@@ -64,7 +64,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white dark:bg-secondary-color">
+                    <tr class="bg-white dark:bg-dark-charcoal">
                         <th scope="row"
                             class="px-6 py-4 font-medium text-center text-gray-900 md:text-lg whitespace-nowrap dark:text-white">
                             {{ $totalCalories }}

@@ -1,15 +1,17 @@
 <x-app-layout>
-    <div class="container grid grid-cols-2 gap-3 mx-auto">
+    <div class="container lg:mx-auto lg:grid lg:grid-cols-2 lg:gap-5">
         <x-custom-modal name="calorie-calculation">
             <x-slot:body>
                 <livewire:calorie-calculation>
             </x-slot:body>
         </x-custom-modal>
 
-        <div class="mx-auto mb-6 w-fit">
+        <div class="m-4">
             <div
-                class="relative flex justify-center p-6 transition duration-300 ease-in-out rounded-md shadow-lg bg-secondary-color hover:shadow-xl hover:shadow-purple shadow-purple w-fit h-fit">
-                <livewire:health-summary>
+                class="w-full mx-auto mb-6 transition duration-300 ease-in-out shadow-lg hover:shadow-xl hover:shadow-action-color shadow-action-hover">
+                <div class="relative w-full p-6 bg-dark-charcoal h-fit">
+                    <livewire:health-summary>
+                </div>
             </div>
         </div>
 
@@ -18,24 +20,25 @@
         </div>
 
         {{-- graph --}}
-        <div
-            class="container px-10 mx-auto mb-4 overflow-auto transition duration-300 ease-in-out border border-none rounded-lg shadow-lg bg-secondary-color content max-w-3/2 w-fit hover:shadow-xl hover:shadow-purple shadow-purple">
-            <div class="flex flex-col">
-                <h1 class="mx-auto my-5 text-2xl font-semibold text-white">Graph on the daily calorie count</h1>
-                <livewire:calorie-graph>
+        <div class="m-4">
+            <div
+                class="container px-10 mx-auto mb-4 overflow-auto transition duration-300 ease-in-out border border-none shadow-lg bg-dark-charcoal content max-w-3/2 lg:w-full w-fit hover:shadow-xl hover:shadow-action-color shadow-action-hover">
+                <div class="flex flex-col">
+                    <h1 class="mx-auto my-5 text-3xl font-extrabold text-white">Graph on the daily calorie count</h1>
+                    <livewire:calorie-graph>
+                </div>
             </div>
         </div>
-
-        <div class="mb-10 h-fit">
-            <div class="p-4 mx-auto rounded-md bg-secondary-color w-fit">
-                <h1 class="my-5 text-2xl font-semibold text-center text-white">Challenges</h1>
-            </div>
-        </div>
-
-        <div class="mb-10 h-fit">
-            <div class="p-4 mx-auto rounded-md bg-secondary-color w-fit">
-                <h1 class="my-5 text-2xl font-semibold text-center text-white">Previously tracked days</h1>
+        <div class="col-span-2 mx-4 mb-10">
+            <div
+                class="p-5 transition duration-300 ease-in-out rounded shadow-lg lg:w-full w-fit lg:mx-auto bg-dark-charcoal hover:shadow-xl hover:shadow-action-color shadow-action-hover">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-white">Weekly nutrition intake</h1>
+                </div>
+                {!! $chart->container() !!}
             </div>
         </div>
     </div>
+    <script src="{{ $chart->cdn() }}"></script>
+    {{ $chart->script() }}
 </x-app-layout>

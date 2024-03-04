@@ -22,7 +22,7 @@
     <div class="relative min-h-screen md:flex" x-data="{ open: false }">
         <!-- Sidebar -->
         <aside :class="{ '-translate-x-full': !open }"
-            class="absolute inset-y-0 left-0 z-10 w-56 px-2 py-4 overflow-y-auto text-white transition duration-200 ease-in-out transform -translate-x-full shadow-lg bg-secondary-color lg:w-64 md:relative md:translate-x-0">
+            class="absolute inset-y-0 left-0 z-10 w-56 px-2 py-4 overflow-y-auto text-white transition duration-200 ease-in-out transform -translate-x-full border-r-2 shadow-lg border-action-hover bg-secondary-color lg:w-64 md:relative md:translate-x-0">
             <!-- Logo -->
             <div class="flex items-center justify-between px-2">
                 <div class="flex items-center space-x-4">
@@ -59,7 +59,7 @@
         </aside>
 
         <!-- Main content -->
-        <main class="flex-1 w-full h-screen overflow-auto bg-gradient-to-t from-darker-gray to-dark-charcoal">
+        <main class="flex-1 w-full h-screen overflow-auto bg-secondary-color">
             <nav>
                 <div class="px-2 mx-auto sm:px-6 lg:px-8">
                     <div class="relative flex items-center justify-between h-16 md:justify-end">
@@ -117,10 +117,11 @@
                     </div>
                 </div>
             </nav>
-
-            <div class="mt-28">
-                {{ $slot }}
-            </div>
+            <section>
+                <div class="mt-28">
+                    {{ $slot }}
+                </div>
+            </section>
         </main>
     </div>
 </body>

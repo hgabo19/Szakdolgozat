@@ -1,18 +1,20 @@
 <div>
-    <h2 class="my-5 text-2xl text-white">
-        {{ $loggedSum }} / {{ $calorieGoal }} kcal
-    </h2>
-    <div class="lg:flex lg:justify-between lg:gap-4">
+    <div class=" lg:flex lg:justify-between lg:gap-4 max-h-fit">
         <div class="pb-1 mb-2">
             <x-bladewind.progress-circle percentage="{{ $percent }}" size="200" circle_width="40" text_size="50"
                 color="purple" align="80" valign="0" show_label="true" show_percent="true" />
+        </div>
+        <div class="">
+            <h2 class="my-5 text-2xl text-white">
+                {{ $loggedSum }} / {{ $calorieGoal }}kcal
+            </h2>
         </div>
         <div class="mt-5 w-fit">
             <table>
                 <tbody>
                     <tr>
                         <td>
-                            <h1 class="text-2xl text-white">Calories</h1>
+                            <h1 class="pr-8 text-2xl text-white">Calories</h1>
                         </td>
                         <td>
                             <h1 class="text-xl text-white">{{ $totalCalories }}</h1>
@@ -20,7 +22,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <h1 class="pr-8 text-2xl text-white">Carbonhydrates</h1>
+                            <h1 class="pr-8 text-2xl text-white">Carbs</h1>
                         </td>
                         <td>
                             <h1 class="text-xl text-white">{{ $totalCarbonhydrates }}</h1>
