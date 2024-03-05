@@ -34,11 +34,27 @@
                 class="p-5 transition duration-300 ease-in-out rounded shadow-lg lg:w-full w-fit lg:mx-auto bg-dark-charcoal hover:shadow-xl hover:shadow-action-color shadow-action-hover">
                 <div>
                     <h1 class="text-3xl font-extrabold text-white">Weekly nutrition intake</h1>
+                    <h2 class="mt-3 text-xl font-extrabold text-white">{{ $startOfWeek->format('Y-m-d') }} <span
+                            class="mx-4">-</span>
+                        {{ $endOfWeek->format('Y-m-d') }}</h2>
                 </div>
                 {!! $chart->container() !!}
+            </div>
+        </div>
+        <div class="col-span-2 mx-4 mb-10">
+            <div
+                class="p-5 transition duration-300 ease-in-out rounded shadow-lg lg:w-full w-fit lg:mx-auto bg-dark-charcoal hover:shadow-xl hover:shadow-action-color shadow-action-hover">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-white">Weekly calorie intake</h1>
+                    <h2 class="mt-3 text-xl font-extrabold text-white">{{ $startOfWeek->format('Y-m-d') }} <span
+                            class="mx-4">-</span>
+                        {{ $endOfWeek->format('Y-m-d') }}</h2>
+                </div>
+                {!! $linechart->container() !!}
             </div>
         </div>
     </div>
     <script src="{{ $chart->cdn() }}"></script>
     {{ $chart->script() }}
+    {{ $linechart->script() }}
 </x-app-layout>

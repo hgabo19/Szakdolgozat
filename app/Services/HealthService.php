@@ -58,4 +58,24 @@ class HealthService
 
         return $weeklyStats;
     }
+
+    public function getWeeklyCalories($weekStart, $weekEnd)
+    {
+        $user = Auth::user();
+        $startDate = $weekStart;
+        $endDate = $weekEnd;
+
+        $weeklyCalories = DB::table('user_meals')
+            ->select(
+                DB::raw('DAYOFWEEK(user_meals.consumed_at) as day_of_week'),
+                DB::raw('SUM(meals.calories) as total_calories')
+            )
+            ->join('meals', 'user_meals.meal_id', '=', 'meals.id')
+            ->where('user_meals.user_id', '=', $user->id)
+            ->whereBetween('user_meals.consumed_at', [$startDate, $endDate])
+            ->groupBy(DB::raw('DAYOFWEEK(user_meals.consumed_at)'))
+            ->get();
+
+        return $weeklyCalories;
+    }
 }
