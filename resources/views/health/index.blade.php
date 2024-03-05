@@ -24,7 +24,7 @@
             <div
                 class="container px-10 mx-auto mb-4 transition duration-300 ease-in-out border border-none shadow-lg bg-dark-charcoal content max-w-3/2 lg:w-full w-fit hover:shadow-xl hover:shadow-action-color shadow-action-hover">
                 <div class="flex flex-col">
-                    <h1 class="mx-auto my-5 text-3xl font-extrabold text-white">Graph on the daily calorie count</h1>
+                    <h1 class="mx-auto my-5 text-3xl font-extrabold text-white">Daily calorie count</h1>
                     <livewire:calorie-graph>
                 </div>
             </div>

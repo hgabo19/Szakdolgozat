@@ -1,7 +1,7 @@
 <div>
     <div class="relative flex">
-        <h1 class="mx-auto mb-5 text-2xl font-semibold text-white mt-7">Food list for the day</h1>
-        <div class="absolute end-0 top-6 right-12">
+        <h1 class="mb-5 ml-5 text-2xl font-semibold text-white lg:text-3xl lg:mx-auto mt-7">Food list for the day</h1>
+        <div class="absolute end-0 top-6 lg:right-14 right-5">
             <button x-data x-on:click="$dispatch('open-modal', { name : 'meal-tracker'})">
                 @include('components.plus-button')
             </button>
@@ -44,7 +44,7 @@
     </div>
 
     {{-- SUMMARY TABLE --}}
-    <div class="flex justify-center pb-5">
+    <div class="flex justify-center pb-8">
         <div class="relative overflow-x-auto md:w-fit sm:rounded-lg">
             <table class="text-sm text-gray-500 w-fit rtl:text-right dark:text-gray-400">
                 <thead class="text-xs text-gray-600 uppercase bg-gray-50 dark:bg-action-color dark:text-white">
