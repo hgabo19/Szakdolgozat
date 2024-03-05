@@ -61,7 +61,7 @@
         <!-- Main content -->
         <main class="flex-1 w-full h-screen overflow-auto bg-secondary-color">
             <nav>
-                <div class="px-2 mx-auto sm:px-6 lg:px-8">
+                <div class="px-2 mx-auto border-b-2 border-action-hover sm:py-4 sm:px-6 lg:px-8">
                     <div class="relative flex items-center justify-between h-16 md:justify-end">
                         <div class="absolute inset-y-0 left-0 flex items-center md:hidden">
 
@@ -77,7 +77,8 @@
                         </div>
                         <!-- Profile button -->
                         @auth
-                            <div class="absolute inset-y-0 right-0 flex items-center mt-24 mr-10">
+                            <div class="absolute inset-y-0 right-0 flex items-center mr-10">
+
                                 <x-dropdown align="right" width="48">
                                     <x-slot name="trigger">
                                         <button
@@ -118,7 +119,7 @@
                 </div>
             </nav>
             <section>
-                <div class="mt-28">
+                <div>
                     {{ $slot }}
                 </div>
             </section>
