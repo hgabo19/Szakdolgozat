@@ -46,9 +46,15 @@
                 <x-side-nav-link class="mt-20" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                     Dashboard
                 </x-side-nav-link>
-                <x-side-nav-link href="{{ route('workout-plans.index') }}" :active="request()->routeIs('workout-plans.index')">
-                    Workout plans
-                </x-side-nav-link>
+                @if (Auth::user()->is_admin)
+                    <x-side-nav-link href="{{ route('workout-plans.admin-list') }}" :active="request()->routeIs('workout-plans.admin-list')">
+                        Workout plans
+                    </x-side-nav-link>
+                @else
+                    <x-side-nav-link href="{{ route('workout-plans.index') }}" :active="request()->routeIs('workout-plans.index')">
+                        Workout plans
+                    </x-side-nav-link>
+                @endif
                 <x-side-nav-link href="{{ route('exercises.index') }}" :active="request()->routeIs('exercises.index')">
                     Exercises
                 </x-side-nav-link>
