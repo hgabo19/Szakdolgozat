@@ -11,12 +11,11 @@ class WorkoutPlanForm extends Component
     public $title;
     public $description;
     public $difficulty;
-    public $sets;
-    public $reps;
     #[Validate('required|min:2|max:5')]
     public $numberOfDays = 3;
     public $days = [];
     public $all_exercises;
+    public $saveButtonVisible = false;
 
     public function mount()
     {
@@ -46,6 +45,7 @@ class WorkoutPlanForm extends Component
                 ]
             ];
         }
+        $this->saveButtonVisible = true;
     }
 
     public function addExercise($dayIndex)
@@ -59,8 +59,7 @@ class WorkoutPlanForm extends Component
 
     public function deleteExercise($dayIndex, $exerciseIndex)
     {
-        // dd($dayIndex, $exerciseIndex);
         unset($this->days[$dayIndex]['exercises'][$exerciseIndex]);
-        $this->days[$dayIndex]['exercises'] = array_values($this->days[$dayIndex]['exercises']);
+        // $this->days[$dayIndex]['exercises'] = array_values($this->days[$dayIndex]['exercises']);
     }
 }

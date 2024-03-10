@@ -23,11 +23,11 @@ class LoggedFoodList extends Component
         $today = now()->timezone('Europe/Budapest')->startOfDay();
 
         $this->loggedMealsToday = $user->meals()
-                ->with('users')
-                ->wherePivot('consumed_at', '>=', $today)
-                ->withPivot('id')
-                ->orderByPivot('consumed_at', 'desc')
-                ->get();
+            ->with('users')
+            ->wherePivot('consumed_at', '>=', $today)
+            ->withPivot('id')
+            ->orderByPivot('consumed_at', 'desc')
+            ->get();
         $this->setTotalValues();
         $this->calculateCaloriePercentage($user);
     }
@@ -35,8 +35,7 @@ class LoggedFoodList extends Component
     #[On('food-added')]
     public function addFoodsToList()
     {
-        if(Auth::check())
-        {
+        if (Auth::check()) {
             $user = User::findOrFail(Auth::id());
             $today = now()->timezone('Europe/Budapest')->startOfDay();
             $this->loggedMealsToday = collect([]);
@@ -74,21 +73,19 @@ class LoggedFoodList extends Component
 
     public function deleteLoggedMeal($pivotMealId = null)
     {
-        if(Auth::check())
-        {
+        if (Auth::check()) {
             $user = User::findOrFail(Auth::id());
             $today = now()->timezone('Europe/Budapest')->startOfDay();
             $pivotRecord = $user->meals()->wherePivot('id', $pivotMealId)->wherePivot('consumed_at', '>=', $today)->get();
 
-            if($pivotRecord)
-            {
+            if ($pivotRecord) {
                 $user->meals()->wherePivot('id', $pivotMealId)->detach();
                 $this->loggedMealsToday = $user->meals()
-                        ->with('users')
-                        ->wherePivot('consumed_at', '>=', $today)
-                        ->withPivot('id')
-                        ->orderBy('consumed_at', 'desc')
-                        ->get();
+                    ->with('users')
+                    ->wherePivot('consumed_at', '>=', $today)
+                    ->withPivot('id')
+                    ->orderBy('consumed_at', 'desc')
+                    ->get();
                 $this->setTotalValues();
                 $this->calculateCaloriePercentage($user);
                 $this->dispatch(
