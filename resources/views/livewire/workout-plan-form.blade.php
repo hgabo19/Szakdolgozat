@@ -56,7 +56,7 @@
                         <option value="5">5</option>
                     </select>
                     <button
-                        class="text-white mt-6 bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-base w-full sm:w-auto px-5 py-2.5 text-center dark:bg-action-color dark:hover:bg-action-hover dark:focus:ring-white"
+                        class="text-white mt-6 bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-lg w-full sm:w-auto px-7 py-2.5 text-center dark:bg-action-color dark:hover:bg-action-hover dark:focus:ring-white"
                         wire:click.prevent="setDays">
                         Set
                     </button>
@@ -176,16 +176,14 @@
                     </div>
                     <div class="flex flex-col items-center">
                         <label for="description"
-                            class="block mt-10 mb-2 text-sm font-medium text-gray-900 md:text-2xl dark:text-white">Your
-                            message</label>
+                            class="block mt-10 mb-2 text-sm font-medium text-gray-900 md:text-2xl dark:text-white">Description</label>
                         <textarea id="description" rows="5" wire:model='description'
-                            class="block p-2.5 w-3/4 min-h-[46px] text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-dark-charcoal dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-action-color dark:focus:border-action-color"
+                            class="block p-2.5 w-3/4 min-h-[46px] text-base text-gray-900 bg-gray-50 rounded-lg border-2 border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-secondary-color dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-action-color dark:focus:border-action-color"
                             placeholder="Write the workout plan's description here..."></textarea>
                         @error('description')
                             <span class="block mt-3 ml-3 text-xs text-red-500 md:text-base"> {{ $message }} </span>
                         @enderror
                     </div>
-
                     <div class="flex justify-center">
                         <button type="submit"
                             class="text-white bg-blue-700 mb-7 mt-10 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:text-2xl w-full sm:w-auto px-7 py-2.5 text-center dark:bg-action-color dark:hover:bg-action-hover dark:focus:ring-white">

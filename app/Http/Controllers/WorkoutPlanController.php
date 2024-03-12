@@ -32,7 +32,7 @@ class WorkoutPlanController extends Controller
 
     public function adminList()
     {
-        $workoutPlans = WorkoutPlan::paginate(10);
+        $workoutPlans = WorkoutPlan::paginate(5);
         return view('workout-plans.admin-list', compact('workoutPlans'));
     }
 

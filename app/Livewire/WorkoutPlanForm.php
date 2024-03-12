@@ -15,7 +15,7 @@ class WorkoutPlanForm extends Component
 
     public $title;
     public $description;
-    public $difficulty = 'beginner';
+    public $difficulty;
     public $image;
     public $numberOfDays = 3;
     public $days = [];
@@ -62,7 +62,7 @@ class WorkoutPlanForm extends Component
         $this->validate();
 
         if ($this->image) {
-            $filePath = $this->image->store('workout_plans', 'public');
+            $filePath = $this->image->store('images/workout_plans', 'public');
         }
 
         $workoutPlan = new WorkoutPlan();
@@ -70,6 +70,7 @@ class WorkoutPlanForm extends Component
         $workoutPlan->image_path = $filePath;
         $workoutPlan->description = $this->description;
         $workoutPlan->duration = (int)$this->numberOfDays;
+        $workoutPlan->difficulty = $this->difficulty;
         $workoutPlan->created_at = now()->timezone('Europe/Budapest');
         $workoutPlan->save();
 
