@@ -1,13 +1,13 @@
-import './bootstrap';
+import "./bootstrap";
 
-import Alpine from 'alpinejs';
-import Swal from 'sweetalert2'
+import Alpine from "alpinejs";
+import Swal from "sweetalert2";
 
 window.Alpine = Alpine;
 
 Alpine.start();
 
-window.addEventListener('alert', (event) => {
+window.addEventListener("alert", (event) => {
     let data = event.detail;
     Swal.fire({
         position: data.position,
@@ -17,9 +17,15 @@ window.addEventListener('alert', (event) => {
         timer: data.timer,
         allowOutsideClick: false,
     });
+
+    if (data.redirectUrl) {
+        setTimeout(() => {
+            window.location.href = data.redirectUrl; // Use the provided URL
+        }, data.timer + 100);
+    }
 });
 
-window.addEventListener('toast', (event) => {
+window.addEventListener("toast", (event) => {
     let data = event.detail;
 
     const Toast = Swal.mixin({
@@ -31,7 +37,7 @@ window.addEventListener('toast', (event) => {
         didOpen: (toast) => {
             toast.onmouseenter = Swal.stopTimer;
             toast.onmouseleave = Swal.resumeTimer;
-        }
+        },
     });
 
     Toast.fire({

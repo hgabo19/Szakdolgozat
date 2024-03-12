@@ -15,7 +15,7 @@ class WorkoutPlanForm extends Component
 
     public $title;
     public $description;
-    public $difficulty;
+    public $difficulty = 'beginner';
     public $image;
     public $numberOfDays = 3;
     public $days = [];
@@ -26,13 +26,23 @@ class WorkoutPlanForm extends Component
     {
         return [
             'title' => 'required|string|min:20|max:120',
-            'description' => 'required|string|min:50|max:300',
+            'description' => 'required|string|min:50|max:3000',
             'difficulty' => 'required',
-            'numberOfDays' => 'required|min:2|max:5',
+            'numberOfDays' => 'required',
             'image' => 'required|image|max:2048',
             'days.*.exercises.*.id' => 'required',
-            'days.*.exercises.*.sets' => 'required|number|min:2|max:10',
-            'days.*.exercises.*.reps' => 'required|number|min:5|max:25',
+            'days.*.exercises.*.sets' => 'required|integer|between:2,10',
+            'days.*.exercises.*.reps' => 'required|integer|between:5,25',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'days.*.exercises.*.sets.required' => 'Sets are required.',
+            'days.*.exercises.*.sets.between' => 'Sets must be between 2 and 10.',
+            'days.*.exercises.*.reps.required' => 'Reps are required.',
+            'days.*.exercises.*.reps.between' => 'Reps must be between 5 and 25.',
         ];
     }
 
@@ -48,6 +58,7 @@ class WorkoutPlanForm extends Component
 
     public function save()
     {
+        $this->authorize('create', WorkoutPlan::class);
         $this->validate();
 
         if ($this->image) {
@@ -59,19 +70,30 @@ class WorkoutPlanForm extends Component
         $workoutPlan->image_path = $filePath;
         $workoutPlan->description = $this->description;
         $workoutPlan->duration = (int)$this->numberOfDays;
+        $workoutPlan->created_at = now()->timezone('Europe/Budapest');
         $workoutPlan->save();
 
-        foreach ($this->days as $day) {
+        foreach ($this->days as $dayIndex => $day) {
             foreach ($day['exercises'] as $exercise) {
+                $workoutPlan->exercises()->attach($exercise['id'], [
+                    'day' => $dayIndex + 1,
+                    'sets' => $exercise['sets'],
+                    'reps' => $exercise['reps']
+                ]);
             }
         }
-
-        // dd($this->days);
+        $this->dispatch(
+            'alert',
+            type: 'success',
+            title: "Workout plan created!",
+            position: 'center',
+            timer: 2000,
+            redirectUrl: route('workout-plans.admin-list'),
+        );
     }
 
     public function setDays()
     {
-
         $this->days = [];
         for ($i = 0; $i < $this->numberOfDays; $i++) {
             $this->days[] = [
@@ -95,6 +117,5 @@ class WorkoutPlanForm extends Component
     public function deleteExercise($dayIndex, $exerciseIndex)
     {
         unset($this->days[$dayIndex]['exercises'][$exerciseIndex]);
-        // $this->days[$dayIndex]['exercises'] = array_values($this->days[$dayIndex]['exercises']);
     }
 }

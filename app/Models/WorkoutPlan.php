@@ -16,6 +16,7 @@ class WorkoutPlan extends Model
         'image_path',
         'description',
         'duration',
+        'created_at',
     ];
 
     public function users(): HasMany
@@ -27,5 +28,4 @@ class WorkoutPlan extends Model
     {
         return $this->belongsToMany(Exercise::class);
     }
-
 }

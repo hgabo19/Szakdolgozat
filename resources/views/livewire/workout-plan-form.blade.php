@@ -18,12 +18,15 @@
                 <div class="relative z-0 flex justify-center mb-5 group">
                     <input wire:model.blur="title" type="text" name="floating_title" id="floating_title"
                         class="block py-2.5 px-0 w-2/3 text-lg text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-action-color focus:outline-none focus:ring-0 focus:border-action-hover peer"
-                        placeholder="" autocomplete="off" required />
+                        placeholder="" autocomplete="off" />
                     <label for="floating_title"
                         class="peer-focus:font-medium absolute text-2xl text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-auto rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-action-hover peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         Title
                     </label>
                 </div>
+                @error('title')
+                    <span class="block ml-3 text-sm text-center text-red-500 md:text-base"> {{ $message }} </span>
+                @enderror
                 <div class="relative z-0 flex flex-col items-center my-10 group">
                     <div>
                         <label for="difficulty"
@@ -37,14 +40,17 @@
                         <option value="intermediate">Intermediate</option>
                         <option value="advanced">Advanced</option>
                     </select>
+                    @error('difficulty')
+                        <span class="block ml-3 text-sm text-red-500 md:text-base"> {{ $message }} </span>
+                    @enderror
                 </div>
                 <div class="relative z-0 flex flex-col items-center w-full mb-5 group">
                     <label for="days" class="block mb-2 text-2xl font-medium text-gray-900 dark:text-gray-400">
-                        Training days
+                        Training day split
                     </label>
                     <select id="days" wire:model.blur="numberOfDays"
                         class="bg-transparent border text-center border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block md:w-44 w-1/2 p-2.5 dark:bg-secondary-color dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-action-color dark:focus:border-action-color">
-                        <option selected value="2">2</option>
+                        <option value="2">2</option>
                         <option selected value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
@@ -54,6 +60,9 @@
                         wire:click.prevent="setDays">
                         Set
                     </button>
+                    @error('numberOfDays')
+                        <span class="block ml-3 text-sm text-red-500 md:text-base"> {{ $message }} </span>
+                    @enderror
                 </div>
                 <hr class="w-full h-1 my-10 border-0 bg-action-color">
                 <div>
@@ -63,28 +72,32 @@
                                 <h1 class="text-2xl font-bold text-center text-white">Day {{ $dayIndex + 1 }}</h1>
                             </div>
                             <button
-                                class="text-white my-5 md:ml-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:text-base w-full sm:w-auto px-5 py-2.5 text-center dark:bg-action-color dark:hover:bg-action-hover dark:focus:ring-white"
+                                class="text-white my-5 md:ml-4 bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:text-base w-full sm:w-auto px-5 py-2.5 text-center dark:bg-action-color dark:hover:bg-action-hover dark:focus:ring-white"
                                 wire:click.prevent="addExercise({{ $dayIndex }})">
                                 Add Exercise
                             </button>
                             <div class="md:flex md:flex-wrap md:gap-14">
                                 @foreach ($day['exercises'] as $addedExerciseIndex => $addedExercise)
-                                    <div class="flex w-1/3 gap-4 ml-4 mr-14">
+                                    <div class="flex flex-wrap gap-4 ml-4 w-fit md:w-1/3 md:flex-nowrap mr-14">
                                         <div>
                                             <label for="exercise"
-                                                class="block mb-2 text-base font-medium text-gray-900 dark:text-gray-400">
+                                                class="block mt-10 mb-2 text-base font-medium text-gray-900 md:mt-0 dark:text-gray-400">
                                                 Exercise {{ $addedExerciseIndex + 1 }}
                                             </label>
                                             <select id="exercise"
                                                 wire:model.blur="days.{{ $dayIndex }}.exercises.{{ $addedExerciseIndex }}.id"
                                                 class="bg-transparent capitalize overflow-y-scroll border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block max-w-fit min-w-fit p-2.5 dark:bg-secondary-color dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-action-color dark:focus:border-action-color">
-                                                <option default value="" hidden>Choose an exercise
+                                                <option selected value="">Choose an exercise
                                                 </option>
                                                 @foreach ($all_exercises as $exerciseIndex => $exercise)
                                                     <option value="{{ $exercise->id }}">{{ $exercise->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
+                                            @error('days.*.exercises.*.id')
+                                                <span class="block text-sm text-red-500 md:text-base"> {{ $message }}
+                                                </span>
+                                            @enderror
                                         </div>
                                         <div>
                                             <label for="sets"
@@ -93,8 +106,12 @@
                                             </label>
                                             <input
                                                 wire:model.blur="days.{{ $dayIndex }}.exercises.{{ $addedExerciseIndex }}.sets"
-                                                class="bg-transparent border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-secondary-color dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-action-color dark:focus:border-action-color"
+                                                class="bg-transparent border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-20 dark:bg-secondary-color dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-action-color dark:focus:border-action-color"
                                                 type="number" min="2" max="10" placeholder="3">
+                                            @error('days.*.exercises.*.sets')
+                                                <span class="block text-sm text-red-500 md:text-base"> {{ $message }}
+                                                </span>
+                                            @enderror
                                         </div>
                                         <div>
                                             <label for="reps"
@@ -103,8 +120,12 @@
                                             </label>
                                             <input
                                                 wire:model.blur="days.{{ $dayIndex }}.exercises.{{ $addedExerciseIndex }}.reps"
-                                                class="bg-transparent border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-secondary-color dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-action-color dark:focus:border-action-color"
+                                                class="bg-transparent border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-20 p-2.5 dark:bg-secondary-color dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-action-color dark:focus:border-action-color"
                                                 type="number" min="5" max="25" placeholder="5">
+                                            @error('days.*.exercises.*.reps')
+                                                <span class="block text-sm text-red-500 md:text-base"> {{ $message }}
+                                                </span>
+                                            @enderror
                                         </div>
                                         @if (!$loop->first)
                                             <div
@@ -129,7 +150,7 @@
                 @if ($saveButtonVisible)
                     <div class="flex flex-col items-center w-full ">
                         <label class="block my-4 text-2xl font-bold text-gray-900 dark:text-white" for="file_input">
-                            Plan picture
+                            Workout plan picture
                         </label>
                         <div>
                             <input wire:model='image'
@@ -149,10 +170,25 @@
                         <div wire:loading.delay wire:target='image'>
                             <span class="text-xl text-gray-500 animate-pulse">Uploading...</span>
                         </div>
+                        @error('image')
+                            <span class="block ml-3 text-xs text-red-500 md:text-base"> {{ $message }} </span>
+                        @enderror
                     </div>
+                    <div class="flex flex-col items-center">
+                        <label for="description"
+                            class="block mt-10 mb-2 text-sm font-medium text-gray-900 md:text-2xl dark:text-white">Your
+                            message</label>
+                        <textarea id="description" rows="5" wire:model='description'
+                            class="block p-2.5 w-3/4 min-h-[46px] text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-dark-charcoal dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-action-color dark:focus:border-action-color"
+                            placeholder="Write the workout plan's description here..."></textarea>
+                        @error('description')
+                            <span class="block mt-3 ml-3 text-xs text-red-500 md:text-base"> {{ $message }} </span>
+                        @enderror
+                    </div>
+
                     <div class="flex justify-center">
                         <button type="submit"
-                            class="text-white bg-blue-700 mb-7 mt-10 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:text-2xl w-full sm:w-auto px-5 py-2.5 text-center dark:bg-action-color dark:hover:bg-action-hover dark:focus:ring-white">
+                            class="text-white bg-blue-700 mb-7 mt-10 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:text-2xl w-full sm:w-auto px-7 py-2.5 text-center dark:bg-action-color dark:hover:bg-action-hover dark:focus:ring-white">
                             Save
                         </button>
                     </div>
