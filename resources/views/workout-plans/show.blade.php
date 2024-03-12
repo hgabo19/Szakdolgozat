@@ -1,47 +1,72 @@
 <x-app-layout>
-    <div class="p-10 mx-auto bg-white w-fit lg:w-2/3">
+    <div class="p-10 mx-auto my-10 rounded-xl bg-dark-charcoal w-fit lg:w-5/6">
         <div class="flex items-center justify-between">
             <div
                 class="p-1 transition duration-300 ease-in-out rounded-full shadow-md cursor-pointer bg-action-color hover:bg-action-hover">
-                <a href="{{ route('workout-plans.index') }}" class="align-middle">
-                    @include('components.back-arrow')
-                </a>
+                @can('manage', App\Models\WorkoutPlan::class)
+                    <a href="{{ route('workout-plans.admin-list') }}" class="align-middle">
+                        @include('components.back-arrow')
+                    </a>
+                @else
+                    <a href="{{ route('workout-plans.index') }}" class="align-middle">
+                        @include('components.back-arrow')
+                    </a>
+                @endcan
             </div>
             <div>
-                <h1 class="text-2xl font-bold">{{ $workoutPlan->title }}</h1>
+                <h1 class="text-3xl font-bold dark:text-white">{{ $workoutPlan->title }}</h1>
             </div>
-            @auth
+            @can('saveToUser', App\Models\WorkoutPlan::class)
                 <div>
                     <form
                         action="{{ route('save.workout.plan', ['userId' => Auth::id(), 'workoutPlanId' => $workoutPlan->id]) }}"
                         method="POST">
                         @csrf
+                        @method('POST')
                         <div
-                            class="p-2 transition duration-300 ease-in-out rounded-full bg-action-color hover:bg-action-hover">
+                            class="p-2 transition duration-300 ease-in-out rounded-lg bg-action-color dark:focus:ring-white focus:outline-none focus:ring-2 focus:ring-white hover:bg-action-hover">
                             <button class="align-middle" type="submit">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white hover:text-gray-300">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                                </svg>
+                                <span class="text-xl text-white">Save</span>
                             </button>
                         </div>
                     </form>
                 </div>
-            @endauth
+            @else
+                <div></div>
+            @endcan
         </div>
         <div>
-            <div class="max-w-3xl mx-auto mt-8">
+            <div class="w-full mt-8">
 
-                <div class="flex gap-6 mb-8">
-                    <img src="{{ asset($workoutPlan->image_path) }}" alt="{{ $workoutPlan->title }}"
-                        class="h-48 mb-4 rounded-lg">
+                <div class="w-full mb-8">
+                    <h1 class="px-4 mt-10 mb-6 text-2xl font-bold text-white border-b-2 w-fit border-action-hover">
+                        Description
+                    </h1>
+                    <img src="{{ asset('storage/' . $workoutPlan->image_path) }}" alt="{{ $workoutPlan->title }}"
+                        class="float-left mb-4 mr-10 rounded-lg h-72">
+                    <p class="leading-loose text-white break-words indent-8">This is your
+                        paragraph
+                        content. It will wrap
+                        around
+                        the image on the left and continue below the image if the content is too long. You can
+                        adjust the width of the image and margin using Tailwind classes. Make sure this content
+                        isn't excessively long or contains unexpected characters that cause overflow.This is your
+                        paragraph content. It will wrap around the image on the left and continue below the image if
+                        the content is too long. You can adjust the width of the image and margin using Tailwind
+                        classes. Make sure this content isn't excessively long or contains unexpected characters
+                        that cause overflow.This is your paragraph content. It will wrap around the image on the
+                        left and continue below the image if the content is too long. You can adjust the width of
+                        the image and margin using Tailwind classes. Make sure this content isn't excessively long
+                        or contains unexpected characters that cause overflow.This is your paragraph content. It
+                        will wrap around the image on the left and continue below the image if the content is too
+                        long. You can adjust the width of the image and margin using Tailwind classes. Make sure
+                        this content isn't excessively long or contains unexpected characters that cause
+                        overflow.This is your paragraph content. It will wrap around the image on the left and
+                        continue below the image if the content is too long. You can adjust the width of the image
+                        and margin using Tailwind classes. Make sure this content isn't excessively long or contains
+                        unexpected characters that cause overflow.</p>
                 </div>
 
-                <div>
-                    <h2 class="my-4 text-xl font-semibold text-center">Description</h2>
-                    <p class="mt-4 mb-8 text-gray-600">{{ $workoutPlan->description }}</p>
-                </div>
 
                 <h2 class="mb-4 text-xl font-semibold text-center">Exercises</h2>
 

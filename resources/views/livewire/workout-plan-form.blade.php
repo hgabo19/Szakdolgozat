@@ -160,12 +160,12 @@
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400" id="file_input_help">
                                 JPG or PNG
                             </p>
-                            @if ($image)
+                            {{-- @if ($image)
                                 <div>
                                     <img class="block w-16 h-16 mt-5 rounded" src="{{ $image->temporaryUrl() }}"
                                         alt="plan-image">
                                 </div>
-                            @endif
+                            @endif --}}
                         </div>
                         <div wire:loading.delay wire:target='image'>
                             <span class="text-xl text-gray-500 animate-pulse">Uploading...</span>

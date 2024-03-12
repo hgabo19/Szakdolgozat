@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\WorkoutPlan;
 use App\Services\WorkoutPlanService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class WorkoutPlanController extends Controller
 {
@@ -39,5 +40,19 @@ class WorkoutPlanController extends Controller
     public function create()
     {
         return view('workout-plans.create');
+    }
+
+    public function destroy($planId)
+    {
+        $this->authorize('delete', WorkoutPlan::class);
+
+        $workoutPlan = WorkoutPlan::findOrFail($planId);
+        if ($workoutPlan->image_path) {
+            Storage::delete($workoutPlan->image_path);
+        }
+        $workoutPlan->exercises()->detach();
+        $workoutPlan->delete();
+        session()->flash('success', '"' . $workoutPlan->title . '" deleted successfully!');
+        return redirect()->route('workout-plans.admin-list');
     }
 }
