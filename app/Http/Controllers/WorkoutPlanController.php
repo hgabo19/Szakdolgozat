@@ -16,9 +16,13 @@ class WorkoutPlanController extends Controller
         return view('workout-plans.index', compact('workoutPlans'));
     }
 
-    public function show(WorkoutPlan $workoutPlan)
+    public function show(WorkoutPlan $workoutPlan, WorkoutPlanService $workoutPlanService)
     {
-        return view('workout-plans.show', compact('workoutPlan'));
+        $quotes = require_once(resource_path('quotes.php'));
+        $randomQuote = $quotes[array_rand($quotes)];
+        $groupedExercises = $workoutPlanService->groupExercisesByMuscleGroup($workoutPlan);
+
+        return view('workout-plans.show', compact('workoutPlan', 'randomQuote', 'groupedExercises'));
     }
 
     public function saveWorkoutPlanToUser($userId, $workoutPlanId, WorkoutPlanService $workoutPlanService)

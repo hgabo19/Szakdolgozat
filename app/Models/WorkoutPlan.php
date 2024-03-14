@@ -26,6 +26,7 @@ class WorkoutPlan extends Model
 
     public function exercises(): BelongsToMany
     {
-        return $this->belongsToMany(Exercise::class);
+        return $this->belongsToMany(Exercise::class)
+            ->withPivot('day', 'sets', 'reps');
     }
 }
