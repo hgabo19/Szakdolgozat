@@ -15,7 +15,7 @@
                 @endcan
             </div>
             <div>
-                <h1 class="text-3xl font-bold dark:text-white">{{ $workoutPlan->title }}</h1>
+                <h1 class="text-3xl font-bold dark:text-white animate-fade_in_right">{{ $workoutPlan->title }}</h1>
             </div>
             @can('saveToUser', App\Models\WorkoutPlan::class)
                 <div>
@@ -47,18 +47,18 @@
                         <img src="{{ asset('storage/' . $workoutPlan->image_path) }}" alt="{{ $workoutPlan->title }}"
                             class="mb-4 mr-10 rounded-lg max-h-40 lg:max-h-56 2xl:max-h-72">
                         <div class="flex flex-col w-full gap-10 h-fit">
-                            <div class="flex justify-between">
+                            <div class="flex justify-between animate-fade_in_right">
                                 <p class="pt-2 text-2xl font-semibold text-white">Difficulty: <span
-                                        class="px-4 font-extrabold text-transparent capitalize bg-clip-text bg-gradient-to-t to-emerald-500 from-sky-400">{{ $workoutPlan->difficulty ? $workoutPlan->difficulty : 'General' }}</span>
+                                        class="px-4 font-extrabold text-transparent capitalize animate-fade_in_left bg-clip-text bg-gradient-to-t to-emerald-500 from-sky-400">{{ $workoutPlan->difficulty ? $workoutPlan->difficulty : 'General' }}</span>
                                 </p>
                                 <div class="flex mr-3">
                                     <span
-                                        class="px-2 text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r to-action-color from-sky-400">{{ $workoutPlan->duration }}</span>
+                                        class="px-2 text-4xl font-extrabold text-transparent animate-fade_in_left bg-clip-text bg-gradient-to-r to-action-color from-sky-400">{{ $workoutPlan->duration }}</span>
                                     <p class="pt-1 text-2xl font-bold text-white ">day
                                         workout routine</p>
                                 </div>
                             </div>
-                            <div class="animate-fade_in">
+                            <div class="animate-fade_in_left">
                                 <figure class="max-w-screen-md mx-auto text-center">
                                     <blockquote>
                                         <p class="text-2xl italic font-medium text-gray-900 dark:text-white">
@@ -84,7 +84,7 @@
                     <p class="px-4 mt-10 mb-6 text-3xl font-bold text-white border-b-2 w-fit border-action-hover">
                         Description
                     </p>
-                    <p class="text-lg font-bold leading-loose text-white break-words indent-8">
+                    <p class="text-lg font-bold leading-loose text-white break-words indent-8 animate-fade_in_right">
                         {{ $workoutPlan->description }}
                     </p>
                 </div>
@@ -93,7 +93,7 @@
                     Exercises
                 </p>
 
-                <div class="flex mt-10 text-white lg:gap-14">
+                <div class="flex mt-10 text-white lg:gap-14 animate-fade_in_up">
                     @foreach ($groupedExercises as $day => $dayExercises)
                         @if (!$loop->last)
                             <div class="pr-10 border-r-4 border-action-color">

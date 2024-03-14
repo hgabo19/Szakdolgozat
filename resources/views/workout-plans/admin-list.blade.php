@@ -1,7 +1,7 @@
 <x-app-layout>
     <div
         class="w-full p-2 mx-auto my-10 transition duration-300 ease-in-out shadow-lg lg:w-11/12 bg-dark-charcoal lg:rounded-xl hover:shadow-xl hover:shadow-purple shadow-purple">
-        <div class="p-4 text-center">
+        <div class="p-4 text-center animate-fade_in_down">
             <h1 class="my-5 text-xl font-extrabold text-white lg:text-4xl">Workout plans</h1>
         </div>
         @if (session('success'))
@@ -11,7 +11,7 @@
             </div>
         @endif
         <div class="w-full pb-5">
-            <div class="relative w-full mx-auto mt-4 overflow-x-auto sm:rounded-lg">
+            <div class="relative w-full mx-auto mt-4 overflow-x-auto sm:rounded-lg animate-fade_in_up">
                 <table
                     class="w-full min-w-full text-sm text-left text-gray-500 shadow-md rtl:text-right dark:text-gray-400">
                     <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-action-color dark:text-white">

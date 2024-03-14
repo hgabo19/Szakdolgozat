@@ -26,13 +26,52 @@ export default {
                 "dark-gray": "#333333",
             },
             keyframes: {
-                fade_in: {
-                    "0%": { opacity: 0 },
-                    "100%": { opacity: 1 },
+                fade_in_left: {
+                    "0%": {
+                        opacity: "0",
+                        transform: "translateX(-30px) ",
+                    },
+                    "100%": {
+                        opacity: 1,
+                        transform: "translateX(0px) ",
+                    },
+                },
+                fade_in_right: {
+                    "0%": {
+                        opacity: "0",
+                        transform: "translateX(30px) ",
+                    },
+                    "100%": {
+                        opacity: 1,
+                        transform: "translateX(0px) ",
+                    },
+                },
+                fade_in_up: {
+                    "0%": {
+                        opacity: "0",
+                        transform: "translateY(30px) ",
+                    },
+                    "100%": {
+                        opacity: 1,
+                        transform: "translateY(0px) ",
+                    },
+                },
+                fade_in_down: {
+                    "0%": {
+                        opacity: "0",
+                        transform: "translateY(-30px) scale(0.9)",
+                    },
+                    "100%": {
+                        opacity: 1,
+                        transform: "translateY(0px) scale(1)",
+                    },
                 },
             },
             animation: {
-                fade_in: "fade_in 2s ease-in-out",
+                fade_in_left: "fade_in_left 3s ease-in-out",
+                fade_in_right: "fade_in_right 1s ease-in-out",
+                fade_in_up: "fade_in_up 1s ease-in-out",
+                fade_in_down: "fade_in_down 1s ease-in-out",
             },
         },
     },

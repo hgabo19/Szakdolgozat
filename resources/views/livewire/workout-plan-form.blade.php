@@ -1,6 +1,6 @@
 <div>
     <div
-        class="w-full p-2 mx-auto my-10 transition duration-300 ease-in-out shadow-lg lg:w-4/5 bg-dark-charcoal lg:rounded-xl hover:shadow-xl hover:shadow-action-color shadow-action-hover">
+        class="w-full p-2 mx-auto my-10 transition duration-300 ease-in-out shadow-lg animate-fade_in_up lg:w-4/5 bg-dark-charcoal lg:rounded-xl hover:shadow-xl hover:shadow-action-color shadow-action-hover">
         <div
             class="p-1 mx-3 mt-3 transition duration-300 ease-in-out rounded-full shadow-md cursor-pointer bg-action-color hover:bg-action-hover w-fit">
             <a href="{{ route('workout-plans.admin-list') }}" class="align-middle">
@@ -160,12 +160,6 @@
                             <p class="mt-1 text-sm text-gray-500 dark:text-gray-400" id="file_input_help">
                                 JPG or PNG
                             </p>
-                            {{-- @if ($image)
-                                <div>
-                                    <img class="block w-16 h-16 mt-5 rounded" src="{{ $image->temporaryUrl() }}"
-                                        alt="plan-image">
-                                </div>
-                            @endif --}}
                         </div>
                         <div wire:loading.delay wire:target='image'>
                             <span class="text-xl text-gray-500 animate-pulse">Uploading...</span>
