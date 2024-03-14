@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/workout-plans/admin-list', [WorkoutPlanController::class, 'adminList'])->name('workout-plans.admin-list')->can('manage', WorkoutPlan::class);
     Route::get('workout-plans/create', [WorkoutPlanController::class, 'create'])->name('workout-plans.create')->can('create', WorkoutPlan::class);
     Route::post('/workout-plans/admin-list/{workoutPlan}', [WorkoutPlanController::class, 'destroy'])->name('workout-plans.delete')->can('delete', WorkoutPlan::class);
+    Route::get('/workout-plans/edit/{workoutPlan}', [WorkoutPlanController::class, 'edit'])->name('workout-plans.edit')->can('edit', 'workoutPlan');
     Route::get('/workout-plans/index', [WorkoutPlanController::class, 'index'])->name('workout-plans.index');
     Route::get('/workout-plans/{workoutPlan}', [WorkoutPlanController::class, 'show'])->name('workout-plans.show');
     // save workout plan to user

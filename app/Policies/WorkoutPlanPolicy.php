@@ -20,9 +20,9 @@ class WorkoutPlanPolicy
         return $user && $user->is_admin;
     }
 
-    public function edit(User $user)
+    public function edit(User $user, WorkoutPlan $workoutPlan)
     {
-        return $user && $user->is_admin;
+        return $user->is_admin && $workoutPlan;
     }
 
     public function delete(User $user)

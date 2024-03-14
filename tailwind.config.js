@@ -68,7 +68,7 @@ export default {
                 },
             },
             animation: {
-                fade_in_left: "fade_in_left 3s ease-in-out",
+                fade_in_left: "fade_in_left 2s ease-in-out",
                 fade_in_right: "fade_in_right 1s ease-in-out",
                 fade_in_up: "fade_in_up 1s ease-in-out",
                 fade_in_down: "fade_in_down 1s ease-in-out",

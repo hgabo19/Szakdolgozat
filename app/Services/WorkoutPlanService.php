@@ -49,7 +49,27 @@ class WorkoutPlanService
                 'reps' => $exercise->pivot->reps,
             ];
         }
+        return $groupedExercises;
+    }
 
+    public function groupExercisesByDay(WorkoutPlan $workoutPlan)
+    {
+        $groupedExercises = [];
+        $exercises = $workoutPlan->exercises()->orderByPivot('day')->get();
+        foreach ($exercises as $exercise) {
+            $day = $exercise->pivot->day;
+
+            // Group exercises by day
+            if (!isset($groupedExercises[$day])) {
+                $groupedExercises[$day] = [];
+            }
+
+            $groupedExercises[$day][] = [
+                'id' => $exercise->id,
+                'sets' => $exercise->pivot->sets,
+                'reps' => $exercise->pivot->reps,
+            ];
+        }
         return $groupedExercises;
     }
 }

@@ -7,6 +7,7 @@ use App\Models\WorkoutPlan;
 use App\Services\WorkoutPlanService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use PDO;
 
 class WorkoutPlanController extends Controller
 {
@@ -49,7 +50,6 @@ class WorkoutPlanController extends Controller
     public function destroy($planId)
     {
         $this->authorize('delete', WorkoutPlan::class);
-
         $workoutPlan = WorkoutPlan::findOrFail($planId);
         if ($workoutPlan->image_path) {
             Storage::delete($workoutPlan->image_path);
@@ -58,5 +58,10 @@ class WorkoutPlanController extends Controller
         $workoutPlan->delete();
         session()->flash('success', '"' . $workoutPlan->title . '" deleted successfully!');
         return redirect()->route('workout-plans.admin-list');
+    }
+
+    public function edit(WorkoutPlan $workoutPlan)
+    {
+        return view('workout-plans.edit', compact('workoutPlan'));
     }
 }

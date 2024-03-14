@@ -93,45 +93,44 @@
                     Exercises
                 </p>
 
-                <div class="flex mt-10 text-white lg:gap-14 animate-fade_in_up">
+                <div
+                    class="flex flex-col justify-center h-auto gap-5 mt-10 text-white rounded-lg lg:flex-wrap lg:flex-row lg:gap-14 animate-fade_in_up">
                     @foreach ($groupedExercises as $day => $dayExercises)
-                        @if (!$loop->last)
-                            <div class="pr-10 border-r-4 border-action-color">
-                            @else
-                                <div>
-                        @endif
-                        <h2
-                            class="p-4 my-5 ml-5 text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-t to-emerald-500 from-sky-400">
-                            Day
-                            <span
-                                class="pl-2 text-3xl text-transparent bg-clip-text bg-gradient-to-t to-action-hover from-sky-400">
+                        <div
+                            class="px-5 border-t-2 rounded-lg shadow-md border-x-2 border-action-color shadow-sky-400 bg-secondary-color">
+                            <h2
+                                class="p-4 mt-5 text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-t to-emerald-500 from-sky-400">
+                                Day
+                            </h2>
+                            <div
+                                class="flex justify-center text-6xl text-transparent bg-clip-text bg-gradient-to-t to-action-hover from-sky-400">
                                 {{ $day }}
-                            </span>
-                        </h2>
-                        @foreach ($dayExercises as $muscleGroup => $exercises)
-                            <div class="mx-5 my-10">
-                                <h3
-                                    class="text-xl text-center text-transparent bg-clip-text bg-gradient-to-t to-emerald-500 from-sky-400">
-                                    Muscle group: <span class="font-extrabold capitalize">{{ $muscleGroup }}</span>
-                                </h3>
-                                @foreach ($exercises as $exercise)
-                                    <div class="flex my-2 text-lg">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mt-1 mr-2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
-                                        </svg>
-                                        <p class="capitalize">{{ $exercise['name'] }}</p>
-                                        <p class="pl-6">{{ $exercise['sets'] }} sets</p>
-                                        <p class="px-3">x</p>
-                                        <p class="">{{ $exercise['reps'] }} reps</p>
-                                    </div>
-                                @endforeach
                             </div>
-                        @endforeach
+                            @foreach ($dayExercises as $muscleGroup => $exercises)
+                                <div class="my-10">
+                                    <h3
+                                        class="text-xl text-center text-transparent bg-clip-text bg-gradient-to-t to-emerald-500 from-sky-400">
+                                        Muscle group: <span
+                                            class="font-extrabold capitalize">{{ $muscleGroup }}</span>
+                                    </h3>
+                                    @foreach ($exercises as $exercise)
+                                        <div class="flex my-2 text-lg">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mt-1 mr-2">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+                                            </svg>
+                                            <p class="capitalize">{{ $exercise['name'] }}</p>
+                                            <p class="pl-6">{{ $exercise['sets'] }} sets</p>
+                                            <p class="px-3">x</p>
+                                            <p class="">{{ $exercise['reps'] }} reps</p>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endforeach
+                        </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </div>
-    </div>
 </x-app-layout>
