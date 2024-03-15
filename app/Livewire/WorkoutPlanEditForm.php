@@ -6,6 +6,7 @@ use App\Models\Exercise;
 use App\Models\WorkoutPlan;
 use App\Services\WorkoutPlanService;
 use Livewire\Attributes\Locked;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class WorkoutPlanEditForm extends Component
@@ -19,6 +20,7 @@ class WorkoutPlanEditForm extends Component
     public $planImage;
     public $image;
     public $numberOfDays;
+    public $previousDays;
     public $days = [];
     public $savedExercises;
     public $all_exercises;
@@ -56,7 +58,7 @@ class WorkoutPlanEditForm extends Component
         $this->description = $workoutPlan->description;
         $this->image = $workoutPlan->image;
         $this->numberOfDays = $workoutPlan->duration;
-
+        $this->previousDays = $this->numberOfDays;
         $this->all_exercises = Exercise::all();
         $savedExercises = $workoutPlanService->groupExercisesByDay($workoutPlan);
         $this->days = [];
@@ -71,11 +73,53 @@ class WorkoutPlanEditForm extends Component
             }
             $this->days[$dayIndex] = $dayExercises;
         }
-        // dd($this->days);
     }
 
     public function render()
     {
         return view('livewire.workout-plan-edit-form');
+    }
+
+    #[On('daysConfirmed')]
+    public function setDays()
+    {
+        if ($this->previousDays < $this->numberOfDays) {
+            for ($i = $this->previousDays; $i < $this->numberOfDays; $i++) {
+                $this->days[$i + 1][] = [
+                    'id' => '',
+                    'sets' => '',
+                    'reps' => ''
+                ];
+            }
+            $this->previousDays = $this->numberOfDays;
+        } else if ($this->previousDays > $this->numberOfDays) {
+            for ($i = $this->previousDays; $i > $this->numberOfDays; $i--) {
+                array_pop($this->days);
+            }
+            $this->previousDays = $this->numberOfDays;
+        }
+    }
+
+    public function addExercise($dayIndex)
+    {
+        $this->days[$dayIndex][] = [
+            'id' => '',
+            'sets' => '',
+            'reps' => '',
+        ];
+    }
+
+    public function confirmDays()
+    {
+        if ($this->previousDays > $this->numberOfDays) {
+            $this->dispatch('swal:daysConfirm');
+        } else {
+            $this->setDays();
+        }
+    }
+
+    public function deleteExercise($dayIndex, $exerciseIndex)
+    {
+        unset($this->days[$dayIndex][$exerciseIndex]);
     }
 }

@@ -57,7 +57,7 @@
                     </select>
                     <button
                         class="text-white mt-6 bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-lg w-full sm:w-auto px-7 py-2.5 text-center dark:bg-action-color dark:hover:bg-action-hover dark:focus:ring-white"
-                        wire:click.prevent="setDays">
+                        wire:click.prevent="confirmDays">
                         Set
                     </button>
                     @error('numberOfDays')

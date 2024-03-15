@@ -48,3 +48,20 @@ window.addEventListener("toast", (event) => {
         iconColor: data.iconColor,
     });
 });
+
+window.addEventListener("swal:daysConfirm", () => {
+    Swal.fire({
+        title: "Are you sure you want to remove a day?",
+        text: "This will remove every exercise for that day!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#008000",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Remove!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let event = new Event("daysConfirmed");
+            dispatchEvent(event);
+        }
+    });
+});
