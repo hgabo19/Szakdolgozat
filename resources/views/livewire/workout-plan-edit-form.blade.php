@@ -94,7 +94,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            @error('days.*.exercises.*.id')
+                                            @error('days.*.*.id')
                                                 <span class="block text-sm text-red-500 md:text-base">
                                                     {{ $message }}
                                                 </span>
@@ -109,7 +109,7 @@
                                                 wire:model.blur="days.{{ $dayIndex }}.{{ $addedExerciseIndex }}.sets"
                                                 class="bg-transparent border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-20 dark:bg-secondary-color dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-action-color dark:focus:border-action-color"
                                                 type="number" min="2" max="10" placeholder="3">
-                                            @error('days.*.exercises.*.sets')
+                                            @error('days.*.*.sets')
                                                 <span class="block text-sm text-red-500 md:text-base">
                                                     {{ $message }}
                                                 </span>
@@ -124,7 +124,7 @@
                                                 wire:model.blur="days.{{ $dayIndex }}.{{ $addedExerciseIndex }}.reps"
                                                 class="bg-transparent border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-20 p-2.5 dark:bg-secondary-color dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-action-color dark:focus:border-action-color"
                                                 type="number" min="5" max="25" placeholder="5">
-                                            @error('days.*.exercises.*.reps')
+                                            @error('days.*.*.reps')
                                                 <span class="block text-sm text-red-500 md:text-base">
                                                     {{ $message }}
                                                 </span>

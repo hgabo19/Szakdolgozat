@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use App\Models\Exercise;
 use App\Models\WorkoutPlan;
+use Exception;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -59,38 +61,44 @@ class WorkoutPlanForm extends Component
     public function save()
     {
         $this->authorize('create', WorkoutPlan::class);
-        $this->validate();
+        $validated = $this->validate();
 
-        if ($this->image) {
-            $filePath = $this->image->store('images/workout_plans', 'public');
-        }
+        DB::transaction(function () {
+            try {
+                if ($this->image) {
+                    $filePath = $this->image->store('images/workout_plans', 'public');
+                }
 
-        $workoutPlan = new WorkoutPlan();
-        $workoutPlan->title = $this->title;
-        $workoutPlan->image_path = $filePath;
-        $workoutPlan->description = $this->description;
-        $workoutPlan->duration = (int)$this->numberOfDays;
-        $workoutPlan->difficulty = $this->difficulty;
-        $workoutPlan->created_at = now()->timezone('Europe/Budapest');
-        $workoutPlan->save();
+                $workoutPlan = new WorkoutPlan();
+                $workoutPlan->title = $this->title;
+                $workoutPlan->image_path = $filePath;
+                $workoutPlan->description = $this->description;
+                $workoutPlan->duration = (int)$this->numberOfDays;
+                $workoutPlan->difficulty = $this->difficulty;
+                $workoutPlan->created_at = now()->timezone('Europe/Budapest');
+                $workoutPlan->save();
 
-        foreach ($this->days as $dayIndex => $day) {
-            foreach ($day['exercises'] as $exercise) {
-                $workoutPlan->exercises()->attach($exercise['id'], [
-                    'day' => $dayIndex + 1,
-                    'sets' => $exercise['sets'],
-                    'reps' => $exercise['reps']
-                ]);
+                foreach ($this->days as $dayIndex => $day) {
+                    foreach ($day['exercises'] as $exercise) {
+                        $workoutPlan->exercises()->attach($exercise['id'], [
+                            'day' => $dayIndex + 1,
+                            'sets' => $exercise['sets'],
+                            'reps' => $exercise['reps']
+                        ]);
+                    }
+                }
+                $this->dispatch(
+                    'alert',
+                    type: 'success',
+                    title: "Workout plan created!",
+                    position: 'center',
+                    timer: 2000,
+                    redirectUrl: route('workout-plans.admin-list'),
+                );
+            } catch (Exception $e) {
+                throw new Exception('Failed to save workout plan. Please try again!');
             }
-        }
-        $this->dispatch(
-            'alert',
-            type: 'success',
-            title: "Workout plan created!",
-            position: 'center',
-            timer: 2000,
-            redirectUrl: route('workout-plans.admin-list'),
-        );
+        }, 5);
     }
 
     public function setDays()

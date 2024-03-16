@@ -5,12 +5,18 @@ namespace App\Livewire;
 use App\Models\Exercise;
 use App\Models\WorkoutPlan;
 use App\Services\WorkoutPlanService;
+use Exception;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class WorkoutPlanEditForm extends Component
 {
+
+    use WithFileUploads;
+
     #[Locked]
     public $workoutPlanId;
 
@@ -32,7 +38,7 @@ class WorkoutPlanEditForm extends Component
             'description' => 'required|string|min:50|max:3000',
             'difficulty' => 'required',
             'numberOfDays' => 'required',
-            'image' => 'required|image|max:2048',
+            'image' => 'nullable|image|max:2048',
             'days.*.*.id' => 'required',
             'days.*.*.sets' => 'required|integer|between:2,10',
             'days.*.*.reps' => 'required|integer|between:5,25',
@@ -56,7 +62,7 @@ class WorkoutPlanEditForm extends Component
         $this->title = $workoutPlan->title;
         $this->difficulty = $workoutPlan->difficulty;
         $this->description = $workoutPlan->description;
-        $this->image = $workoutPlan->image;
+        // $this->image = $workoutPlan->image_path;
         $this->numberOfDays = $workoutPlan->duration;
         $this->previousDays = $this->numberOfDays;
         $this->all_exercises = Exercise::all();
@@ -78,6 +84,34 @@ class WorkoutPlanEditForm extends Component
     public function render()
     {
         return view('livewire.workout-plan-edit-form');
+    }
+
+    public function save(WorkoutPlanService $workoutPlanService)
+    {
+        $workoutPlan = WorkoutPlan::find($this->workoutPlanId);
+        $this->authorize('edit', $workoutPlan);
+        $validated = $this->validate();
+        if ($workoutPlanService->hasChanged($workoutPlan, $validated)) {
+            $isSuccessful = $workoutPlanService->updateWorkoutPlan($validated, $this->workoutPlanId);
+            if ($isSuccessful) {
+                $this->dispatch(
+                    'alert',
+                    type: 'success',
+                    title: "Workout plan updated!",
+                    position: 'center',
+                    timer: 2000,
+                    redirectUrl: route('workout-plans.admin-list'),
+                );
+            } else {
+                $this->dispatch(
+                    'alert',
+                    type: 'danger',
+                    title: "Nothing has changed!",
+                    position: 'center',
+                    timer: 2000,
+                );
+            }
+        }
     }
 
     #[On('daysConfirmed')]

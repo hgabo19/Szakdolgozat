@@ -17,6 +17,7 @@ class WorkoutPlan extends Model
         'description',
         'duration',
         'created_at',
+        'difficulty',
     ];
 
     public function users(): HasMany
