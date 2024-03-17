@@ -62,7 +62,6 @@ class WorkoutPlanEditForm extends Component
         $this->title = $workoutPlan->title;
         $this->difficulty = $workoutPlan->difficulty;
         $this->description = $workoutPlan->description;
-        // $this->image = $workoutPlan->image_path;
         $this->numberOfDays = $workoutPlan->duration;
         $this->previousDays = $this->numberOfDays;
         $this->all_exercises = Exercise::all();
@@ -102,15 +101,15 @@ class WorkoutPlanEditForm extends Component
                     timer: 2000,
                     redirectUrl: route('workout-plans.admin-list'),
                 );
-            } else {
-                $this->dispatch(
-                    'alert',
-                    type: 'danger',
-                    title: "Nothing has changed!",
-                    position: 'center',
-                    timer: 2000,
-                );
             }
+        } else {
+            $this->dispatch(
+                'alert',
+                type: 'error',
+                title: "Please change something to update!",
+                position: 'center',
+                timer: 2500,
+            );
         }
     }
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\HealthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WorkoutPlanController;
+use App\Models\Exercise;
 use App\Models\WorkoutPlan;
 use Illuminate\Support\Facades\Route;
 
@@ -26,8 +27,10 @@ Route::middleware('auth')->group(function () {
     Route::get('health/challenges', [HealthController::class, 'challenges'])->name('health.challenges');
 
     // Exercises page
-    // Route::get('/exercises', [ExerciseController::class, 'index'])->name('exercises.index');
-    Route::resource('exercises', ExerciseController::class);
+    Route::get('/exercises/admin-list', [ExerciseController::class, 'adminList'])->name('exercises.admin-list')->can('manage', Exercise::class);
+    Route::get('/exercises/create', [ExerciseController::class, 'create'])->name('exercises.create')->can('create', Exercise::class);
+    Route::get('/exercises/edit/{exercise}', [ExerciseController::class, 'edit'])->name('exercises.edit')->can('edit', 'exercise');
+    Route::get('/exercises/index', [ExerciseController::class, 'index'])->name('exercises.index');
 
     // Workout plans page
     Route::get('/workout-plans/admin-list', [WorkoutPlanController::class, 'adminList'])->name('workout-plans.admin-list')->can('manage', WorkoutPlan::class);

@@ -1,38 +1,33 @@
 <x-app-layout>
-    <div>
-        <div
-            class="flex flex-wrap justify-between max-w-full gap-8 px-10 py-5 mx-auto rounded-md shadow-lg w-fit bg-secondary-color shadow-gray-950">
-            @foreach ($workoutPlans as $workoutPlan)
-                {{-- card --}}
-                <div
-                    class="relative my-6 overflow-hidden transition duration-300 ease-in-out shadow-xl h-60 w-80 rounded-xl hover:shadow-action-hover shadow-purple mx-7">
-                    <div class="absolute inset-0 bg-center bg-no-repeat bg-cover"
-                        style="background-image: url('{{ asset($workoutPlan->image_path) }}');"></div>
-                    <div class="absolute inset-0 bg-black opacity-20"></div>
-                    <div class="absolute inset-0 flex flex-row justify-between text-white align-top">
-                        <div class="px-6 py-4">
-                            <div
-                                class="flex justify-center p-2 text-xl font-bold rounded-lg shadow-md bg-gradient-to-r from-purple to-action-hover">
-                                {{ $workoutPlan->title }}</div>
-                        </div>
-                        <div class="px-6 py-4 mt-1">
-                            <div
-                                class="p-1 transition duration-300 ease-in-out rounded-full shadow-md cursor-pointer bg-action-color hover:bg-action-hover">
-                                <a href="{{ route('workout-plans.show', $workoutPlan) }}" class="align-middle">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                    </svg>
-                                </a>
+    <div
+        class="p-10 mx-auto my-10 transition duration-300 ease-in-out shadow-lg rounded-xl bg-dark-charcoal w-fit lg:w-11/12 hover:shadow-xl hover:shadow-emerald-600 shadow-emerald-600">
+        <div class="py-5">
+            <h1 class="mb-5 text-3xl font-extrabold text-center text-white">Workout plans</h1>
+            <div class="grid gap-16 p-2 gap-y-20 lg:grid-cols-3">
+                @foreach ($workoutPlans as $workoutPlan)
+                    <a href="{{ route('workout-plans.show', $workoutPlan) }}">
+                        <div
+                            class="relative overflow-hidden transition duration-300 ease-in-out border-x-2 border-t-2 border-emerald-600 rounded-md shadow-md animate-[fade-in-up_2s_ease-in-out] bg-secondary-color hover:shadow-emerald-400 hover:shadow-lg shadow-emerald-600">
+                            <img src="{{ asset('storage/' . $workoutPlan->image_path) }}" alt="kep"
+                                class="object-cover w-full h-32 opacity-80 rounded-t-md sm:h-48">
+                            <div class="my-2">
+                                <span class="p-2 text-lg font-semibold text-white">
+                                    {{ $workoutPlan->title }}
+                                </span>
+                            </div>
+                            <div>
+                                <span
+                                    class="absolute top-0 p-2 mt-3 ml-3 text-base font-bold text-white capitalize border-2 rounded-full border-violet-400 bg-action-hover">{{ $workoutPlan->difficulty }}</span>
+                            </div>
+                            <div>
+                                <span
+                                    class="absolute top-0 right-0 p-2 mt-3 mr-3 text-base font-bold text-white capitalize border-2 rounded-full border-violet-400 bg-action-hover">{{ $workoutPlan->duration }}
+                                    day</span>
                             </div>
                         </div>
-                    </div>
-                </div>
-            @endforeach
+                    </a>
+                @endforeach
+            </div>
         </div>
     </div>
-    {{-- <a class="p-4 text-white border-2 border-gray-50" href="{{ route('workout-plans.admin-list') }}">
-        list
-    </a> --}}
 </x-app-layout>

@@ -7,21 +7,31 @@ use Illuminate\Http\Request;
 
 class ExerciseController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $exercises = Exercise::orderBy('muscle_group')->get();
 
         return view('exercises.index', compact('exercises'));
     }
 
-    public function show(Exercise $exercise) {
+    public function show(Exercise $exercise)
+    {
         return view('exercises.show', compact('exercises'));
     }
 
-    public function create() {
+    public function adminList()
+    {
+        $exercises = Exercise::paginate(10);
+        return view('exercises.admin-list', compact('exercises'));
+    }
+
+    public function create()
+    {
         return view('exercises.create');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         Exercise::create($request->all());
 
@@ -32,14 +42,6 @@ class ExerciseController extends Controller
     public function edit(Exercise $exercise)
     {
         return view('exercises.edit', compact('exercise'));
-    }
-
-     public function update(Request $request, Exercise $exercise)
-    {
-        // Validation can be added as needed
-        $exercise->update($request->all());
-
-        return redirect()->route('exercises.index')->with('success', 'Exercise updated successfully.');
     }
 
     public function destroy(Exercise $exercise)

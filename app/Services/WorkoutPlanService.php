@@ -118,6 +118,36 @@ class WorkoutPlanService
 
     public function saveWorkoutPlan($validated)
     {
+        DB::transaction(function () use ($validated) {
+            try {
+                $workoutPlan = new WorkoutPlan();
+
+                if ($validated['image']) {
+                    $filePath = $validated['image']->store('images/workout_plans', 'public');
+                    $workoutPlan->image_path = $filePath;
+                }
+
+                $workoutPlan->title = $validated['title'];
+                $workoutPlan->description = $validated['description'];
+                $workoutPlan->duration = (int)$validated['numberOfDays'];
+                $workoutPlan->difficulty = $validated['difficulty'];
+                $workoutPlan->created_at = now()->timezone('Europe/Budapest');
+                $workoutPlan->save();
+
+                foreach ($validated['days'] as $dayIndex => $day) {
+                    foreach ($day['exercises'] as $exercise) {
+                        $workoutPlan->exercises()->attach($exercise['id'], [
+                            'day' => $dayIndex + 1,
+                            'sets' => $exercise['sets'],
+                            'reps' => $exercise['reps']
+                        ]);
+                    }
+                }
+            } catch (Exception $e) {
+                throw new Exception('Failed to save workout plan. Please try again!');
+            }
+        }, 5);
+        return true;
     }
 
     public function hasChanged($workoutPlan, $validated)

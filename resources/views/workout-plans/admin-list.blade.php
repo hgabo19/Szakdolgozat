@@ -19,7 +19,7 @@
                             <th scope="col" class="w-56 px-4 py-3">
                                 Title
                             </th>
-                            <th scope="col" class="w-32 px-4 py-3">
+                            <th scope="col" class="w-24 px-4 py-3">
                                 Description
                             </th>
                             <th scope="col" class="w-24 px-4 py-3 text-center">
@@ -31,11 +31,14 @@
                             <th scope="col" class="w-24 px-4 py-3 text-center align-bottom">
                                 Created
                             </th>
-                            <th class="w-16">
+                            <th class="w-16 text-center">
+                                Update
                             </th>
-                            <th class="w-16">
+                            <th class="w-16 text-center">
+                                Delete
                             </th>
-                            <th class="w-16">
+                            <th class="w-16 text-center">
+                                View
                             </th>
                         </tr>
                     </thead>

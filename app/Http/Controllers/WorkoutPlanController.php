@@ -28,7 +28,6 @@ class WorkoutPlanController extends Controller
 
     public function saveWorkoutPlanToUser($userId, $workoutPlanId, WorkoutPlanService $workoutPlanService)
     {
-
         $isSuccessful = $workoutPlanService->saveToUser($userId, $workoutPlanId);
 
         if ($isSuccessful) {

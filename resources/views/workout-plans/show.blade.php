@@ -27,7 +27,7 @@
                         <div
                             class="p-2 transition duration-300 ease-in-out rounded-lg bg-action-color dark:focus:ring-white focus:outline-none focus:ring-2 focus:ring-white hover:bg-action-hover">
                             <button class="align-middle" type="submit">
-                                <span class="text-xl text-white">Save</span>
+                                <span class="text-2xl text-white">Save</span>
                             </button>
                         </div>
                     </form>

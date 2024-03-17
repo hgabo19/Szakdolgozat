@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Exercise;
 use App\Models\WorkoutPlan;
+use App\Services\WorkoutPlanService;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Validate;
@@ -58,47 +59,22 @@ class WorkoutPlanForm extends Component
         return view('livewire.workout-plan-form');
     }
 
-    public function save()
+    public function save(WorkoutPlanService $workoutPlanService)
     {
         $this->authorize('create', WorkoutPlan::class);
         $validated = $this->validate();
+        $isSuccessful = $workoutPlanService->saveWorkoutPlan($validated);
 
-        DB::transaction(function () {
-            try {
-                if ($this->image) {
-                    $filePath = $this->image->store('images/workout_plans', 'public');
-                }
-
-                $workoutPlan = new WorkoutPlan();
-                $workoutPlan->title = $this->title;
-                $workoutPlan->image_path = $filePath;
-                $workoutPlan->description = $this->description;
-                $workoutPlan->duration = (int)$this->numberOfDays;
-                $workoutPlan->difficulty = $this->difficulty;
-                $workoutPlan->created_at = now()->timezone('Europe/Budapest');
-                $workoutPlan->save();
-
-                foreach ($this->days as $dayIndex => $day) {
-                    foreach ($day['exercises'] as $exercise) {
-                        $workoutPlan->exercises()->attach($exercise['id'], [
-                            'day' => $dayIndex + 1,
-                            'sets' => $exercise['sets'],
-                            'reps' => $exercise['reps']
-                        ]);
-                    }
-                }
-                $this->dispatch(
-                    'alert',
-                    type: 'success',
-                    title: "Workout plan created!",
-                    position: 'center',
-                    timer: 2000,
-                    redirectUrl: route('workout-plans.admin-list'),
-                );
-            } catch (Exception $e) {
-                throw new Exception('Failed to save workout plan. Please try again!');
-            }
-        }, 5);
+        if ($isSuccessful) {
+            $this->dispatch(
+                'alert',
+                type: 'success',
+                title: "Workout plan created!",
+                position: 'center',
+                timer: 2000,
+                redirectUrl: route('workout-plans.admin-list'),
+            );
+        }
     }
 
     public function setDays()

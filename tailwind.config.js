@@ -26,7 +26,7 @@ export default {
                 "dark-gray": "#333333",
             },
             keyframes: {
-                fade_in_left: {
+                "fade-in-left": {
                     "0%": {
                         opacity: "0",
                         transform: "translateX(-30px) ",
@@ -36,7 +36,7 @@ export default {
                         transform: "translateX(0px) ",
                     },
                 },
-                fade_in_right: {
+                "fade-in-right": {
                     "0%": {
                         opacity: "0",
                         transform: "translateX(30px) ",
@@ -46,7 +46,7 @@ export default {
                         transform: "translateX(0px) ",
                     },
                 },
-                fade_in_up: {
+                "fade-in-up": {
                     "0%": {
                         opacity: "0",
                         transform: "translateY(30px) ",
@@ -56,7 +56,7 @@ export default {
                         transform: "translateY(0px) ",
                     },
                 },
-                fade_in_down: {
+                "fade-in-down": {
                     "0%": {
                         opacity: "0",
                         transform: "translateY(-30px) scale(0.9)",
@@ -68,10 +68,10 @@ export default {
                 },
             },
             animation: {
-                fade_in_left: "fade_in_left 2s ease-in-out",
-                fade_in_right: "fade_in_right 1s ease-in-out",
-                fade_in_up: "fade_in_up 1s ease-in-out",
-                fade_in_down: "fade_in_down 1s ease-in-out",
+                fade_in_left: "fade-in-left 2s ease-in-out",
+                fade_in_right: "fade-in-right 1s ease-in-out",
+                fade_in_up: "fade-in-up 1s ease-in-out",
+                fade_in_down: "fade-in-down 1s ease-in-out",
             },
         },
     },

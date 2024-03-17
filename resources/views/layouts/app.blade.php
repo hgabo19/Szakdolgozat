@@ -55,9 +55,15 @@
                         Workout plans
                     </x-side-nav-link>
                 @endif
-                <x-side-nav-link href="{{ route('exercises.index') }}" :active="request()->routeIs('exercises.index')">
-                    Exercises
-                </x-side-nav-link>
+                @if (Auth::user()->is_admin)
+                    <x-side-nav-link href="{{ route('exercises.admin-list') }}" :active="request()->routeIs('exercises.admin-list')">
+                        Exercises
+                    </x-side-nav-link>
+                @else
+                    <x-side-nav-link href="{{ route('exercises.index') }}" :active="request()->routeIs('exercises.index')">
+                        Exercises
+                    </x-side-nav-link>
+                @endif
                 <x-side-nav-link href="{{ route('health.index') }}" :active="request()->routeIs('health.*')">
                     Health
                 </x-side-nav-link>
