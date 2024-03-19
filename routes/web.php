@@ -30,7 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/exercises/admin-list', [ExerciseController::class, 'adminList'])->name('exercises.admin-list')->can('manage', Exercise::class);
     Route::get('/exercises/create', [ExerciseController::class, 'create'])->name('exercises.create')->can('create', Exercise::class);
     Route::get('/exercises/edit/{exercise}', [ExerciseController::class, 'edit'])->name('exercises.edit')->can('edit', 'exercise');
+    Route::post('/exercises/admin-list/{exercise}', [ExerciseController::class, 'destroy'])->name('exercises.delete')->can('delete', Exercise::class);
     Route::get('/exercises/index', [ExerciseController::class, 'index'])->name('exercises.index');
+    Route::get('/exercises/{exercise}', [ExerciseController::class, 'show'])->name('exercises.show');
+
 
     // Workout plans page
     Route::get('/workout-plans/admin-list', [WorkoutPlanController::class, 'adminList'])->name('workout-plans.admin-list')->can('manage', WorkoutPlan::class);

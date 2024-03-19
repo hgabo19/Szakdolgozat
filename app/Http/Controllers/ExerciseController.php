@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Exercise;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ExerciseController extends Controller
 {
@@ -16,7 +17,7 @@ class ExerciseController extends Controller
 
     public function show(Exercise $exercise)
     {
-        return view('exercises.show', compact('exercises'));
+        return view('exercises.show', compact('exercise'));
     }
 
     public function adminList()
@@ -46,8 +47,15 @@ class ExerciseController extends Controller
 
     public function destroy(Exercise $exercise)
     {
-        $exercise->delete();
+        $this->authorize('delete', Exercise::class);
+        $exerc = Exercise::findOrFail($exercise->id);
+        if ($exerc->image_path) {
+            Storage::delete($exerc->image_path);
+        }
+        $exerc->delete();
+        session()->flash('success', '"' . $exerc->name . '" deleted successfully!');
+        return redirect()->route('exercises.admin-list');
 
-        return redirect()->route('exercises.index')->with('success', 'Exercise deleted successfully.');
+        // return redirect()->route('exercises.admin-list')->with('success', 'Exercise deleted successfully.');
     }
 }
