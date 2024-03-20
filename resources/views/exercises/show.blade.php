@@ -15,7 +15,7 @@
                 @endcan
             </div>
             <div>
-                <h1 class="text-3xl font-bold dark:text-white animate-fade_in_right">{{ $exercise->name }}</h1>
+                <h1 class="text-3xl font-bold dark:text-white animate-fade_in_down">{{ $exercise->name }}</h1>
             </div>
             <div></div>
         </div>
@@ -29,9 +29,13 @@
                         <img src="{{ asset('storage/' . $exercise->image_path) }}" alt="{{ $exercise->name }}"
                             class="mb-4 mr-10 rounded-lg max-h-40 lg:max-h-56 2xl:max-h-72">
                         <div class="flex flex-col w-full gap-10 h-fit">
-                            <div class="flex justify-between animate-fade_in_right">
-                                <p class="pt-2 text-2xl font-semibold text-white">Muscle group: <span
-                                        class="px-4 font-extrabold text-transparent capitalize animate-fade_in_left bg-clip-text bg-gradient-to-t to-emerald-500 from-sky-400">{{ $exercise->muscle_group }}</span>
+                            <div class="flex">
+                                <p class="pt-2 text-3xl font-semibold text-white animate-fade_in_left">
+                                    Muscle group:
+                                </p>
+                                <p
+                                    class="px-4 pt-2 text-4xl font-extrabold text-transparent capitalize animate-[fade-in-right_2s_ease-in-out] bg-clip-text bg-gradient-to-t to-emerald-500 from-sky-400">
+                                    {{ $exercise->muscle_group }}
                                 </p>
                             </div>
                         </div>

@@ -7,6 +7,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -39,7 +40,6 @@ class User extends Authenticatable
     public function userChallenges(): HasOne
     {
         return $this->hasOne(UserChallenge::class);
-
     }
 
     /**
@@ -50,12 +50,36 @@ class User extends Authenticatable
     public function workoutPlan(): BelongsTo
     {
         return $this->belongsTo(WorkoutPlan::class, 'workout_plan_id');
-
     }
 
-    public function meals()
+    public function meals(): belongsToMany
     {
         return $this->belongsToMany(Meal::class, 'user_meals');
+    }
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function likes(): belongsToMany
+    {
+        return $this->belongsToMany(Post::class, 'likes', 'user_id', 'post_id');
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function followers(): HasMany
+    {
+        return $this->hasMany(User::class, 'following_id');
+    }
+
+    public function following(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'following_id');
     }
 
     /*
