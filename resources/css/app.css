@@ -2,12 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-
 /* width */
 ::-webkit-scrollbar {
     width: 7px;
 }
- 
+
 /* Track */
 ::-webkit-scrollbar-track {
     background: white;
@@ -16,11 +15,20 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #6320EE;
+    background: #6320ee;
     border-radius: 8px;
 }
- 
+
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #6f20ee;
+}
+
+.custom-scrollbar {
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    display: none;
 }

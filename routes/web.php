@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\HealthController;
 use App\Http\Controllers\ProfileController;
@@ -44,6 +45,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/workout-plans/{workoutPlan}', [WorkoutPlanController::class, 'show'])->name('workout-plans.show');
     // save workout plan to user
     Route::post('/save-workout-plan/{userId}/{workoutPlanId}', [WorkoutPlanController::class, 'saveWorkoutPlanToUser'])->name('save.workout.plan');
+
+    // Blog page
+    Route::resource('blog', BlogController::class);
 });
 
 require __DIR__ . '/auth.php';
