@@ -5,7 +5,8 @@
             <h1 class="my-5 text-xl font-extrabold text-white lg:text-4xl">Exercises</h1>
         </div>
         @if (session('success'))
-            <div class="p-4 mb-4 text-base text-center text-green-800 rounded-lg bg-green-50 dark:bg-dark-charcoal dark:text-green-400"
+            <div x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
+                class="p-4 mb-4 text-base text-center text-green-800 rounded-lg bg-green-50 dark:bg-dark-charcoal dark:text-green-400"
                 role="alert">
                 <span class="font-medium">{{ session('success') }}</span>
             </div>

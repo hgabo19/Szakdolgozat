@@ -10,6 +10,12 @@
         <textarea id="message" rows="3" cols="60"
             class="block p-2.5 w-full resize-none text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-secondary-color dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-action-color dark:focus:border-blue-500"
             placeholder="Write your thoughts here..."></textarea>
+        <div class="flex mt-3">
+            <label for="small-input" class="block pr-4 mt-1 text-lg font-medium text-gray-900 dark:text-white">Tags:
+            </label>
+            <input type="text" id="small-input" placeholder="Add tags (#tag1, #tag2)"
+                class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-secondary-color dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-action-color dark:focus:border-action-color">
+        </div>
     </div>
     <div>
         <label for="dropzone-file"

@@ -23,12 +23,3 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #6f20ee;
 }
-
-.custom-scrollbar {
-    overflow-y: scroll;
-    scrollbar-width: none;
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-    display: none;
-}
