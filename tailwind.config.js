@@ -66,12 +66,23 @@ export default {
                         transform: "translateY(0px) scale(1)",
                     },
                 },
+                "fade-in-down-small": {
+                    "0%": {
+                        opacity: "0",
+                        transform: "translateY(-20px)",
+                    },
+                    "100%": {
+                        opacity: 1,
+                        transform: "translateY(0px)",
+                    },
+                },
             },
             animation: {
                 fade_in_left: "fade-in-left 2s ease-in-out",
                 fade_in_right: "fade-in-right 1s ease-in-out",
                 fade_in_up: "fade-in-up 1s ease-in-out",
                 fade_in_down: "fade-in-down 1s ease-in-out",
+                fade_in_down_small: "fade-in-down-small 1s ease-in-out",
             },
         },
     },

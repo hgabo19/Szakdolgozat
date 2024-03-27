@@ -6,7 +6,7 @@
             </x-slot:body>
         </x-custom-modal>
 
-        <div class="m-4">
+        <div class="m-4 animate-[fade-in-left_1s_ease-in-out]">
             <div
                 class="w-full mx-auto mb-6 transition duration-300 ease-in-out shadow-lg hover:shadow-xl hover:shadow-action-color shadow-action-hover">
                 <div class="relative w-full p-6 bg-dark-charcoal h-fit">
@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        <div class="row-span-2">
+        <div class="row-span-2 animate-[fade-in-right_1s_ease-in-out]">
             @include('health.calories')
         </div>
 

@@ -27,14 +27,28 @@ class BlogService
                 $post->created_at = now()->timezone('Europe/Budapest');
                 $post->save();
 
-                foreach ($tags as $tagName) {
-                    $tag = Category::firstOrCreate(['name' => $tagName]);
-                    $post->categories()->attach($tag->id);
+                if (count($tags) > 0) {
+                    foreach ($tags as $tagName) {
+                        $tag = Category::firstOrCreate(['name' => $tagName]);
+                        $post->categories()->attach($tag->id);
+                    }
                 }
             } catch (Exception $e) {
                 throw new Exception($e . 'Failed to create!');
             }
         });
         return true;
+    }
+
+    public function normalizeString($tagStr)
+    {
+        $tagStr = trim($tagStr);
+
+        // replace whitespace characters or dots directly after a # character
+        $tagStr = preg_replace('/#\s*[.\s]+/', '#', $tagStr);
+        // /: The regex pattern is enclosed within forward slashes
+        // [\s.]: This is a character class [...] that matches any whitespace character \s or a literal dot .
+        $tagStr = preg_replace('/[\s.]+/', ',', $tagStr);
+        return $tagStr;
     }
 }

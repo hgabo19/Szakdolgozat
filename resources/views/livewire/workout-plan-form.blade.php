@@ -12,7 +12,7 @@
             <h1 class="mb-5 text-xl font-extrabold text-white lg:text-4xl">Create the new plan</h1>
         </div>
 
-        <div class="w-full p-6 mx-auto mb-8 md:w-4/5 rounded-xl bg-secondary-color">
+        <div class="w-full p-6 mx-auto mb-8 rounded-xl bg-secondary-color">
             <form wire:submit.prevent="save">
                 @csrf
                 <div class="relative z-0 flex justify-center mb-5 group">

@@ -16,7 +16,7 @@
         </div>
     </form>
 
-    <div class="relative m-4 overflow-x-auto shadow-md sm:rounded-lg max-w-fit">
+    <div class="relative m-4 overflow-x-auto sm:rounded-lg max-w-fit">
         <table class="w-full min-w-full text-sm text-left text-gray-500 shadow-md rtl:text-right dark:text-gray-400">
             <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-action-color dark:text-white">
                 <tr>
@@ -44,7 +44,7 @@
             <tbody>
                 @foreach ($foods as $food)
                     <tr wire:key="{{ $food->id }}"
-                        class="odd:bg-white odd:dark:bg-transparent even:bg-gray-50 even:dark:bg-transparent">
+                        class="odd:bg-white odd:dark:bg-dark-charcoal even:bg-gray-50 even:dark:bg-secondary-color">
                         <td scope="row"
                             class="px-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             <h1 class="text-lg">{{ $food->name }}</h1>
