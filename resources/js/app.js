@@ -32,7 +32,7 @@ window.addEventListener("toast", (event) => {
         toast: true,
         position: data.position,
         showConfirmButton: false,
-        timer: 3500,
+        timer: data.timer,
         timerProgressBar: true,
         didOpen: (toast) => {
             toast.onmouseenter = Swal.stopTimer;

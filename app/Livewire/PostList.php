@@ -3,11 +3,12 @@
 namespace App\Livewire;
 
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class PostList extends Component
 {
-
 
     public $posts;
 

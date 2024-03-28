@@ -12,7 +12,6 @@ class Category extends Model
 
     protected $fillable = [
         'name',
-        'color',
     ];
 
     public function posts(): BelongsToMany
