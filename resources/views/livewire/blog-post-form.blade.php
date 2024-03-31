@@ -1,4 +1,4 @@
-<form wire:submit.prevent="save">
+<form wire:submit.prevent="save" method="POST">
     @csrf
     <div class="flex gap-5 px-5 py-3 mb-4 shadow-md bg-darker-gray shadow-action-color rounded-xl">
         <div class="relative overflow-hidden bg-gray-100 rounded-full w-14 h-14 dark:bg-gray-600">
@@ -9,7 +9,6 @@
             </svg>
         </div>
         <div>
-
             <textarea wire:model.blur="body" id="message" rows="3" cols="60"
                 class="block p-2.5 w-full resize-none text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-secondary-color dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-action-color dark:focus:border-blue-500"
                 placeholder="Write your thoughts here...">

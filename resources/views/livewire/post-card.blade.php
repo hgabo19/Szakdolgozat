@@ -9,12 +9,22 @@
         </div>
     </div>
     <div class="flex flex-col w-full">
-        <div class="flex items-center justify-start gap-5 align-middle">
-            @if (isset($post->user->name))
-                <p class="mb-1 text-xl text-white">{{ $post->user->name }}</p>
-                <p class="pt-1 text-sm text-gray-400">&commat;{{ $post->user->username }}</p>
+        <div class="flex items-center justify-start gap-3 align-middle">
+            @if (isset($this->creator->name))
+                <p class="mb-1 text-xl text-white">{{ $this->creator->name }}</p>
+                <p class="text-base text-gray-400 ">&commat;{{ $this->creator->username }}</p>
             @else
-                <p class="mb-1 text-xl text-white">&commat;{{ $post->user->username }}</p>
+                <p class="mb-1 text-xl text-white">&commat;{{ $this->creator->username }}</p>
+            @endif
+            @if ($this->creator->isFollower(Auth::user()))
+                <div class="flex items-center align-middle gap">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="green" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <p class="text-sm text-green-600">Following</p>
+                </div>
             @endif
         </div>
         <div>
@@ -27,7 +37,7 @@
                 {{ $post->body }}
             </p>
         </div>
-        <div class="mt-3 mb-5">
+        <div class="mt-3 mb-5 max-h-[29rem]">
             <img src="{{ asset('storage/' . $post->image_path) }}" alt="image"
                 class="mb-4 mr-10 rounded-lg max-h-40 lg:max-h-56 2xl:max-h-full">
         </div>
@@ -57,7 +67,10 @@
         </div>
         <div class="flex justify-between mt-5 mr-5">
             <livewire:like-button :key="$post->id" :$post />
-            <button
+            @if (Auth::user() != $this->creator)
+                <livewire:follow-button :key="$this->creator->id" :creator="$this->creator" />
+            @endif
+            <button x-data x-on:click="$dispatch('open-modal', { name : '{{ $post->id }}'})"
                 class="focus:outline-none text-white bg-action-color hover:bg-action-hover focus:ring-2 focus:ring-purple-300 font-medium rounded-lg px-12 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-action-hover dark:focus:ring-white">
                 <div class="flex items-center gap-2 align-middle">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"

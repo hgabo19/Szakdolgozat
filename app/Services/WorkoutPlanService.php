@@ -144,7 +144,7 @@ class WorkoutPlanService
                     }
                 }
             } catch (Exception $e) {
-                throw new Exception('Failed to save workout plan. Please try again!');
+                throw new Exception($e);
             }
         }, 5);
         return true;
