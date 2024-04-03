@@ -32,6 +32,7 @@ class PostList extends Component
                 $query->filterByUser($this->search);
             })
             ->latest()
+            ->take(15)
             ->get();
     }
 

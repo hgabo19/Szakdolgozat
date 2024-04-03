@@ -23,7 +23,7 @@ class BlogPostForm extends Component
             'body' => 'required|string|max:200|min:5',
             'image' => 'nullable|image|max:2048',
             'tagString' => 'nullable|string|max:120',
-            'tags.*' => 'string|max:20|min:3'
+            'tags.*' => 'string|max:20'
         ];
     }
 
@@ -50,6 +50,8 @@ class BlogPostForm extends Component
                 foreach ($this->tags as $tagIndex => $tag) {
                     $this->tags[$tagIndex] = preg_replace('/[^a-zA-Z#]+/', '', $tag);
                 }
+                $this->tags = array_filter($this->tags);
+                $this->tags = array_values($this->tags);
 
                 foreach ($this->tags as $tagIndex => $tag) {
                     if (strpos($tag, '#') !== 0) {
@@ -65,7 +67,7 @@ class BlogPostForm extends Component
                         $this->dispatch(
                             'alert',
                             type: 'error',
-                            title: "Tag $tagIndex has , please put a space or a comma (,) between them!",
+                            title: "Tag $tagIndex has more tags, please put a space or a comma (,) between them!",
                             position: 'center',
                             timer: 3000,
                         );

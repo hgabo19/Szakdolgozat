@@ -91,9 +91,6 @@
                     </div>
                 </button>
             </div>
-            <div>
-                <p class="text-white">@this->__id</p>
-            </div>
         </div>
     </div>
 </div>
