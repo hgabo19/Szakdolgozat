@@ -1,6 +1,6 @@
-<div class="pb-4 shadow-lg bg-darker-gray shadow-action-color rounded-xl">
+<div class="p-4 shadow-lg bg-darker-gray shadow-action-color rounded-xl">
     <div class="flex flex-col">
-        <h1 class="p-4 ml-4 text-lg font-bold text-white">Who you can follow</h1>
+        <h1 class="pb-4 text-lg font-bold text-center text-white">Who you can follow</h1>
         @for ($i = 0; $i < 3; $i++)
             <div class="flex justify-center gap-5 my-2">
                 <div class="relative w-12 h-12 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">

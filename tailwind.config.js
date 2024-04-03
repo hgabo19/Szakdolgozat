@@ -26,6 +26,14 @@ export default {
                 "dark-gray": "#333333",
             },
             keyframes: {
+                "fade-in": {
+                    "0%": {
+                        opacity: "0",
+                    },
+                    "100%": {
+                        opacity: 1,
+                    },
+                },
                 "fade-in-left": {
                     "0%": {
                         opacity: "0",
@@ -83,6 +91,7 @@ export default {
                 fade_in_up: "fade-in-up 1s ease-in-out",
                 fade_in_down: "fade-in-down 1s ease-in-out",
                 fade_in_down_small: "fade-in-down-small 1s ease-in-out",
+                fade_in: "fade-in 1s ease-in-out",
             },
         },
     },

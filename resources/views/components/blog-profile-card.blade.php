@@ -26,11 +26,11 @@
     </div>
     <div class="flex justify-center">
         <div class="pr-6 border-r-2 border-gray-400">
-            <p class="text-2xl font-extrabold text-center text-white">5123</p>
+            <p class="text-2xl font-extrabold text-center text-white">{{ Auth::user()->followers()->count() }}</p>
             <p class="text-base text-gray-400">Followers</p>
         </div>
         <div class="pl-6">
-            <p class="text-2xl font-extrabold text-center text-white">6523</p>
+            <p class="text-2xl font-extrabold text-center text-white">{{ Auth::user()->following()->count() }}</p>
             <p class="text-base text-gray-400">Following</p>
         </div>
     </div>

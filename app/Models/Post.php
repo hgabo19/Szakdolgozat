@@ -38,4 +38,19 @@ class Post extends Model
     {
         return $this->belongsToMany(User::class, 'likes');
     }
+
+    public function scopeFilterByCategory($query, $category)
+    {
+        $query->whereHas('categories', function ($query) use ($category) {
+            $query->where('category_id', $category);
+        });
+    }
+
+    public function scopeFilterByUser($query, $search)
+    {
+        $query->whereHas('user', function ($query) use ($search) {
+            $query->where('name', 'like', '%' . $search . '%')
+                ->orWhere('username', 'like', '%' . $search . '%');
+        });
+    }
 }

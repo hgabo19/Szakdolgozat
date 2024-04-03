@@ -14,7 +14,7 @@
                     <p class="animate-[fade-in-up_1.5s_ease-in-out] lg:text-3xl">Transform Your Lifestyle.</p>
                     <p class="lg:text-3xl animate-[fade-in-up_2s_ease-in-out]">Embrace the Journey.</p>
                 </div>
-                <a href="#"
+                <a href="{{ route('workout-plans.index') }}"
                     class="inline-flex items-center animate-[fade-in-up_2.5s_ease-in-out] justify-center px-5 py-3 text-lg font-medium text-center text-white rounded-lg bg-action-color hover:bg-action-hover focus:ring-2 focus:ring-blue-300 dark:focus:ring-white">
                     Get started today
                     <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"

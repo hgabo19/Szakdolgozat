@@ -1,12 +1,14 @@
 <form wire:submit.prevent="save" method="POST">
     @csrf
     <div class="flex gap-5 px-5 py-3 mb-4 shadow-md bg-darker-gray shadow-action-color rounded-xl">
-        <div class="relative overflow-hidden bg-gray-100 rounded-full w-14 h-14 dark:bg-gray-600">
-            <svg class="absolute w-16 h-16 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd">
-                </path>
-            </svg>
+        <div>
+            <div class="relative overflow-hidden bg-gray-100 rounded-full w-14 h-14 dark:bg-gray-600">
+                <svg class="absolute w-16 h-16 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd">
+                    </path>
+                </svg>
+            </div>
         </div>
         <div>
             <textarea wire:model.blur="body" id="message" rows="3" cols="60"
@@ -57,10 +59,12 @@
                     <img class="mt-2 rounded h-14" src="{{ $image->temporaryUrl() }}" alt="post-img">
                 @endif
             </div>
-            <button type="submit"
-                class="text-white bg-action-color hover:bg-action-hover focus:outline-none focus:ring-2 focus:ring-white font-extrabold rounded-full text-lg px-4 py-2.5 text-center dark:bg-action-color dark:hover:bg-action-hover dark:focus:ring-white">
-                Add post
-            </button>
+            <div>
+                <button type="submit"
+                    class="text-white bg-action-color hover:bg-action-hover focus:outline-none focus:ring-2 focus:ring-white font-extrabold rounded-full text-sm 2xl:text-lg px-4 py-2.5 text-center dark:bg-action-color dark:hover:bg-action-hover dark:focus:ring-white">
+                    Post
+                </button>
+            </div>
         </div>
     </div>
 </form>

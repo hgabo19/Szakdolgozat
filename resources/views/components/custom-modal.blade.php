@@ -7,7 +7,8 @@
     <div x-on:click="show = false" class="fixed inset-0 backdrop-blur-sm"></div>
 
     {{-- Body --}}
-    <div class="fixed inset-0 mx-auto overflow-y-auto shadow-xl bg-gray-950 rounded-xl my-9 max-w-fit max-h-fit">
+    <div
+        class="fixed inset-0 max-h-screen mx-auto overflow-y-auto shadow-xl md:mt-6 md:max-h-fit bg-gray-950 rounded-xl max-w-fit">
         <div>
             {{ $body }}
         </div>
