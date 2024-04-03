@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Charts\WeeklyCaloriesChart;
 use App\Charts\WeeklyNutritionChart;
-use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class HealthController extends Controller
 {
@@ -16,15 +17,5 @@ class HealthController extends Controller
             'startOfWeek' => now()->startOfWeek(),
             'endOfWeek' => now()->endOfWeek(),
         ]);
-    }
-
-    public function calories()
-    {
-        return view('health.calories');
-    }
-
-    public function challenges()
-    {
-        return view('health.challenges');
     }
 }

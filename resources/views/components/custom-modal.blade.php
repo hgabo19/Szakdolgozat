@@ -8,7 +8,7 @@
 
     {{-- Body --}}
     <div
-        class="fixed inset-0 max-h-screen mx-auto overflow-y-auto shadow-xl md:mt-6 md:max-h-fit bg-gray-950 rounded-xl max-w-fit">
+        class="fixed inset-0 w-full max-h-screen mx-auto overflow-y-auto shadow-xl md:mt-6 md:max-h-fit bg-darker-gray md:rounded-3xl md:max-w-fit">
         <div>
             {{ $body }}
         </div>

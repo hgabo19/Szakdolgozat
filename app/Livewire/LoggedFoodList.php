@@ -61,14 +61,16 @@ class LoggedFoodList extends Component
     public function calculateCaloriePercentage(User $user)
     {
         $calorieGoal = $user->calorie_goal;
-        $currentCalories = $this->loggedMealsToday->sum('calories');
-        $tempPercent = round(($currentCalories / $calorieGoal) * 100);
-        if ($tempPercent > 100) {
-            $percentage = 100;
-        } else {
-            $percentage = $tempPercent;
+        if ($calorieGoal) {
+            $currentCalories = $this->loggedMealsToday->sum('calories');
+            $tempPercent = round(($currentCalories / $calorieGoal) * 100);
+            if ($tempPercent > 100) {
+                $percentage = 100;
+            } else {
+                $percentage = $tempPercent;
+            }
+            $this->dispatch('percent-calculated', caloriePercentage: $percentage);
         }
-        $this->dispatch('percent-calculated', caloriePercentage: $percentage);
     }
 
     public function deleteLoggedMeal($pivotMealId = null)

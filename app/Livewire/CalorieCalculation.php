@@ -32,37 +32,36 @@ class CalorieCalculation extends Component
     public function saveCalories(HealthService $healthService)
     {
         $this->validate();
-        
+
         $ageParsed = (int)$this->age;
         $weightParsed = (int)$this->weight;
         $heightParsed = (int)$this->height;
 
-        if(Auth::check()){
+        if (Auth::check()) {
             $calories = $healthService->calculateCalories($this->gender, $ageParsed, $weightParsed, $heightParsed, $this->activity_level, $this->weight_goal);
-            try{
+            try {
                 $user = User::findOrFail(Auth::id());
                 $user->gender = $this->gender;
                 $user->age = $ageParsed;
-                if($user->starting_weight === null) {
+                if ($user->starting_weight === null) {
                     $user->starting_weight = $weightParsed;
                 }
                 $user->weight = $weightParsed;
                 $user->height = $heightParsed;
                 $user->activity_level = $this->activity_level;
                 $user->weight_goal = $this->weight_goal;
+                $user->current_weight = $this->weight_goal;
                 $user->calorie_goal = $calories;
-                
+
                 $user->save();
 
                 $this->reset('gender', 'age', 'weight', 'height', 'activity_level', 'weight_goal');
-                $this->dispatch('close-modal');
-                
+                return redirect()->route('health.index');
             } catch (Exception $e) {
                 return response()->json(['error' => 'User not found'], 404);
             }
-        }
-        else {
-            return redirect()->route('dashboard');
+        } else {
+            return redirect()->route('login');
         }
     }
 

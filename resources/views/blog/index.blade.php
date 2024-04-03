@@ -5,7 +5,7 @@
                 {{-- left part --}}
                 <div class="flex flex-col gap-8 mb-8 basis-1/5 animate-[fade-in_1.5s_ease-in-out]">
                     <x-blog-profile-card />
-                    <x-blog-to-follow-card />
+                    @livewire('blog-follow-suggestion')
                 </div>
 
                 {{-- center part --}}

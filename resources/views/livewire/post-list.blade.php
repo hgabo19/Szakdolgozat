@@ -24,7 +24,7 @@
                 </div>
                 <input type="text" wire:model.live.debounce.500ms ="search" id="simple-search" autocomplete="off"
                     class="block w-full p-3 text-base text-gray-900 border-2 rounded-xl border-action-color bg-action-color focus:ring-blue-500 focus:border-blue-500 ps-10 dark:bg-dark-charcoal dark:border-action-color dark:placeholder-gray-300 dark:text-white dark:focus:ring-indigo-600 dark:focus:border-indigo-500"
-                    placeholder="Search users..." required>
+                    placeholder="Search for users..." required>
             </div>
             @include('components.loading-indicator')
         </div>

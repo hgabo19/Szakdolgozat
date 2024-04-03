@@ -4,11 +4,13 @@ namespace App\Livewire;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\Features\SupportAttributes\AttributeCollection;
 
 class FollowButton extends Component
 {
 
-    public $creator;
+    public $user;
+    public $suggestionFollow = false;
 
     public function render()
     {
@@ -18,8 +20,8 @@ class FollowButton extends Component
     public function toggleFollow()
     {
         if (Auth::user()) {
-            if (!$this->creator->isFollower(Auth::user())) {
-                $this->creator->followers()->attach(Auth::user()->id);
+            if (!$this->user->isFollower(Auth::user())) {
+                $this->user->followers()->attach(Auth::user()->id);
                 $this->dispatch('user-follow-toggled');
                 $this->dispatch(
                     'toast',
@@ -34,7 +36,7 @@ class FollowButton extends Component
                 return;
             }
 
-            $this->creator->followers()->detach(Auth::user()->id);
+            $this->user->followers()->detach(Auth::user()->id);
             $this->dispatch('user-follow-toggled');
             $this->dispatch(
                 'toast',

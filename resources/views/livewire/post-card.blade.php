@@ -77,7 +77,7 @@
             <div class="flex justify-between gap-4 mt-5 mr-5">
                 <livewire:like-button :$post />
                 @if (Auth::user() != $this->creator)
-                    <livewire:follow-button :creator="$this->creator" />
+                    <livewire:follow-button :user="$this->creator" />
                 @endif
                 <button x-data x-on:click="$dispatch('open-modal', { name : '{{ $post->id }}'})"
                     class="focus:outline-none text-white bg-action-color hover:bg-action-hover focus:ring-2 focus:ring-purple-300 font-medium rounded-lg px-12 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-action-hover dark:focus:ring-white">

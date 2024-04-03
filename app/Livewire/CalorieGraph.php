@@ -25,16 +25,20 @@ class CalorieGraph extends Component
             ->with('users')
             ->wherePivot('consumed_at', '>=', $today)
             ->get();
-        $this->loggedSum = $loggedMeals->sum('calories');
-        $this->calorieGoal = $user->calorie_goal;
-        $tempPercent = round(($this->loggedSum / $this->calorieGoal) * 100);
-        if ($tempPercent > 100) {
-            $this->percent = 100;
-        } else {
-            $this->percent = $tempPercent;
-        }
+        if ($loggedMeals) {
+            $this->loggedSum = $loggedMeals->sum('calories');
+            $this->calorieGoal = $user->calorie_goal;
+            if ($this->calorieGoal) {
+                $tempPercent = round(($this->loggedSum / $this->calorieGoal) * 100);
+                if ($tempPercent > 100) {
+                    $this->percent = 100;
+                } else {
+                    $this->percent = $tempPercent;
+                }
 
-        $this->setTotalValues($loggedMeals);
+                $this->setTotalValues($loggedMeals);
+            }
+        }
     }
 
     #[On('percent-calculated')]
