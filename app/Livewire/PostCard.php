@@ -26,16 +26,14 @@ class PostCard extends Component
     #[On('post-like-toggled')]
     public function refreshLikes()
     {
-        $this->post = Post::withCount(['likes', 'comments'])
-            ->with('categories')
+        $this->post = Post::with('categories')
             ->find($this->post->id);
     }
 
     #[On('user-follow-toggled')]
     public function refreshPost()
     {
-        $this->post = Post::withCount(['likes', 'comments'])
-            ->with('categories')
+        $this->post = Post::with('categories')
             ->find($this->post->id);
     }
 }

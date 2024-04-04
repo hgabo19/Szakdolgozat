@@ -67,7 +67,7 @@
                 <x-side-nav-link href="{{ route('health.index') }}" :active="request()->routeIs('health.index')">
                     Health
                 </x-side-nav-link>
-                <x-side-nav-link href="{{ route('blog.index') }}" :active="request()->routeIs('blog.index')">
+                <x-side-nav-link href="{{ route('blog.index') }}" :active="request()->routeIs('blog.*')">
                     Blog
                 </x-side-nav-link>
             </nav>

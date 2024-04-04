@@ -3,14 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    /**
+     * Display the user's profile page.
+     */
+    public function show(User $user)
+    {
+        $userProfile = User::findOrFail($user->id);
+        return view('profile.show', compact('user'));
+    }
+
     /**
      * Display the user's profile form.
      */
@@ -26,13 +37,22 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        $validated = $request->validated();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+        if ($request->hasFile('avatar')) {
+            $avatarPath = request()->file('avatar')->store('images/profile', 'public');
+
+            $validated['avatar'] = $avatarPath;
+            if ($user->avatar) {
+                Storage::disk('public')->delete('$user->avatar');
+            }
         }
 
-        $request->user()->save();
+        $user->fill($validated)->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

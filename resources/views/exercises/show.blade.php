@@ -9,7 +9,7 @@
                         @include('components.back-arrow')
                     </a>
                 @else
-                    <a href="{{ route('exercises.admin-list') }}" class="align-middle">
+                    <a href="{{ route('exercises.index') }}" class="align-middle">
                         @include('components.back-arrow')
                     </a>
                 @endcan
