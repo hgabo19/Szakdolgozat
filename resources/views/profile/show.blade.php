@@ -72,8 +72,10 @@
                                 <div
                                     class="w-full h-full transition duration-300 ease-in-out bg-dark-charcoal hover:opacity-50">
                                     <p class="pt-8 text-3xl font-extrabold text-center text-gray-300">Thread</p>
-                                    <div class="w-4/5 mx-auto mt-5">
-                                        <p class="text-lg font-bold text-white line-clamp-2">{{ $post->body }}</p>
+                                    <div class="w-4/5 mx-auto mt-8">
+                                        <p
+                                            class="text-lg font-bold leading-loose tracking-wide text-white line-clamp-2">
+                                            {{ $post->body }}</p>
                                     </div>
                                 </div>
                             @endif

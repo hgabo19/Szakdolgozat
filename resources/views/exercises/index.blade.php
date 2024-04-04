@@ -1,7 +1,7 @@
 <x-app-layout>
     <div
-        class="w-4/5 p-10 mx-auto mb-10 transition duration-300 ease-in-out shadow-lg rounded-3xl bg-dark-charcoal hover:shadow-xl hover:shadow-sky-500 shadow-sky-600">
-        <div class="w-full p-4 mt-8">
+        class="w-4/5 p-5 mx-auto my-10 transition duration-300 ease-in-out shadow-lg rounded-3xl bg-dark-charcoal hover:shadow-xl hover:shadow-sky-500 shadow-sky-600">
+        <div class="w-full p-4">
             <h1 class="my-10 text-5xl font-bold text-center text-white mt">All Exercises</h1>
 
             @foreach ($exercises->groupBy('muscle_group') as $muscleGroup => $groupedExercises)

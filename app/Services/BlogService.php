@@ -40,6 +40,39 @@ class BlogService
         return true;
     }
 
+    public function updateBlogPost($validated, $tags, $post)
+    {
+        DB::transaction(function () use ($validated, $tags, $post) {
+            try {
+                $post = Post::find($post->id);
+
+                if ($validated['image'] != null) {
+                    try {
+                        $filePath = $validated['image']->store('images/posts', 'public');
+                        Storage::delete($post->image_path);
+                        $post->image_path = $filePath;
+                    } catch (Exception $e) {
+                        throw new Exception($e);
+                    }
+                }
+                $post->body = $validated['body'];
+                $post->updated_at = now()->timezone('Europe/Budapest');
+                $post->save();
+
+                if (count($tags) > 0) {
+                    $post->categories()->detach();
+                    foreach ($tags as $tagName) {
+                        $tag = Category::firstOrCreate(['name' => $tagName]);
+                        $post->categories()->attach($tag->id);
+                    }
+                }
+            } catch (Exception $e) {
+                throw new Exception($e . 'Failed to create!');
+            }
+        });
+        return true;
+    }
+
     public function normalizeString($tagStr)
     {
         $tagStr = trim($tagStr);
@@ -50,5 +83,16 @@ class BlogService
         // [\s.]: This is a character class [...] that matches any whitespace character \s or a literal dot .
         $tagStr = preg_replace('/[\s.]+/', ',', $tagStr);
         return $tagStr;
+    }
+
+    public function hasChanged($validated, $post, $tagString)
+    {
+        if (
+            $validated['body'] != $post->body ||
+            $validated['tagString'] != $tagString ||
+            $validated['image'] instanceof TemporaryUploadedFile
+        )
+            return true;
+        else return false;
     }
 }

@@ -16,6 +16,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="{{ asset('vendor/bladewind/js/helpers.js') }}"></script>
+    @livewireStyles
 </head>
 
 <body class="font-sans antialiased">
@@ -112,7 +113,7 @@
                                     </x-slot>
 
                                     <x-slot name="content">
-                                        <x-dropdown-link :href="route('profile.edit')">
+                                        <x-dropdown-link :href="route('profile.show', Auth::user())">
                                             {{ __('Profile') }}
                                         </x-dropdown-link>
 
@@ -140,6 +141,7 @@
             </section>
         </main>
     </div>
+    @livewireScripts
 </body>
 
 </html>

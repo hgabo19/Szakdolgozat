@@ -10,7 +10,7 @@
 
             <div
                 class="p-4 transition duration-300 ease-in-out bg-white shadow sm:p-8 dark:bg-dark-charcoal sm:rounded-lg hover:shadow-lg hover:shadow-sky-400 shadow-sky-600">
-                <div class="max-w-xl">
+                <div class="max-w-full">
                     @include('profile.partials.update-password-form')
                 </div>
             </div>

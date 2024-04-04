@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
 
     // Blog page
     Route::get('/blog/{post}', [BlogController::class, 'show'])->name('blog.show');
+    Route::get('/blog/{post}', [BlogController::class, 'destroy'])->name('blog.destroy')->can('delete', 'post');
     Route::resource('blog', BlogController::class);
 });
 

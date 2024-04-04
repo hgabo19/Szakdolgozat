@@ -48,7 +48,7 @@ class ExerciseService
                 $exercise->name = $validated['name'];
                 $exercise->description = $validated['description'];
                 $exercise->muscle_group = $validated['muscle_group'];
-                $exercise->created_at = now()->timezone('Europe/Budapest');
+                $exercise->updated_at = now()->timezone('Europe/Budapest');
                 $exercise->save();
             } catch (Exception $e) {
                 throw new Exception($e);

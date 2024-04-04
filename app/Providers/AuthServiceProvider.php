@@ -4,7 +4,11 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 
+use App\Models\Exercise;
+use App\Models\Post;
 use App\Models\WorkoutPlan;
+use App\Policies\ExercisePolicy;
+use App\Policies\PostPolicy;
 use App\Policies\WorkoutPlanPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -16,7 +20,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        WorkoutPlan::class => WorkoutPlanPolicy::class,
+        //  
     ];
 
     /**

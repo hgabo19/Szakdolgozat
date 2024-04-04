@@ -83,8 +83,8 @@
                     </p>
                 </div>
             </div>
-            {{-- modal --}}
-            <x-custom-modal name="{{ $post->id }}">
+            {{-- comment modal --}}
+            <x-custom-modal name="comment-{{ $post->id }}">
                 <x-slot:body>
                     <livewire:comment-section :$post />
                 </x-slot:body>
@@ -94,7 +94,7 @@
                 @if (Auth::user()->id != $this->creator->id)
                     <livewire:follow-button :user="$this->creator" />
                 @endif
-                <button x-data x-on:click="$dispatch('open-modal', { name : '{{ $post->id }}'})"
+                <button x-data x-on:click="$dispatch('open-modal', { name : 'comment-{{ $post->id }}'})"
                     class="focus:outline-none text-white bg-action-color hover:bg-action-hover focus:ring-2 focus:ring-purple-300 font-medium rounded-lg px-12 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-action-hover dark:focus:ring-white">
                     <div class="flex items-center gap-2 align-middle">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
@@ -106,6 +106,24 @@
                     </div>
                 </button>
             </div>
+            @can('edit', $post)
+                {{-- modal --}}
+                <x-custom-modal name="edit-{{ $post->id }}">
+                    <x-slot:body>
+                        <livewire:blog-post-edit-form :$post />
+                    </x-slot:body>
+                </x-custom-modal>
+                <div class="absolute flex top-5 right-28">
+                    <button x-data x-on:click="$dispatch('open-modal', { name : 'edit-{{ $post->id }}'})"
+                        class="px-4 py-2 text-base font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 me-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
+                    <form action='{{ route('blog.destroy', $post->id) }}' method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button
+                            class="px-3 py-2 text-base font-medium text-white bg-red-700 rounded-lg focus:outline-none hover:bg-red-800 focus:ring-4 focus:ring-red-300 me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
+                    </form>
+                </div>
+            @endcan
         </div>
     </div>
 </div>
