@@ -28,7 +28,7 @@
                 <div>
                     <x-input-label for="bio" :value="__('Bio')" />
                     <x-text-input id="bio" name="bio" type="text" class="block w-full mt-1"
-                        :value="old('bio', $user->bio)" required autofocus autocomplete="bio" />
+                        :value="old('bio', $user->bio)" autofocus autocomplete="bio" />
                     <x-input-error class="mt-2" :messages="$errors->get('bio')" />
                 </div>
                 <div>

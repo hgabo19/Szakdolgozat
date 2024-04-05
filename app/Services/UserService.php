@@ -11,23 +11,20 @@ class UserService
     public function deleteUser($user)
     {
         DB::transaction(function () use ($user) {
-            try {
-                foreach ($user->posts() as $post) {
-                    if ($post->categories()) {
-                        $post->categories()->detach();
-                    }
-                    if ($post->image_path) {
-                        Storage::delete($post->image_path);
-                    }
-                    $post->delete();
+            foreach ($user->posts as $post) {
+                if ($post->categories) {
+                    $post->categories()->detach();
                 }
-                if ($user->avatar) {
-                    Storage::delete($user->avatar);
+                if ($post->image_path) {
+                    Storage::delete($post->image_path);
                 }
-                $user->delete();
-            } catch (Exception $e) {
-                throw new Exception($e);
+
+                $post->delete();
             }
+            if ($user->avatar) {
+                Storage::delete($user->avatar);
+            }
+            $user->delete();
         }, 5);
         return true;
     }
