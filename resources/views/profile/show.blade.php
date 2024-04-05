@@ -26,14 +26,33 @@
                         <p class="font-extrabold text-center">{{ $user->posts->count() }}</p>
                         <p class="text-xl text-gray-500">posts</p>
                     </div>
-                    <div class="text-5xl text-white animate-[fade-in-down-small_1.5s_ease-in-out]">
-                        <p class="font-extrabold text-center">{{ $user->followers->count() }}</p>
-                        <p class="text-xl text-gray-500">followers</p>
-                    </div>
-                    <div class="text-5xl text-white animate-[fade-in-down-small_2s_ease-in-out]">
-                        <p class="font-extrabold text-center">{{ $user->following->count() }}</p>
-                        <p class="text-xl text-gray-500">following</p>
-                    </div>
+                    @if (Auth::user()->id == $user->id)
+                        <div class="text-5xl text-white animate-[fade-in-down-small_1.5s_ease-in-out]">
+                            <p class="font-extrabold text-center">{{ $user->followers->count() }}</p>
+                            <a href="{{ route('profile.followers') }}">
+                                <p
+                                    class="text-xl text-gray-500 transition duration-300 ease-in-out hover:text-gray-200">
+                                    followers</p>
+                            </a>
+                        </div>
+                        <div class="text-5xl text-white animate-[fade-in-down-small_2s_ease-in-out]">
+                            <p class="font-extrabold text-center">{{ $user->following->count() }}</p>
+                            <a href="{{ route('profile.followers') }}">
+                                <p
+                                    class="text-xl text-gray-500 transition duration-300 ease-in-out hover:text-gray-200">
+                                    following</p>
+                            </a>
+                        </div>
+                    @else
+                        <div class="text-5xl text-white animate-[fade-in-down-small_1.5s_ease-in-out]">
+                            <p class="font-extrabold text-center">{{ $user->followers->count() }}</p>
+                            <p class="text-xl text-gray-500">followers</p>
+                        </div>
+                        <div class="text-5xl text-white animate-[fade-in-down-small_2s_ease-in-out]">
+                            <p class="font-extrabold text-center">{{ $user->following->count() }}</p>
+                            <p class="text-xl text-gray-500">following</p>
+                        </div>
+                    @endif
                 </div>
                 <div
                     class="absolute top-0 p-3 mt-5 transition duration-300 ease-in-out rounded-full right-5 bg-action-hover hover:bg-action-color">

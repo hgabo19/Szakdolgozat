@@ -18,8 +18,17 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
-        $userProfile = User::findOrFail($user->id);
+        $user = User::findOrFail($user->id);
         return view('profile.show', compact('user'));
+    }
+
+    public function followerList()
+    {
+        if (Auth::user()) {
+            return view('profile.followers');
+        } else {
+            return redirect()->route('login');
+        }
     }
 
     /**

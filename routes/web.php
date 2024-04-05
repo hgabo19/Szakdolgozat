@@ -19,6 +19,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile/followers', [ProfileController::class, 'followerList'])->name('profile.followers');
     Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile.show');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -49,7 +50,6 @@ Route::middleware('auth')->group(function () {
 
     // Blog page
     Route::get('/blog/{post}', [BlogController::class, 'show'])->name('blog.show');
-    Route::get('/blog/{post}', [BlogController::class, 'destroy'])->name('blog.destroy')->can('delete', 'post');
     Route::resource('blog', BlogController::class);
 });
 

@@ -3,7 +3,8 @@
     <div class="flex flex-col gap-5 px-4 my-5">
         @foreach ($this->categories as $category)
             <div wire:key='category-{{ $category->id }}'>
-                <a wire:navigate href="{{ route('blog.index', ['category' => $category->id]) }}">
+                <a wire:navigate href="{{ route('blog.index', ['category' => $category->id]) }}"
+                    class="transition duration-300 ease-in-out hover:opacity-50">
                     <p class="text-lg font-bold text-white ">{{ $category->name }}</p>
                 </a>
                 <p class="px-2 text-base font-semibold text-gray-500">{{ $category->category_count }} posts</p>

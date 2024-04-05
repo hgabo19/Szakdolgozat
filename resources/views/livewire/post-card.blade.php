@@ -61,7 +61,10 @@
                 <div class="flex gap-3 mb-5">
                     @foreach ($post->categories as $category)
                         <div wire:key='categ-{{ $category->id }}'>
-                            <p class="text-lg font-bold text-gray-300">{{ $category->name }}</p>
+                            <a wire:navigate href="{{ route('blog.index', ['category' => $category->id]) }}"
+                                class="transition duration-300 ease-in-out hover:opacity-50">
+                                <p class="text-lg font-bold text-gray-300">{{ $category->name }}</p>
+                            </a>
                         </div>
                     @endforeach
                 </div>
@@ -107,21 +110,36 @@
                 </button>
             </div>
             @can('edit', $post)
-                {{-- modal --}}
+                {{-- edit modal --}}
                 <x-custom-modal name="edit-{{ $post->id }}">
                     <x-slot:body>
                         <livewire:blog-post-edit-form :$post />
                     </x-slot:body>
                 </x-custom-modal>
-                <div class="absolute flex top-5 right-28">
-                    <button x-data x-on:click="$dispatch('open-modal', { name : 'edit-{{ $post->id }}'})"
-                        class="px-4 py-2 text-base font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 me-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
-                    <form action='{{ route('blog.destroy', $post->id) }}' method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button
+                <div class="flex ">
+                    <div class="absolute top-4 right-28">
+                        <button x-data x-on:click="$dispatch('open-modal', { name : 'edit-{{ $post->id }}'})"
+                            class="px-4 py-2 text-base font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 me-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
+                        <button x-data x-on:click="$dispatch('open-modal', { name : 'delete-{{ $post->id }}'})"
                             class="px-3 py-2 text-base font-medium text-white bg-red-700 rounded-lg focus:outline-none hover:bg-red-800 focus:ring-4 focus:ring-red-300 me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
-                    </form>
+                    </div>
+
+                    {{-- delete modal --}}
+                    <x-custom-modal name="delete-{{ $post->id }}">
+                        <x-slot:body>
+                            <div class="p-10">
+                                <h1 class="py-5 text-2xl text-center text-white">Do you really want to delete your post?
+                                </h1>
+                                <form action='{{ route('blog.destroy', $post->id) }}' method="POST"
+                                    class="flex justify-center">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button
+                                        class="px-3 py-2 text-lg font-medium text-white bg-red-700 rounded-lg focus:outline-none hover:bg-red-800 focus:ring-4 focus:ring-red-300 me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
+                                </form>
+                            </div>
+                        </x-slot:body>
+                    </x-custom-modal>
                 </div>
             @endcan
         </div>

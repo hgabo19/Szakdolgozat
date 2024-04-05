@@ -14,9 +14,26 @@
                     <div class="animate-fade_in_down_small">
                         @livewire('blog-post-form')
                     </div>
-                    {{-- posts section --}}
-                    <div class="animate-[fade-in_1.5s_ease-in-out]">
-                        @livewire('post-list')
+                    <div x-data="{ activeTab: 'all' }" class="animate-[fade-in_1.5s_ease-in-out]">
+                        <ul class="flex justify-center mb-4">
+                            <li class="px-4 py-1 mr-4 text-xl font-medium text-white cursor-pointer"
+                                x-on:click="activeTab = 'all'"
+                                :class="{ 'border-b-2 border-action-hover': activeTab === 'all' }">
+                                All Posts
+                            </li>
+                            <li class="px-4 py-1 text-xl font-medium text-white cursor-pointer"
+                                x-on:click="activeTab = 'following'"
+                                :class="{ 'border-b-2 border-action-hover': activeTab === 'following' }">
+                                Following
+                            </li>
+                        </ul>
+                        {{-- posts section --}}
+                        <div x-show="activeTab === 'all'">
+                            @livewire('post-list')
+                        </div>
+                        <div x-show="activeTab === 'following'">
+                            @livewire('followed-post-list')
+                        </div>
                     </div>
                 </div>
                 {{-- right part --}}
