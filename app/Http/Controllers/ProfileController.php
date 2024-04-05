@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +32,12 @@ class ProfileController extends Controller
         }
     }
 
+    public function adminList()
+    {
+        $users = User::paginate(10);
+        return view('profile.admin-list', compact('users'));
+    }
+
     /**
      * Display the user's profile form.
      */
@@ -41,6 +48,16 @@ class ProfileController extends Controller
         ]);
     }
 
+    function adminDelete(User $user, UserService $userService)
+    {
+        $this->authorize('delete', User::class);
+        $userToDelete = User::findOrFail($user->id);
+        $isSuccessful = $userService->deleteUser($userToDelete);
+        if ($isSuccessful) {
+            session()->flash('success', '"' . $userToDelete->username . '" deleted successfully!');
+            return redirect()->route('profile.admin-list');
+        }
+    }
     /**
      * Update the user's profile information.
      */

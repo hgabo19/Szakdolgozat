@@ -31,15 +31,6 @@ class ExerciseController extends Controller
         return view('exercises.create');
     }
 
-    public function store(Request $request)
-    {
-
-        Exercise::create($request->all());
-
-        return redirect()->route('exercises.index')->with('success', 'Exercise created successfully.');
-    }
-
-
     public function edit(Exercise $exercise)
     {
         return view('exercises.edit', compact('exercise'));
@@ -55,7 +46,5 @@ class ExerciseController extends Controller
         $exerc->delete();
         session()->flash('success', '"' . $exerc->name . '" deleted successfully!');
         return redirect()->route('exercises.admin-list');
-
-        // return redirect()->route('exercises.admin-list')->with('success', 'Exercise deleted successfully.');
     }
 }

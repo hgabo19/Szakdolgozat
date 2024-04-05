@@ -43,34 +43,12 @@
             </div>
 
             <!-- Nav links -->
-            <nav class="flex flex-col items-center justify-center">
-                <x-side-nav-link class="mt-20" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                    Dashboard
-                </x-side-nav-link>
-                @if (Auth::user()->is_admin)
-                    <x-side-nav-link href="{{ route('workout-plans.admin-list') }}" :active="request()->routeIs('workout-plans.admin-list')">
-                        Workout plans
-                    </x-side-nav-link>
+            <nav class="flex flex-col items-center justify-center mt-5">
+                @if (!Auth::user()->is_admin)
+                    @include('layouts.navigation.user-navigation')
                 @else
-                    <x-side-nav-link href="{{ route('workout-plans.index') }}" :active="request()->routeIs('workout-plans.index')">
-                        Workout plans
-                    </x-side-nav-link>
+                    @include('layouts.navigation.admin-navigation')
                 @endif
-                @if (Auth::user()->is_admin)
-                    <x-side-nav-link href="{{ route('exercises.admin-list') }}" :active="request()->routeIs('exercises.admin-list')">
-                        Exercises
-                    </x-side-nav-link>
-                @else
-                    <x-side-nav-link href="{{ route('exercises.index') }}" :active="request()->routeIs('exercises.index')">
-                        Exercises
-                    </x-side-nav-link>
-                @endif
-                <x-side-nav-link href="{{ route('health.index') }}" :active="request()->routeIs('health.index')">
-                    Health
-                </x-side-nav-link>
-                <x-side-nav-link href="{{ route('blog.index') }}" :active="request()->routeIs('blog.*')">
-                    Blog
-                </x-side-nav-link>
             </nav>
         </aside>
 

@@ -23,6 +23,11 @@ class PostPolicy
 
     public function delete(User $user, Post $post)
     {
-        return $user->id == $post->user->id;
+        return ($user->id == $post->user->id) || $user->is_admin;
+    }
+
+    public function manage(User $user)
+    {
+        return $user->is_admin;
     }
 }
