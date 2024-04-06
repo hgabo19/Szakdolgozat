@@ -36,6 +36,9 @@
                                 Registered
                             </th>
                             <th class="w-16 px-4 text-center">
+                                Make admin
+                            </th>
+                            <th class="w-16 px-4 text-center">
                                 Delete
                             </th>
                             <th class="w-16 px-4 text-center">
@@ -79,7 +82,20 @@
                                 <td class="px-4 py-4 text-base text-center">
                                     <p>{{ $user->created_at }}</p>
                                 </td>
-
+                                <td class="px-4 py-4 text-center">
+                                    <form action="{{ route('profile.admin-grant', $user) }}" method="POST">
+                                        @csrf
+                                        @if ($user->is_admin)
+                                            <button type="submit">
+                                                @include('components.minus-button')
+                                            </button>
+                                        @else
+                                            <button type="submit">
+                                                @include('components.plus-button')
+                                            </button>
+                                        @endif
+                                    </form>
+                                </td>
                                 <td class="py-4 text-center">
                                     <form action='{{ route('profile.admin-delete', $user) }}' method="POST">
                                         @csrf

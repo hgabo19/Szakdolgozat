@@ -38,6 +38,22 @@ class ProfileController extends Controller
         return view('profile.admin-list', compact('users'));
     }
 
+    public function adminRoleToggle(User $user)
+    {
+        $this->authorize('manage', User::class);
+        $user = User::findOrFail($user->id);
+        if ($user == Auth::user()) {
+            return redirect()->route('profile.admin-list');
+        }
+        if ($user->is_admin && $user != Auth::user()) {
+            $user->is_admin = false;
+        } else {
+            $user->is_admin = true;
+        }
+        $user->save();
+        return redirect()->route('profile.admin-list')->with('success', "$user->name's role has changed!");
+    }
+
     /**
      * Display the user's profile form.
      */
@@ -54,8 +70,8 @@ class ProfileController extends Controller
         $userToDelete = User::findOrFail($user->id);
         $isSuccessful = $userService->deleteUser($userToDelete);
         if ($isSuccessful) {
-            session()->flash('success', '"' . $userToDelete->username . '" deleted successfully!');
-            return redirect()->route('profile.admin-list');
+            // session()->flash('success', '"' . $userToDelete->username . '" deleted successfully!');
+            return redirect()->route('profile.admin-list')->with('success', '"' . $userToDelete->username . '" deleted successfully!');
         }
     }
     /**

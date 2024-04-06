@@ -22,7 +22,8 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile/admin-list', [ProfileController::class, 'adminList'])->name('profile.admin-list')->can('manage', User::class);
-    Route::post('/profile/admin-list/{user}', [ProfileController::class, 'adminDelete'])->name('profile.admin-delete')->can('delete', User::class);
+    Route::post('/profile/admin-list/{user}/delete', [ProfileController::class, 'adminDelete'])->name('profile.admin-delete')->can('delete', User::class);
+    Route::post('/profile/admin-list/{user}/grant', [ProfileController::class, 'adminRoleToggle'])->name('profile.admin-grant')->can('manage', User::class);
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::get('/profile/followers', [ProfileController::class, 'followerList'])->name('profile.followers');
     Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile.show');
