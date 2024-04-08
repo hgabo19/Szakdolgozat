@@ -3,7 +3,7 @@
         class="p-10 mx-auto my-10 transition duration-300 ease-in-out shadow-lg rounded-xl bg-dark-charcoal w-fit lg:w-11/12 hover:shadow-xl hover:shadow-emerald-600 shadow-emerald-600">
         <div class="py-5">
             <h1 class="mb-5 text-5xl font-extrabold text-center text-white">Workout plans</h1>
-            <div class="grid gap-16 p-2 gap-y-20 lg:grid-cols-3">
+            <div class="gap-16 p-2 lg:grid gap-y-20 lg:grid-cols-3">
                 @foreach ($workoutPlans as $workoutPlan)
                     <a href="{{ route('workout-plans.show', $workoutPlan) }}">
                         <div

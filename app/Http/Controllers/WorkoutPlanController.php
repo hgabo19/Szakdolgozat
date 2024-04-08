@@ -19,7 +19,6 @@ class WorkoutPlanController extends Controller
         $quotes = require_once(resource_path('quotes.php'));
         $randomQuote = $quotes[array_rand($quotes)];
         $groupedExercises = $workoutPlanService->groupExercisesByMuscleGroup($workoutPlan);
-
         return view('workout-plans.show', compact('workoutPlan', 'randomQuote', 'groupedExercises'));
     }
 

@@ -12,29 +12,30 @@
     </div>
     @if ($this->user->calorie_goal)
         <div>
-            <h1 class="mx-3 text-2xl font-bold text-white">Calorie goal: {{ $this->user->calorie_goal }}</h1>
+            <h1 class="mx-3 my-3 text-xl font-bold text-center text-white lg:my-0 lg:text-2xl">Calorie goal:
+                {{ $this->user->calorie_goal }}</h1>
         </div>
 
-        <div class="grid grid-flow-row grid-cols-2 gap-6">
-            <p class="p-4 text-2xl font-bold text-white">Age: <span
-                    class="ml-5 text-xl font-bold text-gray-300">{{ $this->user->age }}</span></p>
-            <p class="p-4 text-2xl font-bold text-white">Gender: <span
-                    class="ml-5 text-xl font-bold text-gray-300">{{ $this->user->gender == 'male' ? 'Male' : 'Female' }}</span>
+        <div class="grid grid-flow-row grid-cols-2 gap-2 text-xl lg:text-2xl lg:gap-6">
+            <p class="p-4 font-bold text-white">Age: <span
+                    class="ml-5 text-base font-bold text-gray-300 lg:text-xl">{{ $this->user->age }}</span></p>
+            <p class="p-4 font-bold text-white">Gender: <span
+                    class="ml-5 text-base font-bold text-gray-300 lg:text-xl">{{ $this->user->gender == 'male' ? 'Male' : 'Female' }}</span>
             </p>
-            <p class="p-4 text-2xl font-bold text-white">Height: <span
-                    class="ml-5 text-xl font-bold text-gray-300">{{ $this->user->height }} cm</p>
-            <p class="p-4 text-2xl font-bold text-white">Weight goal: <span
-                    class="ml-5 text-xl font-bold text-gray-300">{{ $weight_goals[$this->user->weight_goal] }}</span>
+            <p class="p-4 font-bold text-white">Height: <span
+                    class="ml-5 text-base font-bold text-gray-300 lg:text-xl">{{ $this->user->height }} cm</p>
+            <p class="p-4 font-bold text-white">Weight goal: <span
+                    class="block text-base font-bold text-gray-300 lg:inline-block lg:ml-5 lg:text-xl">{{ $weight_goals[$this->user->weight_goal] }}</span>
             </p>
-            <p class="p-4 text-2xl font-bold text-white">
+            <p class="p-4 font-bold text-white">
                 Starting weight:
-                <span class="ml-5 text-xl font-bold text-gray-300">{{ $this->user->starting_weight }}
+                <span class="ml-5 text-base font-bold text-gray-300 lg:text-xl">{{ $this->user->starting_weight }}
                     kg
                 </span>
             </p>
-            <p class="p-4 text-2xl font-bold text-white">
+            <p class="p-4 font-bold text-white">
                 Current weight:
-                <span class="ml-5 text-xl font-bold text-gray-300">{{ $this->user->weight }}
+                <span class="ml-5 text-base font-bold text-gray-300 lg:text-xl">{{ $this->user->weight }}
                     kg
                 </span>
             </p>

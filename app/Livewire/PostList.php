@@ -4,13 +4,10 @@ namespace App\Livewire;
 
 use App\Models\Category;
 use App\Models\Post;
-use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
-
-use function Laravel\Prompts\search;
 
 class PostList extends Component
 {
@@ -23,8 +20,11 @@ class PostList extends Component
     #[Computed()]
     public function posts()
     {
+        $oneWeekAgo = Carbon::now()->subWeek();
+
         return Post::withCount(['likes', 'comments'])
             ->with('categories')
+            ->where('created_at', '>=', $oneWeekAgo)
             ->when($this->category, function ($query) {
                 $query->filterByCategory($this->category);
             })

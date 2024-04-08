@@ -1,6 +1,6 @@
 <div>
-    <div class="relative flex gap-5 px-5 py-3 bg-darker-gray rounded-xl">
-        <div class=" basis-1/7">
+    <div class="relative gap-5 px-5 py-3 lg:flex bg-darker-gray rounded-xl">
+        <div class="my-2 lg:basis-1/7 lg:my-0">
             @if (!$this->creator->avatar)
                 <div class="relative overflow-hidden bg-gray-100 rounded-full w-14 h-14 dark:bg-gray-600">
                     <svg class="absolute w-16 h-16 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20"
@@ -11,7 +11,7 @@
                     </svg>
                 </div>
             @else
-                <x-user-avatar :user="$this->creator" class="w-[4.5rem] h-[4rem]" />
+                <x-user-avatar :user="$this->creator" class="lg:w-20 w-14 h-14 lg:h-20" />
             @endif
         </div>
         <div class="flex flex-col w-full">
@@ -38,7 +38,7 @@
                 </p>
             </div>
             @if ($post->image_path)
-                <div class="w-11/12 py-4">
+                <div class="w-full py-4 lg:w-11/12">
                     <p class="text-base font-medium text-white">
                         {{ $post->body }}
                     </p>
@@ -63,7 +63,7 @@
                         <div wire:key='categ-{{ $category->id }}'>
                             <a wire:navigate href="{{ route('blog.index', ['category' => $category->id]) }}"
                                 class="transition duration-300 ease-in-out hover:opacity-50">
-                                <p class="text-lg font-bold text-gray-300">{{ $category->name }}</p>
+                                <p class="text-lg font-bold text-gray-400">{{ $category->name }}</p>
                             </a>
                         </div>
                     @endforeach
@@ -92,20 +92,20 @@
                     <livewire:comment-section :$post />
                 </x-slot:body>
             </x-custom-modal>
-            <div class="flex justify-between gap-4 mt-5 mr-5">
+            <div class="flex flex-col w-full gap-2 mt-5 lg:gap-4 lg:mr-5 lg:flex-row lg:justify-between">
                 <livewire:like-button :$post />
                 @if (Auth::user()->id != $this->creator->id)
                     <livewire:follow-button :user="$this->creator" />
                 @endif
                 <button x-data x-on:click="$dispatch('open-modal', { name : 'comment-{{ $post->id }}'})"
                     class="focus:outline-none text-white bg-action-color hover:bg-action-hover focus:ring-2 focus:ring-purple-300 font-medium rounded-lg px-12 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-action-hover dark:focus:ring-white">
-                    <div class="flex items-center gap-2 align-middle">
+                    <div class="flex items-center justify-center gap-2 align-middle">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="grey" class="w-7 h-7">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z" />
                         </svg>
-                        <p class="text-lg text-white">Comment</p>
+                        <p class="text-base text-white lg:text-lg">Comment</p>
                     </div>
                 </button>
             </div>
@@ -116,8 +116,8 @@
                         <livewire:blog-post-edit-form :$post />
                     </x-slot:body>
                 </x-custom-modal>
-                <div class="flex ">
-                    <div class="absolute top-4 right-28">
+                <div>
+                    <div class="my-3 lg:absolute lg:top-4 lg:right-28 lg:my-0">
                         <button x-data x-on:click="$dispatch('open-modal', { name : 'edit-{{ $post->id }}'})"
                             class="px-4 py-2 text-base font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 me-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
                         <button x-data x-on:click="$dispatch('open-modal', { name : 'delete-{{ $post->id }}'})"

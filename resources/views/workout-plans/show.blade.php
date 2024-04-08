@@ -1,9 +1,9 @@
 <x-app-layout>
     <div
-        class="p-10 mx-auto my-10 transition duration-300 ease-in-out shadow-lg rounded-xl bg-dark-charcoal w-fit lg:w-5/6 hover:shadow-xl hover:shadow-emerald-600 shadow-emerald-600">
+        class="w-full p-10 mx-auto my-10 transition duration-300 ease-in-out shadow-lg rounded-xl bg-dark-charcoal lg:w-5/6 hover:shadow-xl hover:shadow-emerald-600 shadow-emerald-600">
         <div class="flex items-center justify-between">
             <div
-                class="p-1 transition duration-300 ease-in-out rounded-full shadow-md cursor-pointer bg-action-color hover:bg-action-hover">
+                class="hidden p-1 transition duration-300 ease-in-out rounded-full shadow-md cursor-pointer md:block bg-action-color hover:bg-action-hover">
                 @can('manage', App\Models\WorkoutPlan::class)
                     <a href="{{ route('workout-plans.admin-list') }}" class="align-middle">
                         @include('components.back-arrow')
@@ -15,7 +15,8 @@
                 @endcan
             </div>
             <div>
-                <h1 class="text-3xl font-bold dark:text-white animate-fade_in_right">{{ $workoutPlan->title }}</h1>
+                <h1 class="text-3xl font-bold text-center dark:text-white animate-fade_in_right">
+                    {{ $workoutPlan->title }}</h1>
             </div>
             @can('saveToUser', App\Models\WorkoutPlan::class)
                 <div>
@@ -43,25 +44,26 @@
                     <p class="px-6 mt-10 mb-6 text-3xl font-bold text-white border-b-2 w-fit border-action-hover">
                         About
                     </p>
-                    <div class="flex gap-5">
+                    <div class="gap-5 lg:flex">
                         <img src="{{ asset('storage/' . $workoutPlan->image_path) }}" alt="{{ $workoutPlan->title }}"
-                            class="mb-4 mr-10 rounded-lg max-h-40 lg:max-h-56 2xl:max-h-72">
-                        <div class="flex flex-col w-full gap-10 h-fit">
+                            class="mb-4 mr-10 rounded-lg lg:min-h-[16rem] max-h-40 lg:max-h-56 2xl:max-h-72">
+                        <div class="flex flex-col w-full lg:gap-10 h-fit">
                             <div class="flex justify-between animate-fade_in_right">
                                 <p class="pt-2 text-2xl font-semibold text-white">Difficulty: <span
-                                        class="px-4 font-extrabold text-transparent capitalize animate-fade_in_left bg-clip-text bg-gradient-to-t to-emerald-500 from-sky-400">{{ $workoutPlan->difficulty ? $workoutPlan->difficulty : 'General' }}</span>
+                                        class="font-extrabold text-transparent capitalize lg:px-4 animate-fade_in_left bg-clip-text bg-gradient-to-t to-emerald-500 from-sky-400">{{ $workoutPlan->difficulty ? $workoutPlan->difficulty : 'General' }}</span>
                                 </p>
                                 <div class="flex mr-3">
                                     <span
                                         class="px-2 text-4xl font-extrabold text-transparent animate-fade_in_left bg-clip-text bg-gradient-to-r to-action-color from-sky-400">{{ $workoutPlan->duration }}</span>
-                                    <p class="pt-1 text-2xl font-bold text-white ">day
+                                    <p class="pt-1 text-xl font-bold text-white lg:text-2xl ">day
                                         workout routine</p>
                                 </div>
                             </div>
                             <div class="animate-fade_in_left">
                                 <figure class="max-w-screen-md mx-auto text-center">
                                     <blockquote>
-                                        <p class="text-2xl italic font-medium text-gray-900 dark:text-white">
+                                        <p
+                                            class="m-5 text-lg italic font-medium text-gray-900 lg:m-0 lg:text-2xl dark:text-white">
                                             {{ $randomQuote['quote'] }}</p>
                                     </blockquote>
                                     <figcaption
@@ -84,7 +86,8 @@
                     <p class="px-4 mt-10 mb-6 text-3xl font-bold text-white border-b-2 w-fit border-action-hover">
                         Description
                     </p>
-                    <p class="text-lg font-bold leading-loose text-white break-words indent-8 animate-fade_in_right">
+                    <p
+                        class="text-base font-bold leading-loose text-white break-words lg:text-lg indent-8 animate-fade_in_right">
                         {{ $workoutPlan->description }}
                     </p>
                 </div>
@@ -109,7 +112,7 @@
                             @foreach ($dayExercises as $muscleGroup => $exercises)
                                 <div class="my-10">
                                     <h3
-                                        class="text-xl text-center text-transparent bg-clip-text bg-gradient-to-t to-emerald-500 from-sky-400">
+                                        class="py-1 my-2 text-2xl text-center text-transparent bg-clip-text bg-gradient-to-t to-emerald-500 from-sky-400">
                                         Muscle group: <span
                                             class="font-extrabold capitalize">{{ $muscleGroup }}</span>
                                     </h3>
@@ -120,10 +123,13 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round"
                                                     d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
                                             </svg>
-                                            <p class="capitalize">{{ $exercise['name'] }}</p>
-                                            <p class="pl-6">{{ $exercise['sets'] }} sets</p>
-                                            <p class="px-3">x</p>
-                                            <p class="">{{ $exercise['reps'] }} reps</p>
+                                            <a href="{{ route('exercises.show', App\Models\Exercise::find($exercise['id'])) }}"
+                                                class="transition duration-300 ease-in-out border-b-4 border-transparent hover:border-emerald-500 ">
+                                                <p class="capitalize">{{ $exercise['name'] }}</p>
+                                            </a>
+                                            <p class="pl-6 text-gray-300">{{ $exercise['sets'] }} sets</p>
+                                            <p class="px-3 text-gray-300">x</p>
+                                            <p class="text-gray-300">{{ $exercise['reps'] }} reps</p>
                                         </div>
                                     @endforeach
                                 </div>

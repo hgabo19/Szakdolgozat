@@ -2,7 +2,7 @@
     <form class="flex items-center">
         @csrf
         <label for="simple-search" class="sr-only">Search</label>
-        <div class="relative w-1/3 ml-4">
+        <div class="relative w-full mx-4 lg:w-1/3">
             <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
                 <svg class="w-4 h-4 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 20 20">
@@ -16,27 +16,24 @@
         </div>
     </form>
 
-    <div class="relative m-4 overflow-x-auto sm:rounded-lg max-w-fit">
+    <div class="relative overflow-x-auto lg:m-4 sm:rounded-lg max-w-fit">
         <table class="w-full min-w-full text-sm text-left text-gray-500 shadow-md rtl:text-right dark:text-gray-400">
             <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-action-color dark:text-white">
                 <tr>
-                    <th scope="col" class="px-4 py-3">
+                    <th scope="col" class="px-2 py-3 lg:px-4">
                         Meal name
                     </th>
-                    <th scope="col" class="px-4 py-3">
+                    <th scope="col" class="px-2 py-3 lg:px-4">
                         Calories (kcal)
                     </th>
-                    <th scope="col" class="px-4 py-3">
+                    <th scope="col" class="px-2 py-3 lg:px-4">
                         Protein (g)
                     </th>
-                    <th scope="col" class="px-4 py-3">
+                    <th scope="col" class="px-2 py-3 lg:px-4">
                         Fat (g)
                     </th>
-                    <th scope="col" class="px-4 py-3">
-                        Carbonhydrates (g)
-                    </th>
-                    <th scope="col" class="px-4 py-3">
-                        Portion
+                    <th scope="col" class="px-2 py-3 lg:px-4">
+                        Carbs (g)
                     </th>
                     <th></th>
                 </tr>
@@ -46,31 +43,20 @@
                     <tr wire:key="{{ $food->id }}"
                         class="odd:bg-white odd:dark:bg-dark-charcoal even:bg-gray-50 even:dark:bg-secondary-color">
                         <td scope="row"
-                            class="px-4 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            <h1 class="text-lg">{{ $food->name }}</h1>
+                            class="px-4 py-4 font-medium text-gray-900 whitespace-pre-wrap dark:text-white">
+                            <h1 class="text-base lg:text-lg">{{ $food->name }}</h1>
                         </td>
-                        <td class="px-6 py-4 text-base text-center">
+                        <td class="px-6 py-4 text-sm text-center lg:text-base">
                             <h2>{{ $food->calories }}</h2>
                         </td>
-                        <td class="px-4 py-4 text-base text-center">
+                        <td class="px-4 py-4 text-sm text-center lg:text-base">
                             <h2>{{ $food->protein }}</h2>
                         </td>
-                        <td class="px-4 py-4 text-base text-center">
+                        <td class="px-4 py-4 text-sm text-center lg:text-base">
                             <h2>{{ $food->fats }}</h2>
                         </td>
-                        <td class="px-4 py-4 text-base text-center">
+                        <td class="px-4 py-4 text-sm text-center lg:text-base">
                             <h2>{{ $food->carbonhydrates }}</h2>
-                        </td>
-                        <td>
-                            <select wire:model='portionSizes.{{ $food->id }}'
-                                class="block py-2.5 w-full  text-base px-0 text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-white dark:border-action-color focus:outline-none focus:ring-0 focus:border-action-hover peer">
-                                <option class="text-center bg-secondary-color focus:bg-action-color" value="full">
-                                    Full
-                                </option>
-                                <option class="text-center bg-secondary-color" value="half">
-                                    Half
-                                </option>
-                            </select>
                         </td>
                         <td class="px-4 py-4">
                             <button wire:click="addFoodItem({{ $food->id }})" wire:loading.attr="disabled">
@@ -89,7 +75,7 @@
 
     <div>
         <button x-data x-on:click="$dispatch('close-modal')" wire:click="saveFoodToUser"
-            class="flex justify-center w-24 px-4 py-2 mx-auto mt-10 text-xl font-semibold text-gray-200 rounded bg-action-color hover:bg-action-hover hover:text-white">
+            class="flex justify-center w-24 px-4 py-2 mx-auto mt-10 mb-5 text-xl font-semibold text-gray-200 rounded lg:mb-2 bg-action-color hover:bg-action-hover hover:text-white">
             Done
         </button>
     </div>

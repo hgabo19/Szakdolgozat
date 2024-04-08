@@ -1,6 +1,6 @@
 <form enctype="multipart/form-data" wire:submit.prevent="save" method="POST">
     @csrf
-    <div class="flex gap-5 px-5 py-3 mb-4 shadow-md bg-darker-gray shadow-action-color rounded-xl">
+    <div class="gap-5 px-5 py-3 mb-4 shadow-md lg:flex bg-darker-gray shadow-action-color rounded-xl">
         <div>
             @if (!Auth::user()->avatar)
                 <div class="relative overflow-hidden bg-gray-100 rounded-full w-14 h-14 dark:bg-gray-600">
@@ -12,7 +12,7 @@
                     </svg>
                 </div>
             @else
-                <x-user-avatar :user="Auth::user()" class="w-[4.5rem] h-[4rem]" />
+                <x-user-avatar :user="Auth::user()" class="w-[4.1rem] h-[4.1rem]" />
             @endif
         </div>
         <div>

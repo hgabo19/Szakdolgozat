@@ -1,7 +1,7 @@
 <x-app-layout>
-    <div class="px-5 mx-auto rounded-xl w-fit lg:w-full ">
+    <div class="w-full px-5 mx-auto rounded-xl">
         <div>
-            <div class="flex w-full gap-5 mt-12">
+            <div class="w-full gap-5 mt-12 lg:flex">
                 {{-- left part --}}
                 <div class="flex flex-col gap-8 mb-8 basis-1/5 animate-[fade-in_1.5s_ease-in-out]">
                     <x-blog-profile-card />

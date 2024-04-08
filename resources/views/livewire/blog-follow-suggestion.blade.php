@@ -4,13 +4,15 @@
         @foreach ($this->suggestions as $user)
             <div wire:key='{{ $user->id }}' class="flex justify-center gap-5 my-2">
                 @if (!$user->avatar)
-                    <div class="relative w-12 h-12 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                        <svg class="absolute text-gray-400 w-14 h-14 -left-1" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                clip-rule="evenodd">
-                            </path>
-                        </svg>
+                    <div class="basis-1/12">
+                        <div class="relative w-12 h-12 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                            <svg class="absolute text-gray-400 w-14 h-14 -left-1" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                                    clip-rule="evenodd">
+                                </path>
+                            </svg>
+                        </div>
                     </div>
                 @else
                     <x-user-avatar :user="$user" class="w-14 h-14" />

@@ -47,6 +47,7 @@ class WorkoutPlanService
             }
 
             $groupedExercises[$day][$muscleGroup][] = [
+                'id' => $exercise->id,
                 'name' => $exercise->name,
                 'sets' => $exercise->pivot->sets,
                 'reps' => $exercise->pivot->reps,
