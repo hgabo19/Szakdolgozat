@@ -70,12 +70,14 @@
             <p class="text-xl font-bold text-white lg:text-2xl">{{ $user->name }}</p>
             <p class="ml-2 text-base font-bold text-gray-500 lg:text-xl">&commat;{{ $user->username }}</p>
         </div>
-        <p class="text-base text-right text-gray-400 lg:text-xl">Bio</p>
-        <div class="flex items-end justify-end">
-            <p class="w-2/6 mt-2 ml-2 text-sm lg:text-xl text-right text-white animate-[fade-in_2s_ease-in-out]">
-                {{ $user->bio }}
-            </p>
-        </div>
+        @if ($user->bio)
+            <p class="text-base text-right text-gray-400 lg:text-xl">Bio</p>
+            <div class="flex items-end justify-end">
+                <p class="w-2/6 mt-2 ml-2 text-sm lg:text-xl text-right text-white animate-[fade-in_2s_ease-in-out]">
+                    {{ $user->bio }}
+                </p>
+            </div>
+        @endif
         <hr class="h-1 border-0 rounded-lg bg-sky-400 my-11 dark:bg-sky-400">
         <h2 class="mt-4 mb-6 text-2xl font-bold text-center text-white lg:text-4xl">Posts</h2>
         @if (count($user->posts) > 0)
