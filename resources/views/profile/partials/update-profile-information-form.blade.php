@@ -61,7 +61,7 @@
                     <x-input-label for="dropzone-file" :value="__('Avatar')" class="mb-2" />
                     <input
                         class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-secondary-color dark:border-gray-600 dark:placeholder-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-base file:font-semibold file:bg-action-color file:text-white"
-                        name="avatar" id="asd" type="file">
+                        name="avatar" type="file">
                     <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
                 </div>
             </div>

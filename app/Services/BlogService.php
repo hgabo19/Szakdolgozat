@@ -46,10 +46,12 @@ class BlogService
             try {
                 $post = Post::find($post->id);
 
-                if ($validated['image'] != null) {
+                if ($validated['postImage'] != null) {
                     try {
-                        $filePath = $validated['image']->store('images/posts', 'public');
-                        Storage::delete($post->image_path);
+                        $filePath = $validated['postImage']->store('images/posts', 'public');
+                        if ($post->image_path) {
+                            Storage::delete($post->image_path);
+                        }
                         $post->image_path = $filePath;
                     } catch (Exception $e) {
                         throw new Exception($e);
@@ -90,7 +92,7 @@ class BlogService
         if (
             $validated['body'] != $post->body ||
             $validated['tagString'] != $tagString ||
-            $validated['image'] instanceof TemporaryUploadedFile
+            $validated['postImage'] instanceof TemporaryUploadedFile
         )
             return true;
         else return false;

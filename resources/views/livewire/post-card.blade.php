@@ -11,7 +11,7 @@
                     </svg>
                 </div>
             @else
-                <x-user-avatar :user="$this->creator" class="lg:w-20 w-14 h-14 lg:h-20" />
+                <x-user-avatar :user="$this->creator" class="lg:w-[4.5rem] w-14 h-14 lg:h-[4.3rem]" />
             @endif
         </div>
         <div class="flex flex-col w-full">
@@ -98,7 +98,8 @@
                     <livewire:follow-button :user="$this->creator" />
                 @endif
                 <button x-data x-on:click="$dispatch('open-modal', { name : 'comment-{{ $post->id }}'})"
-                    class="focus:outline-none text-white bg-action-color hover:bg-action-hover focus:ring-2 focus:ring-purple-300 font-medium rounded-lg px-12 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-action-hover dark:focus:ring-white">
+                    class="focus:outline-none text-white bg-action-color hover:bg-action-hover focus:ring-2 focus:ring-purple-300 font-medium rounded-lg px-12 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-violet-600
+transition duration 300 ease-in-out dark:focus:ring-white">
                     <div class="flex items-center justify-center gap-2 align-middle">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="grey" class="w-7 h-7">

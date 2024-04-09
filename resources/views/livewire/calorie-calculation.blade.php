@@ -1,5 +1,7 @@
 <div class="relative px-10 ">
-    <h1 class="flex justify-center p-1 mt-8 text-lg text-white md:text-4xl">Calculate your health data</h1>
+    <h1 class="flex justify-center p-1 mt-8 text-lg text-white md:text-4xl">
+        {{ Auth::user()->calorie_goal ? 'Update your health data' : 'Calculate your health data' }}
+    </h1>
     <div class="w-fit">
         <div
             class="absolute top-0 p-1 transition duration-300 ease-in-out rounded-full right-4 md:right-6 bg-action-color hover:bg-action-hover">

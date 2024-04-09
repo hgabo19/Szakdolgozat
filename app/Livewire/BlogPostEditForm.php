@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Post;
 use App\Services\BlogService;
+use Livewire\Attributes\Locked;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
 
@@ -11,10 +12,11 @@ class BlogPostEditForm extends Component
 {
     use WithFileUploads;
 
+    #[Locked]
     public $post;
 
     public $body;
-    public $image;
+    public $postImage;
     public $tagString;
     public $tags = [];
 
@@ -22,7 +24,6 @@ class BlogPostEditForm extends Component
     public function mount()
     {
         $this->body = $this->post->body;
-        // dd($this->post->categories);
         $this->tags = $this->post->categories;
         foreach ($this->tags as $tagIndex => $tag) {
             if ($tagIndex + 1 == count($this->tags)) {
@@ -37,7 +38,7 @@ class BlogPostEditForm extends Component
     {
         return [
             'body' => 'required|string|max:200|min:5',
-            'image' => 'nullable|image|max:2048',
+            'postImage' => 'nullable|image|max:2048',
             'tagString' => 'nullable|string|max:120',
         ];
     }
@@ -59,7 +60,6 @@ class BlogPostEditForm extends Component
     {
         $post = Post::find($this->post->id);
         $this->authorize('edit', $post);
-
         $validated = $this->validate();
         if ($validated['tagString'] != null) {
             $validTagString = $blogService->normalizeString($validated['tagString']);

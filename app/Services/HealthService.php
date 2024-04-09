@@ -11,9 +11,9 @@ class HealthService
     {
         // basal metabolic rate
         if ($gender === 'female') {
-            $bmr = 655.1 + (9.563 * $weight) + (1.850 * $height) - (4.676 * $age);
+            $bmr = 655 + (9.6 * $weight) + (1.9 * $height) - (4.7 * $age);
         } else if ($gender === 'male') {
-            $bmr = 66.47 + (13.75 * $weight) + (5.003 * $height) - (6.775 * $age);
+            $bmr = 66.46 + (13.8 * $weight) + (5.0 * $height) - (6.8 * $age);
         }
 
         $activity_values = [

@@ -30,7 +30,7 @@ class WeeklyNutritionChart
         }
 
         foreach ($weeklyStats as $stat) {
-            $dayOfWeek = $stat->day_of_week - 1;
+            $dayOfWeek = $stat->day_of_week - 2;
             $total_fats[$dayOfWeek] += round($stat->total_fats);
             $total_carbs[$dayOfWeek] += round($stat->total_carbonhydrates);
             $total_protein[$dayOfWeek] += round($stat->total_protein);

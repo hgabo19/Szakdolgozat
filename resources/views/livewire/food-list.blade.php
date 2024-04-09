@@ -43,22 +43,22 @@
                     <tr wire:key="{{ $food->id }}"
                         class="odd:bg-white odd:dark:bg-dark-charcoal even:bg-gray-50 even:dark:bg-secondary-color">
                         <td scope="row"
-                            class="px-4 py-4 font-medium text-gray-900 whitespace-pre-wrap dark:text-white">
+                            class="px-4 py-1 font-medium text-gray-900 whitespace-pre-wrap dark:text-white">
                             <h1 class="text-base lg:text-lg">{{ $food->name }}</h1>
                         </td>
-                        <td class="px-6 py-4 text-sm text-center lg:text-base">
+                        <td class="px-6 py-1 text-sm text-center lg:text-base">
                             <h2>{{ $food->calories }}</h2>
                         </td>
-                        <td class="px-4 py-4 text-sm text-center lg:text-base">
+                        <td class="px-4 py-1 text-sm text-center lg:text-base">
                             <h2>{{ $food->protein }}</h2>
                         </td>
-                        <td class="px-4 py-4 text-sm text-center lg:text-base">
+                        <td class="px-4 py-1 text-sm text-center lg:text-base">
                             <h2>{{ $food->fats }}</h2>
                         </td>
-                        <td class="px-4 py-4 text-sm text-center lg:text-base">
+                        <td class="px-4 py-1 text-sm text-center lg:text-base">
                             <h2>{{ $food->carbonhydrates }}</h2>
                         </td>
-                        <td class="px-4 py-4">
+                        <td class="px-4 py-1 lg:py-4">
                             <button wire:click="addFoodItem({{ $food->id }})" wire:loading.attr="disabled">
                                 @include('components.plus-button')
                             </button>

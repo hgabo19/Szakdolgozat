@@ -46,9 +46,14 @@ class FoodList extends Component
         }
     }
 
+    public function updatingSearch()
+    {
+        $this->gotoPage(1);
+    }
+
     public function render()
     {
-        $foods = Meal::search($this->search)->paginate(5);
+        $foods = Meal::search($this->search)->paginate(3);
         return view('livewire.food-list', [
             'foods' => $foods
         ]);

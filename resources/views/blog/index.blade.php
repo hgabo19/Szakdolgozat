@@ -38,7 +38,7 @@
                 </div>
                 {{-- right part --}}
                 <div
-                    class="p-4 rounded-lg shadow-md h-fit basis-1/5 bg-darker-gray animate-[fade-in_1.5s_ease-in-out] shadow-action-hover">
+                    class="p-4 rounded-lg lg:mb-0 mb-5 shadow-md h-fit basis-1/5 bg-darker-gray animate-[fade-in_1.5s_ease-in-out] shadow-action-hover">
                     @livewire('category-list')
                 </div>
             </div>

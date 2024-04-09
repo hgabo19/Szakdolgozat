@@ -1,5 +1,6 @@
 <x-app-layout>
     <div class="container mt-5 lg:mx-auto lg:grid lg:grid-cols-2 lg:gap-5 ">
+
         <x-custom-modal name="calorie-calculation">
             <x-slot:body>
                 <livewire:calorie-calculation>

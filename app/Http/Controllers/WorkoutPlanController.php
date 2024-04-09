@@ -27,7 +27,7 @@ class WorkoutPlanController extends Controller
         $isSuccessful = $workoutPlanService->saveToUser($userId, $workoutPlanId);
 
         if ($isSuccessful) {
-            return redirect()->route('dashboard')->with('success', 'Workout Plan saved :)');
+            return redirect()->route('workout-plans.show', $workoutPlanId)->with('success', 'Workout Plan saved!');
         }
     }
 

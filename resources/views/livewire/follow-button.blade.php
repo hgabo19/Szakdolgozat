@@ -1,7 +1,7 @@
 <button wire:click="toggleFollow()"
     class="{{ $suggestionFollow ? 'font-bold rounded-full text-base px-4 py-2.5' : 'font-medium rounded-lg px-14 py-2.5 mb-2' }}
-    focus:outline-none text-white bg-action-color hover:bg-action-hover focus:ring-2 focus:ring-purple-300
-    dark:bg-purple-600 dark:hover:bg-action-hover dark:focus:ring-white">
+    focus:outline-none text-white bg-action-color hover:bg-violet-600 focus:ring-2 focus:ring-purple-300
+    dark:bg-purple-600 dark:hover:bg-violet-600 dark:focus:ring-white transition duration 300 ease-in-out">
     <div class="flex items-center justify-center gap-2 align-middle">
         @if (!$this->user->isFollower(Auth::user()))
             <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5"

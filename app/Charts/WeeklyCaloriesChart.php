@@ -35,12 +35,12 @@ class WeeklyCaloriesChart
         }
 
         foreach ($thisWeeksCalories as $calories) {
-            $dayOfWeek = $calories->day_of_week - 1;
+            $dayOfWeek = $calories->day_of_week - 2;
             $this_weeks_sum[$dayOfWeek] += $calories->total_calories;
         }
 
         foreach ($lastWeeksCalories as $calories) {
-            $dayOfWeek = $calories->day_of_week - 1;
+            $dayOfWeek = $calories->day_of_week - 2;
             $last_weeks_sum[$dayOfWeek] += $calories->total_calories;
         }
 

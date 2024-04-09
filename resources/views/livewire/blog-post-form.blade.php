@@ -15,7 +15,7 @@
                 <x-user-avatar :user="Auth::user()" class="w-[4.1rem] h-[4.1rem]" />
             @endif
         </div>
-        <div>
+        <div class="mt-2 lg:mt-0">
             <textarea wire:model.blur="body" id="message" rows="3" cols="60"
                 class="block p-2.5 w-full resize-none text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-secondary-color dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-action-color dark:focus:border-blue-500"
                 placeholder="Write your thoughts here...">
@@ -23,7 +23,7 @@
             @error('body')
                 <span class="block ml-3 text-sm text-center text-red-500 md:text-base"> {{ $message }} </span>
             @enderror
-            <div class="flex mt-3">
+            <div class="flex my-3">
                 <label for="small-input"
                     class="block pr-4 mt-1 text-lg font-medium text-gray-900 dark:text-white">Categories:
                 </label>
@@ -58,7 +58,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex flex-col items-end justify-between align-middle">
+        <div class="flex flex-col items-center justify-center gap-5 align-middle lg:items-end lg:justify-between">
             <div>
                 @if ($image)
                     <img class="mt-2 rounded h-14" src="{{ $image->temporaryUrl() }}" alt="post-img">
