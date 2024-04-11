@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="w-full px-5 mx-auto rounded-xl">
+    <div class="w-full mx-auto space-y-20 lg:space-y-0 lg:px-5 rounded-xl">
         <div>
             <div class="w-full gap-5 mt-12 lg:flex">
                 {{-- left part --}}

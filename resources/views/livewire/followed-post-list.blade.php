@@ -1,5 +1,5 @@
 <div>
-    <div class="flex flex-col mb-10 gap-7 h-1/3">
+    <div class="flex flex-col gap-5 mb-10 h-1/3">
         <div class="flex items-center justify-center gap-5 align-middle">
             <div class="relative w-1/2">
                 <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">

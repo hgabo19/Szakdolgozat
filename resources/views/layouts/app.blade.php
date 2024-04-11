@@ -53,7 +53,7 @@
         </aside>
 
         <!-- Main content -->
-        <main class="flex-1 w-full h-screen overflow-auto bg-secondary-color">
+        <main class="flex flex-col w-full h-screen min-h-screen overflow-auto bg-secondary-color">
             <nav>
                 <div class="px-2 mx-auto border-b-2 border-action-hover sm:py-4 sm:px-6 lg:px-8">
                     <div class="relative flex items-center justify-between h-16 md:justify-end">
@@ -117,6 +117,51 @@
                     {{ $slot }}
                 </div>
             </section>
+            <footer class="mt-auto bg-white border-t-2 dark:bg-darker-gray border-action-color">
+                <div class="w-full p-4 mx-auto">
+                    <div class="sm:flex sm:items-center sm:justify-evenly sm:gap-32">
+                        <h1 class="text-lg font-extrabold text-white lg:text-3xl">Lift It Up!</h1>
+                        <div class="grid grid-cols-2 gap-8 mt-4 sm:gap-28 sm:grid-cols-3 lg:pr-10">
+                            <div>
+                                <h2
+                                    class="mb-6 text-sm font-semibold text-gray-900 uppercase lg:text-lg dark:text-white">
+                                    Technologies
+                                </h2>
+                                <ul class="font-medium text-gray-500 dark:text-gray-400">
+                                    <li class="mb-4 lg:text-lg">
+                                        <a href="https://tallstack.dev/" class="hover:underline" target="_blank"
+                                            rel="noopener noreferrer">Tall stack</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2
+                                    class="mb-6 text-sm font-semibold text-gray-900 uppercase lg:text-lg dark:text-white">
+                                    Source
+                                    code
+                                </h2>
+                                <ul class="font-medium text-gray-500 dark:text-gray-400">
+                                    <li class="mb-4 lg:text-lg">
+                                        <a href="https://github.com/hgabo19/Szakdolgozat" class="hover:underline"
+                                            target="_blank" rel="noopener noreferrer">Github</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h2
+                                    class="mb-6 text-sm font-semibold text-gray-900 uppercase lg:text-lg dark:text-white">
+                                    Creator
+                                </h2>
+                                <ul class="font-medium text-gray-500 dark:text-gray-400">
+                                    <li class="mb-4 lg:text-lg">
+                                        <p>Gábor Huszka</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </main>
     </div>
     @livewireScripts

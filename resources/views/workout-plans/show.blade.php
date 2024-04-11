@@ -89,7 +89,7 @@
                         Description
                     </p>
                     <p
-                        class="text-base font-bold leading-loose text-white break-words lg:text-lg indent-8 animate-fade_in_right">
+                        class="text-base font-bold leading-loose text-white break-words whitespace-pre-line lg:text-lg indent-8 animate-fade_in_right">
                         {{ $workoutPlan->description }}
                     </p>
                 </div>
@@ -103,14 +103,14 @@
                     class="flex flex-col justify-center h-auto gap-5 mt-10 text-white rounded-lg lg:flex-wrap lg:flex-row lg:gap-14 animate-fade_in_up">
                     @foreach ($groupedExercises as $day => $dayExercises)
                         <div
-                            class="px-5 border-t-2 rounded-lg shadow-md border-x-2 border-action-color shadow-sky-400 bg-secondary-color">
+                            class="px-2 border-t-2 rounded-lg shadow-md lg:px-5 border-x-2 border-action-color shadow-sky-400 bg-secondary-color">
                             <h2
                                 class="p-4 mt-5 text-xl font-bold text-center text-transparent lg:text-2xl bg-clip-text bg-gradient-to-t to-emerald-500 from-sky-400">
                                 Day
                             </h2>
                             <div
                                 class="flex justify-center text-4xl text-transparent lg:text-6xl bg-clip-text bg-gradient-to-t to-action-hover from-sky-400">
-                                {{ $day }}
+                                {{ $day - 1 }}
                             </div>
                             @foreach ($dayExercises as $muscleGroup => $exercises)
                                 <div class="my-10">

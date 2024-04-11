@@ -17,7 +17,7 @@ class ExerciseForm extends Component
     #[Validate('required|string|max:40|min:5')]
     public $name;
 
-    #[Validate('required|string|max:1000|min:100')]
+    #[Validate('required|string|max:2000|min:100')]
     public $description;
 
     #[Validate('required')]

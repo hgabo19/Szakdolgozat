@@ -50,7 +50,7 @@
                         Description
                     </p>
                     <p
-                        class="text-base font-bold leading-loose text-white break-words lg:text-lg indent-8 animate-fade_in_right">
+                        class="text-base font-bold leading-loose text-white break-words whitespace-pre-line lg:text-lg indent-8 animate-fade_in_right">
                         {{ $exercise->description }}
                     </p>
                 </div>

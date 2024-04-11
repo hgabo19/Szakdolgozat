@@ -25,7 +25,8 @@ class WeeklyCaloriesChart
 
         $thisWeeksCalories = $this->healthService->getWeeklyCalories($thisWeekStart, $thisWeekEnd);
         $lastWeeksCalories = $this->healthService->getWeeklyCalories($lastWeekStart, $lastWeekEnd);
-
+        // dd($thisWeeksCalories);
+        // dd($lastWeeksCalories);
         $this_weeks_sum = [];
         $last_weeks_sum = [];
 
@@ -35,12 +36,12 @@ class WeeklyCaloriesChart
         }
 
         foreach ($thisWeeksCalories as $calories) {
-            $dayOfWeek = $calories->day_of_week - 2;
+            $dayOfWeek = $calories->day_of_week - 1;
             $this_weeks_sum[$dayOfWeek] += $calories->total_calories;
         }
 
         foreach ($lastWeeksCalories as $calories) {
-            $dayOfWeek = $calories->day_of_week - 2;
+            $dayOfWeek = $calories->day_of_week - 1;
             $last_weeks_sum[$dayOfWeek] += $calories->total_calories;
         }
 

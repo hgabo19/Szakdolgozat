@@ -42,6 +42,7 @@
                         <option value="legs">Legs</option>
                         <option value="shoulders">Shoulders</option>
                         <option value="arms">Arms</option>
+                        <option value="abs">Abs</option>
                     </select>
                     @error('muscle_group')
                         <span class="block ml-3 text-sm text-red-500 md:text-base"> {{ $message }} </span>
@@ -54,7 +55,7 @@
                     </label>
                     <div>
                         <input wire:model='image'
-                            class="block w-full text-sm text-gray-900 border-2 border-gray-300 rounded-lg cursor-pointer md:text-base bg-gray-50 dark:text-gray-200 focus:outline-none dark:bg-secondary-color dark:border-gray-600 dark:placeholder-gray-400"
+                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-secondary-color dark:border-gray-600 dark:placeholder-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-base file:font-semibold file:bg-action-color file:text-white"
                             aria-describedby="file_input_help" id="file_input" accept="image/png, image/jpg"
                             type="file">
                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-400" id="file_input_help">
@@ -71,7 +72,7 @@
                 <div class="flex flex-col items-center">
                     <label for="description"
                         class="block mt-10 mb-2 text-sm font-medium text-gray-900 md:text-2xl dark:text-white">Description</label>
-                    <textarea id="description" rows="5" wire:model='description'
+                    <textarea id="description" rows="8" wire:model='description'
                         class="block p-2.5 w-3/4 min-h-[46px] text-base text-gray-900 bg-gray-50 rounded-lg border-2 border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-secondary-color dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-action-color dark:focus:border-action-color"
                         placeholder="Write the exercise's description here..."></textarea>
                     @error('description')
