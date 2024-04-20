@@ -34,6 +34,12 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
+            <p class="mr-3 text-sm text-gray-600 dark:text-gray-400">
+                New to Lift it up?</p>
+            <a class="mr-3 text-base text-gray-600 underline rounded-md  dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                href="{{ route('register') }}">
+                Join here!
+            </a>
             <x-primary-button class="ml-3">
                 {{ __('Log in') }}
             </x-primary-button>

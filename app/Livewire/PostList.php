@@ -24,7 +24,6 @@ class PostList extends Component
 
         return Post::withCount(['likes', 'comments'])
             ->with('categories')
-            ->where('created_at', '>=', $oneWeekAgo)
             ->when($this->category, function ($query) {
                 $query->filterByCategory($this->category);
             })
