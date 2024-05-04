@@ -41,11 +41,6 @@ class User extends Authenticatable
         'weight_goal',
     ];
 
-    public function userChallenges(): HasOne
-    {
-        return $this->hasOne(UserChallenge::class);
-    }
-
     /**
      * Defining the relationship between WorkoutPLans and Users 
      * One to many

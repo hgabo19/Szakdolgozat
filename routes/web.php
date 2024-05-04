@@ -37,7 +37,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/health/create/{meal}', [HealthController::class, 'edit'])->name('health.edit')->can('edit', 'meal');
     Route::post('/health/admin-list/{meal}', [HealthController::class, 'destroy'])->name('health.delete')->can('delete', Meal::class);
     Route::get('health/calories', [HealthController::class, 'calories'])->name('health.calories');
-    Route::get('health/challenges', [HealthController::class, 'challenges'])->name('health.challenges');
 
     // Exercises page
     Route::get('/exercises/admin-list', [ExerciseController::class, 'adminList'])->name('exercises.admin-list')->can('manage', Exercise::class);
