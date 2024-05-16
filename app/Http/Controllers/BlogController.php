@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Services\BlogService;
 use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
@@ -21,13 +22,15 @@ class BlogController extends Controller
         return view('blog.admin-list', compact('posts'));
     }
 
-    function adminDelete(Post $post)
+    function adminDelete(Post $post, BlogService $blogService)
     {
         $this->authorize('delete', $post);
         $postToDelete = Post::findOrFail($post->id);
-        $this->postDelete($postToDelete);
-        session()->flash('success', 'Post deleted successfully!');
-        return redirect()->route('blog.admin-list');
+        $isSuccessful = $blogService->delete($postToDelete);
+        if ($isSuccessful) {
+            session()->flash('success', 'Post deleted successfully!');
+            return redirect()->route('blog.admin-list');
+        }
     }
 
     /**
@@ -41,23 +44,14 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($postId)
+    public function destroy($postId, BlogService $blogService)
     {
         $postToDelete = Post::findOrFail($postId);
         $this->authorize('delete', $postToDelete);
-        $this->postDelete($postToDelete);
-        session()->flash('success', 'Post deleted successfully!');
-        return redirect()->route('blog.index');
-    }
-
-    public function postDelete($post)
-    {
-        if ($post->image_path) {
-            Storage::delete($post->image_path);
+        $isSuccessful = $blogService->delete($postToDelete);
+        if ($isSuccessful) {
+            session()->flash('success', 'Post deleted successfully!');
+            return redirect()->route('blog.index');
         }
-        if ($post->categories()) {
-            $post->categories()->detach();
-        }
-        $post->delete();
     }
 }

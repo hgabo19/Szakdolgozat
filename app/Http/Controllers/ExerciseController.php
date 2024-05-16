@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Exercise;
+use App\Services\ExerciseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -36,15 +37,14 @@ class ExerciseController extends Controller
         return view('exercises.edit', compact('exercise'));
     }
 
-    public function destroy(Exercise $exercise)
+    public function destroy(Exercise $exercise, ExerciseService $exerciseService)
     {
         $this->authorize('delete', Exercise::class);
         $exerc = Exercise::findOrFail($exercise->id);
-        if ($exerc->image_path) {
-            Storage::delete($exerc->image_path);
+        $isSuccessful = $exerciseService->delete($exerc);
+        if ($isSuccessful) {
+            session()->flash('success', '"' . $exerc->name . '" deleted successfully!');
+            return redirect()->route('exercises.admin-list');
         }
-        $exerc->delete();
-        session()->flash('success', '"' . $exerc->name . '" deleted successfully!');
-        return redirect()->route('exercises.admin-list');
     }
 }

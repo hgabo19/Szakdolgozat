@@ -67,13 +67,13 @@ class HealthService
 
         $weeklyCalories = DB::table('user_meals')
             ->select(
-                DB::raw('(WEEKDAY(user_meals.consumed_at) + 1) as day_of_week'),
+                DB::raw('(WEEKDAY(user_meals.consumed_at)) as day_of_week'),
                 DB::raw('SUM(meals.calories) as total_calories')
             )
             ->join('meals', 'user_meals.meal_id', '=', 'meals.id')
             ->where('user_meals.user_id', '=', $user->id)
             ->whereBetween('user_meals.consumed_at', [$startDate, $endDate])
-            ->groupBy(DB::raw('(WEEKDAY(user_meals.consumed_at) + 1)'))
+            ->groupBy(DB::raw('(WEEKDAY(user_meals.consumed_at))'))
             ->get();
 
         return $weeklyCalories;

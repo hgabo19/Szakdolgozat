@@ -36,9 +36,10 @@ class FoodList extends Component
     {
         if (Auth::check()) {
             $user = User::findOrFail(Auth::id());
+            $time = now()->timezone('Europe/Budapest');
 
             foreach ($this->foodItems as $food) {
-                $user->meals()->attach($food, ['consumed_at' => now()->timezone('Europe/Budapest')]);
+                $user->meals()->attach($food, ['consumed_at' => $time]);
             }
 
             $this->dispatch('food-added');

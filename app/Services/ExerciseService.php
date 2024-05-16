@@ -68,4 +68,17 @@ class ExerciseService
             return true;
         else return false;
     }
+
+    public function delete($exercise)
+    {
+        DB::transaction(function () use ($exercise) {
+
+            if ($exercise->image_path) {
+                Storage::delete($exercise->image_path);
+            }
+
+            $exercise->delete();
+        }, 5);
+        return true;
+    }
 }

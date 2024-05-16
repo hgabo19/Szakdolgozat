@@ -81,7 +81,7 @@ class BlogService
 
         // replace whitespace characters or dots directly after a # character
         $tagStr = preg_replace('/#\s*[.\s]+/', '#', $tagStr);
-        // /: The regex pattern is enclosed within forward slashes
+
         // [\s.]: This is a character class [...] that matches any whitespace character \s or a literal dot .
         $tagStr = preg_replace('/[\s.]+/', ',', $tagStr);
         return $tagStr;
@@ -96,5 +96,21 @@ class BlogService
         )
             return true;
         else return false;
+    }
+
+    public function delete($post)
+    {
+        DB::transaction(function () use ($post) {
+            if ($post->image_path) {
+                Storage::delete($post->image_path);
+            }
+
+            if ($post->categories()) {
+                $post->categories()->detach();
+            }
+
+            $post->delete();
+        }, 5);
+        return true;
     }
 }

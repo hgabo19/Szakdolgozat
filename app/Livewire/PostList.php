@@ -11,7 +11,6 @@ use Livewire\Component;
 
 class PostList extends Component
 {
-
     #[Url()]
     public $category = '';
 
@@ -20,8 +19,6 @@ class PostList extends Component
     #[Computed()]
     public function posts()
     {
-        $oneWeekAgo = Carbon::now()->subWeek();
-
         return Post::withCount(['likes', 'comments'])
             ->with('categories')
             ->when($this->category, function ($query) {

@@ -42,17 +42,16 @@ class WorkoutPlanController extends Controller
         return view('workout-plans.create');
     }
 
-    public function destroy($planId)
+    public function destroy($planId, WorkoutPlanService $workoutPlanService)
     {
         $this->authorize('delete', WorkoutPlan::class);
         $workoutPlan = WorkoutPlan::findOrFail($planId);
-        if ($workoutPlan->image_path) {
-            Storage::delete($workoutPlan->image_path);
+        $isSuccessful = $workoutPlanService->delete($workoutPlan);
+
+        if ($isSuccessful) {
+            session()->flash('success', '"' . $workoutPlan->title . '" deleted successfully!');
+            return redirect()->route('workout-plans.admin-list');
         }
-        $workoutPlan->exercises()->detach();
-        $workoutPlan->delete();
-        session()->flash('success', '"' . $workoutPlan->title . '" deleted successfully!');
-        return redirect()->route('workout-plans.admin-list');
     }
 
     public function edit(WorkoutPlan $workoutPlan)

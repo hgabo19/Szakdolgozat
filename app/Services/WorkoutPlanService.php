@@ -7,6 +7,7 @@ use App\Models\WorkoutPlan;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class WorkoutPlanService
@@ -174,5 +175,19 @@ class WorkoutPlanService
             }
         }
         return false;
+    }
+
+    public function delete($workoutPlan)
+    {
+        DB::transaction(function () use ($workoutPlan) {
+
+            if ($workoutPlan->image_path) {
+                Storage::delete($workoutPlan->image_path);
+            }
+
+            $workoutPlan->exercises()->detach();
+            $workoutPlan->delete();
+        }, 5);
+        return true;
     }
 }
