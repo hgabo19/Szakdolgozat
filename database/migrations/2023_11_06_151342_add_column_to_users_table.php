@@ -13,7 +13,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignIdFor(WorkoutPlan::class)->nullable();
+            $table->unsignedBigInteger('workout_plan_id')->nullable();
+
+            $table->foreign('workout_plan_id')->references('id')->on('workout_plans');
         });
     }
 
@@ -23,7 +25,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn('workout_plan_id');
         });
     }
 };
