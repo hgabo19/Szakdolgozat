@@ -1,4 +1,4 @@
-Huszka Gábor szakdolgozata
+Huszka Gábor szakdolgozata (Google Drive link: https://drive.google.com/drive/folders/1Op7JyR6sm4o3-ebvwOxSDUCWjlY8mvln)
 
 Futtatási útmutató
 
