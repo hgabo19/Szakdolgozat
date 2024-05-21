@@ -13,6 +13,6 @@
 <x-side-nav-link href="{{ route('exercises.index') }}" :active="request()->routeIs('exercises.index')">
     Exercises
 </x-side-nav-link>
-<x-side-nav-link href="#">
+<x-side-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
     About
 </x-side-nav-link>

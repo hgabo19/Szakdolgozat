@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\HealthController;
@@ -62,6 +63,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/blog/admin-list/{post}', [BlogController::class, 'adminDelete'])->name('blog.admin-delete')->can('delete', 'post');
     Route::get('/blog/{post}', [BlogController::class, 'show'])->name('blog.show');
     Route::resource('blog', BlogController::class);
+
+    // About page
+
+    Route::get('/about', [AboutController::class, 'index'])->name('about');
 });
 
 require __DIR__ . '/auth.php';

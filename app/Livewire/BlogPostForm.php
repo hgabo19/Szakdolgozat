@@ -79,17 +79,17 @@ class BlogPostForm extends Component
                     }
                 }
             }
-            // $isSucessful = $blogService->createBlogPost($validated, $this->tags);
-            // if ($isSucessful) {
-            //     $this->dispatch(
-            //         'alert',
-            //         type: 'success',
-            //         title: "Post created!",
-            //         position: 'center',
-            //         timer: 2000,
-            //         redirectUrl: route('blog.index'),
-            //     );
-            // }
+            $isSucessful = $blogService->createBlogPost($validated, $this->tags);
+            if ($isSucessful) {
+                $this->dispatch(
+                    'alert',
+                    type: 'success',
+                    title: "Post created!",
+                    position: 'center',
+                    timer: 2000,
+                    redirectUrl: route('blog.index'),
+                );
+            }
         }
     }
 }
